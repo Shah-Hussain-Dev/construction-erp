@@ -442,9 +442,9 @@ export function DocumentsInvoicesSection({
 
           <div className="doc-sheet-viewport">
             {activeTemplate === 'sales' ? (
-              <SalesInvoiceSheet settings={settings} />
+              <SalesInvoiceSheet settings={settings} siteConfig={siteConfig} />
             ) : (
-              <PurchaseInvoiceSheet settings={settings} />
+              <PurchaseInvoiceSheet settings={settings} siteConfig={siteConfig} />
             )}
           </div>
         </div>
@@ -481,9 +481,9 @@ export function DocumentsInvoicesSection({
           </div>
           <div className="modal-sheet-scroll">
             {activeTemplate === 'sales' ? (
-              <SalesInvoiceSheet settings={settings} />
+              <SalesInvoiceSheet settings={settings} siteConfig={siteConfig} />
             ) : (
-              <PurchaseInvoiceSheet settings={settings} />
+              <PurchaseInvoiceSheet settings={settings} siteConfig={siteConfig} />
             )}
           </div>
         </div>
@@ -497,8 +497,10 @@ export function DocumentsInvoicesSection({
 // ----------------------------------------------------------------------
 function SalesInvoiceSheet({
   settings,
+  siteConfig,
 }: {
   settings: DocumentSettings;
+  siteConfig: SiteConfig;
 }) {
   const bank = DUMMY_SALES_BANK;
 
