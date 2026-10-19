@@ -29,6 +29,31 @@ interface DocumentsInvoicesProps {
   onReset: () => void;
 }
 
+// ----------------------------------------------------------------------
+// DUMMY PDF DATA (sample data used for every preview on this page)
+// ----------------------------------------------------------------------
+const DUMMY_SITE = {
+  companyName: 'PRINCE CONSTRUCTIONS',
+  tagline: 'Building Dreams • Creating Spaces',
+  address: 'SALLAHPUR, BHATANI, DEORIA',
+  email: 'princeconstructionmust@gmail.com',
+  gstin: '09BKZPR3924E2ZH',
+};
+
+const DUMMY_SALES_BANK = {
+  accountName: 'PRINCE CONSTRUCTION',
+  bankName: 'IDBI BANK, MANOJ PANDEY CHAURAHA, GOMTINAGAR LKO',
+  accountNumber: '0314653800000408',
+  ifscCode: 'IBKL0000314',
+  branch: 'LUCKNOW',
+};
+
+const DUMMY_SIGNATORY = 'SHYAM BEHARI MAHESHWARI';
+
+const DUMMY_PURCHASE_TERMS = `1. Price as applicable on the date of dispatch shall be charged.
+2. Payment should be made by "A/C Payee only" bank draft/cheque.
+3. All disputes are subject to Kolkata jurisdiction only.`;
+
 export function DocumentsInvoicesSection({
   settings,
   siteConfig,
@@ -417,9 +442,9 @@ export function DocumentsInvoicesSection({
 
           <div className="doc-sheet-viewport">
             {activeTemplate === 'sales' ? (
-              <SalesInvoiceSheet settings={settings} siteConfig={siteConfig} />
+              <SalesInvoiceSheet settings={settings} />
             ) : (
-              <PurchaseInvoiceSheet settings={settings} siteConfig={siteConfig} />
+              <PurchaseInvoiceSheet settings={settings} />
             )}
           </div>
         </div>
@@ -456,9 +481,9 @@ export function DocumentsInvoicesSection({
           </div>
           <div className="modal-sheet-scroll">
             {activeTemplate === 'sales' ? (
-              <SalesInvoiceSheet settings={settings} siteConfig={siteConfig} />
+              <SalesInvoiceSheet settings={settings} />
             ) : (
-              <PurchaseInvoiceSheet settings={settings} siteConfig={siteConfig} />
+              <PurchaseInvoiceSheet settings={settings} />
             )}
           </div>
         </div>
@@ -472,18 +497,10 @@ export function DocumentsInvoicesSection({
 // ----------------------------------------------------------------------
 function SalesInvoiceSheet({
   settings,
-  siteConfig,
 }: {
   settings: DocumentSettings;
-  siteConfig: SiteConfig;
 }) {
-  const bank = settings.bankAccounts[0] || {
-    accountName: siteConfig.companyName || 'PRINCE CONSTRUCTION',
-    bankName: 'IDBI BANK, MANOJ PANDEY CHAURAHA, GOMTINAGAR LKO',
-    accountNumber: '0314653800000408',
-    ifscCode: 'IBKL0000314',
-    branch: 'LUCKNOW',
-  };
+  const bank = DUMMY_SALES_BANK;
 
   return (
     <div className="invoice-sheet sales-sheet-template print-sheet">

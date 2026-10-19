@@ -12,7 +12,6 @@ import {
   PencilSimple,
   Trash,
   Eye,
-  MagnifyingGlass,
   CheckCircle,
   Crown,
   Briefcase,
@@ -23,6 +22,7 @@ import { toast } from 'sonner';
 import { dataClient } from '@/lib/api';
 import { PageHeader, initialsOf } from '../../shell';
 import { DataTable } from '../../ui/data-table';
+import { ListToolbar } from '../../ui/list-toolbar';
 import { Badge, Modal, Empty, Skeleton } from '../../ui/primitives';
 import { Button } from '../../ui/button';
 import type { RecordData } from '@/schemas';
@@ -421,78 +421,53 @@ export function RolesPage() {
       </div>
 
       {/* Filters Bar & Table */}
-      <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-xs space-y-4">
-        <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between flex-wrap">
-          <div className="relative flex-1 min-w-[240px]">
-            <MagnifyingGlass size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-            <input
-              type="text"
-              placeholder="Search roles by title, code, department..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
-            />
-          </div>
+      <ListToolbar
+        search={search}
+        onSearchChange={setSearch}
+        searchPlaceholder="Search roles by title, code, department..."
+        filters={[
+          {
+            id: 'department',
+            label: 'Department',
+            value: deptFilter,
+            onChange: setDeptFilter,
+            allLabel: 'All Departments',
+            options: departments.map((d) => ({
+              value: d.id || '',
+              label: d.name || 'Unnamed Department',
+            })),
+          },
+          {
+            id: 'level',
+            label: 'Hierarchy level',
+            value: levelFilter,
+            onChange: setLevelFilter,
+            allLabel: 'All Levels',
+            options: ACCESS_LEVELS.map((lvl) => ({ value: lvl, label: lvl })),
+          },
+          {
+            id: 'status',
+            label: 'Role status',
+            value: statusFilter,
+            onChange: setStatusFilter,
+            allLabel: 'All Statuses',
+            options: [
+              { value: 'active', label: 'Active' },
+              { value: 'inactive', label: 'Inactive' },
+            ],
+          },
+        ]}
+        onReset={() => {
+          setSearch('');
+          setDeptFilter('all');
+          setLevelFilter('all');
+          setStatusFilter('all');
+        }}
+      />
 
-          <div className="flex items-center gap-2 flex-wrap">
-            {/* Department Filter (Role depends on Department!) */}
-            <select
-              value={deptFilter}
-              onChange={(e) => setDeptFilter(e.target.value)}
-              className="text-xs bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
-            >
-              <option value="all">All Departments</option>
-              {departments.map((d) => (
-                <option key={d.id} value={d.id}>
-                  {d.name}
-                </option>
-              ))}
-            </select>
-
-            {/* Level Filter */}
-            <select
-              value={levelFilter}
-              onChange={(e) => setLevelFilter(e.target.value)}
-              className="text-xs bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
-            >
-              <option value="all">All Levels</option>
-              {ACCESS_LEVELS.map((lvl) => (
-                <option key={lvl} value={lvl}>
-                  {lvl}
-                </option>
-              ))}
-            </select>
-
-            {/* Status Filter */}
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="text-xs bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
-            >
-              <option value="all">All Statuses</option>
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-            </select>
-
-            {(search || deptFilter !== 'all' || levelFilter !== 'all' || statusFilter !== 'all') && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setSearch('');
-                  setDeptFilter('all');
-                  setLevelFilter('all');
-                  setStatusFilter('all');
-                }}
-              >
-                Reset
-              </Button>
-            )}
-          </div>
-        </div>
-
+      <div className="rounded-xl border border-slate-200 bg-white shadow-xs">
         {isLoading ? (
-          <div className="py-12">
+          <div className="py-12 px-4">
             <Skeleton variant="stack" rows={5} />
           </div>
         ) : filteredRoles.length === 0 ? (
@@ -511,6 +486,7 @@ export function RolesPage() {
             data={filteredRoles}
             caption="Department Roles & Permissions Hierarchy"
             pageSize={10}
+            hideToolbar
           />
         )}
       </div>

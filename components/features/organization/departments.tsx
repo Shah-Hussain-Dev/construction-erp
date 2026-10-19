@@ -13,7 +13,6 @@ import {
   PencilSimple,
   Trash,
   Eye,
-  MagnifyingGlass,
   CheckCircle,
   XCircle,
   Hash,
@@ -23,6 +22,7 @@ import { toast } from 'sonner';
 import { dataClient } from '@/lib/api';
 import { PageHeader, initialsOf } from '../../shell';
 import { DataTable } from '../../ui/data-table';
+import { ListToolbar } from '../../ui/list-toolbar';
 import { Badge, Modal, Empty, Skeleton } from '../../ui/primitives';
 import { Button } from '../../ui/button';
 import type { RecordData } from '@/schemas';
@@ -378,45 +378,32 @@ export function DepartmentsPage() {
       </div>
 
       {/* Filters Bar & Table */}
-      <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-xs space-y-4">
-        <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
-          <div className="relative flex-1 max-w-md">
-            <MagnifyingGlass size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-            <input
-              type="text"
-              placeholder="Search departments by code, name, head, cost center..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
-            />
-          </div>
-          <div className="flex items-center gap-2">
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="text-xs bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
-            >
-              <option value="all">All Statuses</option>
-              <option value="active">Active Only</option>
-              <option value="inactive">Inactive Only</option>
-            </select>
-            {(search || statusFilter !== 'all') && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setSearch('');
-                  setStatusFilter('all');
-                }}
-              >
-                Reset
-              </Button>
-            )}
-          </div>
-        </div>
+      <ListToolbar
+        search={search}
+        onSearchChange={setSearch}
+        searchPlaceholder="Search departments by code, name, head, cost center..."
+        filters={[
+          {
+            id: 'status',
+            label: 'Department status',
+            value: statusFilter,
+            onChange: setStatusFilter,
+            allLabel: 'All Statuses',
+            options: [
+              { value: 'active', label: 'Active Only' },
+              { value: 'inactive', label: 'Inactive Only' },
+            ],
+          },
+        ]}
+        onReset={() => {
+          setSearch('');
+          setStatusFilter('all');
+        }}
+      />
 
+      <div className="rounded-xl border border-slate-200 bg-white shadow-xs">
         {isLoading ? (
-          <div className="py-12">
+          <div className="py-12 px-4">
             <Skeleton variant="stack" rows={5} />
           </div>
         ) : filteredDepartments.length === 0 ? (
@@ -435,6 +422,7 @@ export function DepartmentsPage() {
             data={filteredDepartments}
             caption="Organization Departments"
             pageSize={10}
+            hideToolbar
           />
         )}
       </div>

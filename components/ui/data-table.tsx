@@ -126,6 +126,8 @@ export interface DataTableProps<TData> {
   renderMobileCard?: (row: TData, index: number) => React.ReactNode;
   // Extra toolbar tools
   extraTools?: React.ReactNode;
+  // Hide the built-in toolbar when the page provides its own filter bar
+  hideToolbar?: boolean;
   className?: string;
   bordered?: boolean;
 }
@@ -171,6 +173,7 @@ export function DataTable<TData>({
   onRowClick,
   renderMobileCard,
   extraTools,
+  hideToolbar = false,
   className = '',
   bordered = true,
 }: DataTableProps<TData>) {
@@ -313,6 +316,7 @@ export function DataTable<TData>({
       )}
 
       {/* Main Interactive Toolbar */}
+      {!hideToolbar && (
       <div className="data-table-toolbar">
         <div className="data-table-search">
           <MagnifyingGlass size={18} className="search-icon" weight="bold" />
@@ -389,6 +393,7 @@ export function DataTable<TData>({
           {extraTools}
         </div>
       </div>
+      )}
 
       {/* Active Multi-Row Selection Banner */}
       {selectedCount > 0 && (

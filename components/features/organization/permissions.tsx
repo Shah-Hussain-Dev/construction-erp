@@ -522,15 +522,30 @@ export function PermissionsPage() {
             </Button>
           </div>
 
-          <div className="relative w-48">
-            <MagnifyingGlass size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400" />
+          <div className="relative w-full sm:w-64">
+            <MagnifyingGlass
+              size={15}
+              weight="bold"
+              className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+            />
             <input
               type="text"
               placeholder="Search modules..."
               value={moduleSearch}
               onChange={(e) => setModuleSearch(e.target.value)}
-              className="w-full pl-8 pr-2.5 py-1 text-xs bg-slate-50 border border-slate-200 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500"
+              aria-label="Search permission modules"
+              className="h-9 w-full rounded-lg border border-slate-200 bg-slate-50 pl-9 pr-9 text-xs text-slate-800 transition-colors placeholder:text-slate-400 hover:border-slate-300 focus:border-indigo-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
             />
+            {moduleSearch && (
+              <button
+                type="button"
+                onClick={() => setModuleSearch('')}
+                aria-label="Clear module search"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 rounded p-0.5 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600"
+              >
+                <X size={13} weight="bold" />
+              </button>
+            )}
           </div>
         </div>
       </div>

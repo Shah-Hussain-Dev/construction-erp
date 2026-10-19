@@ -477,7 +477,8 @@ export function Shell({ children }: { children: React.ReactNode }) {
           ) : (
             <>
               {/* Primary Active Dashboard Button */}
-              <div className="sidebar-primary-nav space-y-1">
+              {/* Primary Active Dashboard Button */}
+              <div className="sidebar-primary-nav">
                 <Link
                   href="/"
                   className={`nav-link ${path === '/' ? 'active' : ''}`}
@@ -488,43 +489,6 @@ export function Shell({ children }: { children: React.ReactNode }) {
                 >
                   <House size={20} weight={path === '/' ? 'fill' : 'regular'} />
                   <span className="nav-text">Dashboard</span>
-                </Link>
-                <Link
-                  href="/communication/discussions"
-                  className={`nav-link ${path.startsWith('/communication/discussions') ? 'active' : ''}`}
-                  aria-current={path.startsWith('/communication/discussions') ? 'page' : undefined}
-                  onMouseEnter={(e) => showTooltip(e, 'Chats')}
-                  onMouseLeave={hideTooltip}
-                  title={sidebarCollapsed ? undefined : 'Chats'}
-                >
-                  <ChatDots
-                    size={20}
-                    weight={path.startsWith('/communication/discussions') ? 'fill' : 'regular'}
-                    className={path.startsWith('/communication/discussions') ? 'text-blue-600' : 'text-blue-500'}
-                  />
-                  <span className="nav-text flex items-center justify-between flex-1">
-                    <span>Chats</span>
-                  </span>
-                </Link>
-                <Link
-                  href="/training"
-                  className={`nav-link ${path.startsWith('/training') ? 'active' : ''}`}
-                  aria-current={path.startsWith('/training') ? 'page' : undefined}
-                  onMouseEnter={(e) => showTooltip(e, 'Training & Help Center')}
-                  onMouseLeave={hideTooltip}
-                  title={sidebarCollapsed ? undefined : 'Training & Help Center'}
-                >
-                  <GraduationCap
-                    size={20}
-                    weight={path.startsWith('/training') ? 'fill' : 'regular'}
-                    className={path.startsWith('/training') ? 'text-blue-600' : 'text-blue-500'}
-                  />
-                  <span className="nav-text flex items-center justify-between flex-1">
-                    <span>Training Center</span>
-                    <span className="text-[10px] bg-blue-100 text-blue-700 font-bold px-1.5 py-0.5 rounded-full ml-1">
-                      New
-                    </span>
-                  </span>
                 </Link>
               </div>
 
@@ -583,6 +547,51 @@ export function Shell({ children }: { children: React.ReactNode }) {
                     </div>
                   );
                 })}
+              </div>
+
+              {/* Secondary Navigation: Communication & Learning (Moved to the last) */}
+              <div className="sidebar-secondary-nav pt-2 mt-2 border-t border-slate-700/40 space-y-1">
+                {canAccessPath(user, '/communication/discussions') && (
+                  <Link
+                    href="/communication/discussions"
+                    className={`nav-link ${path.startsWith('/communication/discussions') ? 'active' : ''}`}
+                    aria-current={path.startsWith('/communication/discussions') ? 'page' : undefined}
+                    onMouseEnter={(e) => showTooltip(e, 'Chats')}
+                    onMouseLeave={hideTooltip}
+                    title={sidebarCollapsed ? undefined : 'Chats'}
+                  >
+                    <ChatDots
+                      size={20}
+                      weight={path.startsWith('/communication/discussions') ? 'fill' : 'regular'}
+                      className={path.startsWith('/communication/discussions') ? 'text-blue-400' : 'text-slate-400'}
+                    />
+                    <span className="nav-text flex items-center justify-between flex-1">
+                      <span>Chats</span>
+                    </span>
+                  </Link>
+                )}
+                {canAccessPath(user, '/training') && (
+                  <Link
+                    href="/training"
+                    className={`nav-link ${path.startsWith('/training') ? 'active' : ''}`}
+                    aria-current={path.startsWith('/training') ? 'page' : undefined}
+                    onMouseEnter={(e) => showTooltip(e, 'Training Center')}
+                    onMouseLeave={hideTooltip}
+                    title={sidebarCollapsed ? undefined : 'Training Center'}
+                  >
+                    <GraduationCap
+                      size={20}
+                      weight={path.startsWith('/training') ? 'fill' : 'regular'}
+                      className={path.startsWith('/training') ? 'text-blue-400' : 'text-slate-400'}
+                    />
+                    <span className="nav-text flex items-center justify-between flex-1">
+                      <span>Training Center</span>
+                      <span className="text-[10px] bg-blue-500/20 text-blue-300 font-bold px-1.5 py-0.5 rounded-full ml-1">
+                        New
+                      </span>
+                    </span>
+                  </Link>
+                )}
               </div>
             </>
           )}

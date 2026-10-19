@@ -13,7 +13,6 @@ import {
   PencilSimple,
   Trash,
   Eye,
-  MagnifyingGlass,
   CheckCircle,
   Warehouse,
   Briefcase,
@@ -23,6 +22,7 @@ import { toast } from 'sonner';
 import { dataClient } from '@/lib/api';
 import { PageHeader } from '../../shell';
 import { DataTable } from '../../ui/data-table';
+import { ListToolbar } from '../../ui/list-toolbar';
 import { Badge, Modal, Empty, Skeleton } from '../../ui/primitives';
 import { Button } from '../../ui/button';
 import type { RecordData } from '@/schemas';
@@ -438,7 +438,7 @@ export function SitesPage() {
   const totalStores = stores.length;
 
   return (
-    <div className="p-6 max-w-7xl mx-auto space-y-6">
+    <div className="module-page-container space-y-6">
       {/* Top Header */}
       <PageHeader
         title="Sites & Construction Locations"
@@ -458,139 +458,80 @@ export function SitesPage() {
         }
       />
 
-      {/* KPI Stats Cards - Double-Bezel Design */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white rounded-xl p-4 border border-slate-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.05),0_10px_20px_-5px_rgba(0,0,0,0.02)] transition-all hover:border-slate-300">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-              Total Sites
-            </span>
-            <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
-              <MapPin size={18} weight="duotone" />
+      {/* KPI Stats Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {[
+          { label: 'Total Sites', value: sitesLoading ? '—' : sites.length, sub: 'All registered job sites', icon: MapPin, color: '#3b82f6' },
+          { label: 'Active Operations', value: sitesLoading ? '—' : activeCount, sub: 'Live work execution ongoing', icon: CheckCircle, color: '#10b981' },
+          { label: 'Active Projects', value: projects.length, sub: 'Linked commercial contracts', icon: Briefcase, color: '#6366f1' },
+          { label: 'Site Stores', value: totalStores, sub: 'Material receipt & issue points', icon: Warehouse, color: '#f59e0b' },
+        ].map((s, idx) => {
+          const IconComponent = s.icon;
+          return (
+            <div key={idx} className="bg-white border border-slate-200 rounded-xl p-4 shadow-xs flex items-center justify-between">
+              <div>
+                <p className="text-xs font-medium text-slate-500">{s.label}</p>
+                <p className="text-2xl font-bold text-slate-900 mt-1">{s.value}</p>
+                <p className="text-[11px] text-slate-400 mt-0.5">{s.sub}</p>
+              </div>
+              <div
+                className="w-10 h-10 rounded-lg flex items-center justify-center text-white shrink-0"
+                style={{ backgroundColor: s.color }}
+              >
+                <IconComponent size={20} weight="bold" />
+              </div>
             </div>
-          </div>
-          <div className="mt-2 text-2xl font-bold tracking-tight text-slate-900">
-            {sitesLoading ? <Skeleton className="h-8 w-16" /> : sites.length}
-          </div>
-          <p className="mt-1 text-xs text-slate-500">All registered job sites</p>
-        </div>
-
-        <div className="bg-white rounded-xl p-4 border border-slate-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.05),0_10px_20px_-5px_rgba(0,0,0,0.02)] transition-all hover:border-slate-300">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-              Active Operations
-            </span>
-            <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
-              <CheckCircle size={18} weight="duotone" />
-            </div>
-          </div>
-          <div className="mt-2 text-2xl font-bold tracking-tight text-emerald-700">
-            {sitesLoading ? <Skeleton className="h-8 w-16" /> : activeCount}
-          </div>
-          <p className="mt-1 text-xs text-slate-500">Live work execution ongoing</p>
-        </div>
-
-        <div className="bg-white rounded-xl p-4 border border-slate-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.05),0_10px_20px_-5px_rgba(0,0,0,0.02)] transition-all hover:border-slate-300">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-              Active Projects
-            </span>
-            <div className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center">
-              <Briefcase size={18} weight="duotone" />
-            </div>
-          </div>
-          <div className="mt-2 text-2xl font-bold tracking-tight text-slate-900">
-            {projects.length}
-          </div>
-          <p className="mt-1 text-xs text-slate-500">Linked commercial contracts</p>
-        </div>
-
-        <div className="bg-white rounded-xl p-4 border border-slate-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.05),0_10px_20px_-5px_rgba(0,0,0,0.02)] transition-all hover:border-slate-300">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-              Site Stores / Warehouses
-            </span>
-            <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
-              <Warehouse size={18} weight="duotone" />
-            </div>
-          </div>
-          <div className="mt-2 text-2xl font-bold tracking-tight text-slate-900">
-            {totalStores}
-          </div>
-          <p className="mt-1 text-xs text-slate-500">Material receipt & issue points</p>
-        </div>
+          );
+        })}
       </div>
 
-      {/* Filter Toolbar */}
-      <div className="bg-white rounded-xl p-4 border border-slate-200/80 shadow-sm flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
-        <div className="relative flex-1 max-w-md">
-          <MagnifyingGlass
-            size={18}
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
-          />
-          <input
-            type="text"
-            placeholder="Search by site name, code, address, or in-charge..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
-          />
-        </div>
-
-        <div className="flex flex-wrap items-center gap-2">
-          {/* Project filter */}
-          <select
-            value={projectFilter}
-            onChange={(e) => setProjectFilter(e.target.value)}
-            className="text-sm border border-slate-200 rounded-lg px-3 py-2 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-          >
-            <option value="all">All Projects</option>
-            {projects.map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.name}
-              </option>
-            ))}
-          </select>
-
-          {/* Status filter */}
-          <select
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-            className="text-sm border border-slate-200 rounded-lg px-3 py-2 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-          >
-            <option value="all">All Statuses</option>
-            <option value="active">Active Sites</option>
-            <option value="completed">Handed Over</option>
-            <option value="inactive">On Hold</option>
-          </select>
-
-          {(search || projectFilter !== 'all' || statusFilter !== 'all') && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => {
-                setSearch('');
-                setProjectFilter('all');
-                setStatusFilter('all');
-              }}
-              className="text-slate-500 text-xs"
-            >
-              Reset Filters
-            </Button>
-          )}
-        </div>
-      </div>
+      {/* Filters Bar & Table */}
+      <ListToolbar
+        search={search}
+        onSearchChange={setSearch}
+        searchPlaceholder="Search by site name, code, address, or in-charge..."
+        filters={[
+          {
+            id: 'project',
+            label: 'Linked project',
+            value: projectFilter,
+            onChange: setProjectFilter,
+            allLabel: 'All Projects',
+            options: projects.map((p) => ({
+              value: p.id || '',
+              label: p.name || 'Unnamed Project',
+            })),
+          },
+          {
+            id: 'status',
+            label: 'Site status',
+            value: statusFilter,
+            onChange: setStatusFilter,
+            allLabel: 'All Statuses',
+            options: [
+              { value: 'active', label: 'Active Sites' },
+              { value: 'completed', label: 'Handed Over' },
+              { value: 'inactive', label: 'On Hold' },
+            ],
+          },
+        ]}
+        onReset={() => {
+          setSearch('');
+          setProjectFilter('all');
+          setStatusFilter('all');
+        }}
+      />
 
       {/* Main Table */}
-      <div className="bg-white rounded-xl border border-slate-200/80 shadow-sm overflow-hidden">
-        {sitesLoading ? (
-          <div className="p-8 space-y-3">
-            <Skeleton className="h-6 w-1/3" />
-            <Skeleton className="h-10 w-full" />
-            <Skeleton className="h-10 w-full" />
-            <Skeleton className="h-10 w-full" />
-          </div>
-        ) : filteredSites.length === 0 ? (
+      {sitesLoading ? (
+        <div className="rounded-xl border border-slate-200 bg-white p-8 shadow-xs space-y-3">
+          <Skeleton className="h-6 w-1/3" />
+          <Skeleton className="h-10 w-full" />
+          <Skeleton className="h-10 w-full" />
+          <Skeleton className="h-10 w-full" />
+        </div>
+      ) : filteredSites.length === 0 ? (
+        <div className="rounded-xl border border-slate-200 bg-white shadow-xs">
           <Empty
             title="No sites found"
             description={
@@ -606,15 +547,16 @@ export function SitesPage() {
               </Button>
             </div>
           </Empty>
-        ) : (
-          <DataTable
-            data={filteredSites}
-            columns={columns}
-            pageSize={10}
-            totalCount={filteredSites.length}
-          />
-        )}
-      </div>
+        </div>
+      ) : (
+        <DataTable
+          data={filteredSites}
+          columns={columns}
+          pageSize={10}
+          totalCount={filteredSites.length}
+          hideToolbar
+        />
+      )}
 
       {/* Modal: Add Site */}
       {isAddOpen && (

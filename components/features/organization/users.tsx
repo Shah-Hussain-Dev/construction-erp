@@ -13,7 +13,6 @@ import {
   PencilSimple,
   Trash,
   Eye,
-  MagnifyingGlass,
   CheckCircle,
   EnvelopeSimple,
   Phone,
@@ -25,6 +24,7 @@ import { toast } from 'sonner';
 import { dataClient } from '@/lib/api';
 import { PageHeader, initialsOf } from '../../shell';
 import { DataTable } from '../../ui/data-table';
+import { ListToolbar } from '../../ui/list-toolbar';
 import { Badge, Modal, Empty, Skeleton } from '../../ui/primitives';
 import { Button } from '../../ui/button';
 import type { RecordData } from '@/schemas';
@@ -506,96 +506,71 @@ export function UsersPage() {
       </div>
 
       {/* Filters Bar & Table */}
-      <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-xs space-y-4">
-        <div className="flex flex-col lg:flex-row gap-3 items-stretch lg:items-center justify-between flex-wrap">
-          <div className="relative flex-1 min-w-[220px]">
-            <MagnifyingGlass size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-            <input
-              type="text"
-              placeholder="Search users by name, email, employee code, role..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
-            />
-          </div>
+      <ListToolbar
+        search={search}
+        onSearchChange={setSearch}
+        searchPlaceholder="Search users by name, email, employee code, role..."
+        filters={[
+          {
+            id: 'department',
+            label: 'Department',
+            value: deptFilter,
+            onChange: (value) => {
+              setDeptFilter(value);
+              setRoleFilter('all');
+            },
+            allLabel: 'All Departments',
+            options: departments.map((d) => ({
+              value: d.id || '',
+              label: d.name || 'Unnamed Department',
+            })),
+          },
+          {
+            id: 'role',
+            label: 'Role',
+            value: roleFilter,
+            onChange: setRoleFilter,
+            allLabel: 'All Roles',
+            options: filterableRoles.map((r) => ({
+              value: r.id || '',
+              label: r.name || 'Unnamed Role',
+            })),
+          },
+          {
+            id: 'site',
+            label: 'Site',
+            value: siteFilter,
+            onChange: setSiteFilter,
+            allLabel: 'All Sites',
+            options: sites.map((s) => ({
+              value: s.id || '',
+              label: s.name || 'Unnamed Site',
+            })),
+          },
+          {
+            id: 'status',
+            label: 'User status',
+            value: statusFilter,
+            onChange: setStatusFilter,
+            allLabel: 'All Statuses',
+            options: [
+              { value: 'active', label: 'Active' },
+              { value: 'inactive', label: 'Inactive' },
+            ],
+          },
+        ]}
+        onReset={() => {
+          setSearch('');
+          setDeptFilter('all');
+          setRoleFilter('all');
+          setSiteFilter('all');
+          setStatusFilter('all');
+        }}
+      />
 
-          <div className="flex items-center gap-2 flex-wrap">
-            {/* Department Filter */}
-            <select
-              value={deptFilter}
-              onChange={(e) => {
-                setDeptFilter(e.target.value);
-                setRoleFilter('all'); // reset role when department filter changes
-              }}
-              className="text-xs bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
-            >
-              <option value="all">All Departments</option>
-              {departments.map((d) => (
-                <option key={d.id} value={d.id}>
-                  {d.name}
-                </option>
-              ))}
-            </select>
-
-            {/* Role Filter (Filtered by department) */}
-            <select
-              value={roleFilter}
-              onChange={(e) => setRoleFilter(e.target.value)}
-              className="text-xs bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
-            >
-              <option value="all">All Roles</option>
-              {filterableRoles.map((r) => (
-                <option key={r.id} value={r.id}>
-                  {r.name}
-                </option>
-              ))}
-            </select>
-
-            {/* Site Filter */}
-            <select
-              value={siteFilter}
-              onChange={(e) => setSiteFilter(e.target.value)}
-              className="text-xs bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
-            >
-              <option value="all">All Sites</option>
-              {sites.map((s) => (
-                <option key={s.id} value={s.id}>
-                  {s.name}
-                </option>
-              ))}
-            </select>
-
-            {/* Status Filter */}
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="text-xs bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
-            >
-              <option value="all">All Statuses</option>
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-            </select>
-
-            {(search || deptFilter !== 'all' || roleFilter !== 'all' || siteFilter !== 'all' || statusFilter !== 'all') && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setSearch('');
-                  setDeptFilter('all');
-                  setRoleFilter('all');
-                  setSiteFilter('all');
-                  setStatusFilter('all');
-                }}
-              >
-                Reset
-              </Button>
-            )}
-          </div>
-        </div>
-
+      <div className="rounded-xl border border-slate-200 bg-white shadow-xs">
         {isLoading ? (
-          <div className="py-12">
+          <div className="py-12 px-4">
             <Skeleton variant="stack" rows={6} />
           </div>
         ) : filteredUsers.length === 0 ? (
@@ -614,6 +589,7 @@ export function UsersPage() {
             data={filteredUsers}
             caption="Enterprise Users & Role Authorizations"
             pageSize={10}
+            hideToolbar
           />
         )}
       </div>
