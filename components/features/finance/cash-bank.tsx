@@ -20,6 +20,7 @@ import {
   Building,
   ArrowUpRight,
   ArrowDownLeft,
+  WarningCircle,
 } from '@phosphor-icons/react';
 import { toast } from 'sonner';
 import { dataClient } from '@/lib/api';
@@ -73,6 +74,7 @@ export function CashAndBankPage() {
   const [isTransferOpen, setIsTransferOpen] = useState(false);
   const [isTopUpOpen, setIsTopUpOpen] = useState(false);
   const [selectedSiteTopUp, setSelectedSiteTopUp] = useState<PettyCashRecord | null>(null);
+  const [isAddFloatOpen, setIsAddFloatOpen] = useState(false);
 
   // Form State for Bank Account
   const [formName, setFormName] = useState('');
@@ -82,16 +84,27 @@ export function CashAndBankPage() {
   const [formIfsc, setFormIfsc] = useState('');
   const [formBranch, setFormBranch] = useState('');
   const [formOpeningBalance, setFormOpeningBalance] = useState<number>(0);
+  const [formOdLimit, setFormOdLimit] = useState<number>(0);
+  const [formUpiId, setFormUpiId] = useState('');
 
   // Form State for Transfer
   const [transferFrom, setTransferFrom] = useState('');
   const [transferTo, setTransferTo] = useState('');
   const [transferAmount, setTransferAmount] = useState<number>(0);
+  const [transferDate, setTransferDate] = useState(new Date().toISOString().slice(0, 10));
+  const [transferMode, setTransferMode] = useState('NEFT');
   const [transferRef, setTransferRef] = useState('');
   const [transferRemarks, setTransferRemarks] = useState('');
 
   // Top-Up Form State
   const [topUpAmount, setTopUpAmount] = useState<number>(50000);
+  const [topUpBankId, setTopUpBankId] = useState('');
+
+  // Float Form State
+  const [formFloatSite, setFormFloatSite] = useState('');
+  const [formFloatCustodian, setFormFloatCustodian] = useState('');
+  const [formFloatLimit, setFormFloatLimit] = useState<number>(100000);
+  const [formFloatCash, setFormFloatCash] = useState<number>(100000);
 
   // Load Bank Accounts
   const { data: bankAccounts = [], isLoading: accountsLoading } = useQuery({
@@ -278,8 +291,10 @@ export function CashAndBankPage() {
       ifsc: formIfsc.trim().toUpperCase(),
       branch: formBranch.trim(),
       balance: Number(formOpeningBalance || 0),
+      odLimit: Number(formOdLimit || 0),
+      upiId: formUpiId.trim(),
       status: 'active',
-    });
+    } as any);
   };
 
   // Handle Save Edit Account
@@ -297,7 +312,9 @@ export function CashAndBankPage() {
         ifsc: formIfsc.trim().toUpperCase(),
         branch: formBranch.trim(),
         balance: Number(formOpeningBalance || 0),
-      },
+        odLimit: Number(formOdLimit || 0),
+        upiId: formUpiId.trim(),
+      } as any,
     });
   };
 
@@ -313,13 +330,19 @@ export function CashAndBankPage() {
       return;
     }
 
+    const srcAcc = bankAccounts.find((b) => b.id === transferFrom);
+    if (srcAcc && Number(srcAcc.balance || 0) < transferAmount) {
+      toast.error(`Transfer amount exceeds available balance in ${srcAcc.name} (${inr(srcAcc.balance || 0)})`);
+      return;
+    }
+
     // Post contra voucher
     dataClient.create('vouchers', {
       type: 'contra',
       number: `VCH-26-${Date.now().toString().slice(-4)}`,
-      date: new Date().toISOString().slice(0, 10),
-      referenceNo: transferRef || `TRF-${Date.now().toString().slice(-5)}`,
-      purpose: `Contra Fund Transfer: ${transferRemarks || 'Internal transfer between accounts'}`,
+      date: transferDate || new Date().toISOString().slice(0, 10),
+      referenceNo: transferRef || `${transferMode}-${Date.now().toString().slice(-5)}`,
+      purpose: `Contra Fund Transfer [${transferMode}]: ${transferRemarks || 'Internal transfer between accounts'}`,
       status: 'posted',
       lines: [
         { id: '1', accountId: transferTo, debit: transferAmount, credit: 0 },
@@ -333,6 +356,27 @@ export function CashAndBankPage() {
     }).catch((err) => {
       toast.error(err?.message || 'Transfer failed');
     });
+  };
+
+  // Handle Save New Float
+  const handleSaveFloat = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formFloatSite.trim() || !formFloatCustodian.trim()) {
+      toast.error('Site name and custodian are required');
+      return;
+    }
+    const newRecord: PettyCashRecord = {
+      id: `pc-${Date.now()}`,
+      siteName: formFloatSite.trim(),
+      custodian: formFloatCustodian.trim(),
+      imprestLimit: Number(formFloatLimit) || 100000,
+      cashInHand: Number(formFloatCash) || Number(formFloatLimit) || 100000,
+      lastReimbursed: new Date().toISOString().slice(0, 10),
+      status: 'healthy',
+    };
+    setPettyCashSites((prev) => [newRecord, ...prev]);
+    setIsAddFloatOpen(false);
+    toast.success(`Petty cash float created for ${newRecord.siteName}`);
   };
 
   // Handle Petty Cash Top-Up
@@ -616,6 +660,20 @@ export function CashAndBankPage() {
                 Physical locker cash in hand managed by site supervisors for daily site purchases.
               </p>
             </div>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => {
+                setFormFloatSite('');
+                setFormFloatCustodian('');
+                setFormFloatLimit(100000);
+                setFormFloatCash(100000);
+                setIsAddFloatOpen(true);
+              }}
+            >
+              <Plus size={16} className="mr-1.5" />
+              Add Site Float
+            </Button>
           </div>
 
           <div className="divide-y divide-slate-100">
@@ -752,7 +810,8 @@ export function CashAndBankPage() {
       {/* Modal: Add / Edit Bank Account */}
       {(isAddAccountOpen || editingAccount) && (
         <Modal
-          title={isAddAccountOpen ? 'Register Bank Account' : `Edit Account · ${editingAccount?.name}`}
+          size="lg"
+          title={isAddAccountOpen ? 'Register Master Bank Account' : `Edit Account · ${editingAccount?.name}`}
           open={isAddAccountOpen || Boolean(editingAccount)}
           onClose={() => {
             setIsAddAccountOpen(false);
@@ -760,112 +819,157 @@ export function CashAndBankPage() {
           }}
         >
           <form onSubmit={isAddAccountOpen ? handleSaveAddAccount : handleSaveEditAccount} className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  Bank Name <span className="text-rose-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. HDFC Bank"
-                  value={formBankName}
-                  onChange={(e) => setFormBankName(e.target.value)}
-                  className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-                />
+            {/* Card 1: Bank Identity */}
+            <div className="bg-slate-50/80 p-4 rounded-xl border border-slate-200/80 space-y-3">
+              <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
+                <Bank size={14} className="text-blue-600" />
+                Bank Particulars & Identification
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Bank Institution Name <span className="text-rose-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. HDFC Bank, State Bank of India"
+                    value={formBankName}
+                    onChange={(e) => setFormBankName(e.target.value)}
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 font-medium"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Account Ledger Display Name <span className="text-rose-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Current Operating Account - Apex"
+                    value={formName}
+                    onChange={(e) => setFormName(e.target.value)}
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 font-medium"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Bank Account Number <span className="text-rose-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="50200089201923"
+                    value={formAccountNumber}
+                    onChange={(e) => setFormAccountNumber(e.target.value)}
+                    className="w-full px-3 py-2 text-xs font-mono font-medium border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    IFSC Branch Code
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="HDFC0001824"
+                    value={formIfsc}
+                    onChange={(e) => setFormIfsc(e.target.value.toUpperCase())}
+                    className="w-full px-3 py-2 text-xs font-mono uppercase font-bold border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                  />
+                </div>
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  Account Display Name <span className="text-rose-500">*</span>
+                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  Branch Street Address / Location
                 </label>
                 <input
                   type="text"
-                  required
-                  placeholder="e.g. Current Operating Account"
-                  value={formName}
-                  onChange={(e) => setFormName(e.target.value)}
-                  className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  Account Number <span className="text-rose-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="50200089201923"
-                  value={formAccountNumber}
-                  onChange={(e) => setFormAccountNumber(e.target.value)}
-                  className="w-full px-3 py-2 text-sm font-mono border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  Account Type
-                </label>
-                <select
-                  value={formAccountType}
-                  onChange={(e) => setFormAccountType(e.target.value as any)}
-                  className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg bg-white"
-                >
-                  <option value="current">Current Account</option>
-                  <option value="escrow">Escrow (RERA Compliance)</option>
-                  <option value="overdraft">Overdraft / Cash Credit (CC)</option>
-                  <option value="savings">Savings Account</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  IFSC Code
-                </label>
-                <input
-                  type="text"
-                  placeholder="HDFC0001824"
-                  value={formIfsc}
-                  onChange={(e) => setFormIfsc(e.target.value)}
-                  className="w-full px-3 py-2 text-sm font-mono border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  Branch Location
-                </label>
-                <input
-                  type="text"
-                  placeholder="Richmond Road, Bengaluru"
+                  placeholder="e.g. Richmond Road, Bengaluru"
                   value={formBranch}
                   onChange={(e) => setFormBranch(e.target.value)}
-                  className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20"
                 />
               </div>
             </div>
 
-            <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
-                Current / Opening Balance (INR)
-              </label>
-              <input
-                type="number"
-                min={0}
-                step="any"
-                value={formOpeningBalance || ''}
-                onChange={(e) => setFormOpeningBalance(Number(e.target.value))}
-                className="w-full px-3 py-2 text-sm font-mono border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-                placeholder="0.00"
-              />
+            {/* Card 2: Liquidity & Banking Facilities */}
+            <div className="bg-slate-50/80 p-4 rounded-xl border border-slate-200/80 space-y-3">
+              <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
+                <CurrencyInr size={14} className="text-emerald-600" />
+                Liquidity & Credit Facilities
+              </h4>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Account Classification <span className="text-rose-500">*</span>
+                  </label>
+                  <select
+                    value={formAccountType}
+                    onChange={(e) => setFormAccountType(e.target.value as any)}
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20 font-medium"
+                  >
+                    <option value="current">Current Operating Account</option>
+                    <option value="escrow">Project Escrow (RERA Compliance)</option>
+                    <option value="overdraft">Cash Credit (CC) / Overdraft Facility</option>
+                    <option value="savings">Savings Account</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Current Book Balance (INR)
+                  </label>
+                  <input
+                    type="number"
+                    min={0}
+                    step="any"
+                    value={formOpeningBalance || ''}
+                    onChange={(e) => setFormOpeningBalance(Number(e.target.value))}
+                    className="w-full px-3 py-2 text-xs font-mono font-bold text-slate-900 border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                    placeholder="0.00"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Sanctioned OD / CC Limit (INR)
+                  </label>
+                  <input
+                    type="number"
+                    min={0}
+                    step="any"
+                    value={formOdLimit || ''}
+                    onChange={(e) => setFormOdLimit(Number(e.target.value))}
+                    className="w-full px-3 py-2 text-xs font-mono border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                    placeholder="e.g. 50,00,000 for OD"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Virtual Payment Address (UPI ID / VPA)
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. vardhaninfra@hdfcbank"
+                    value={formUpiId}
+                    onChange={(e) => setFormUpiId(e.target.value)}
+                    className="w-full px-3 py-2 text-xs font-mono border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                  />
+                </div>
+              </div>
             </div>
 
-            <div className="flex items-center justify-end gap-2 pt-4 border-t border-slate-100">
+            <div className="flex items-center justify-end gap-2 pt-4 border-t border-slate-200">
               <Button
                 type="button"
                 variant="outline"
@@ -877,7 +981,7 @@ export function CashAndBankPage() {
                 Cancel
               </Button>
               <Button type="submit">
-                {isAddAccountOpen ? 'Register Account' : 'Save Changes'}
+                {isAddAccountOpen ? 'Register Bank Account' : 'Save Changes'}
               </Button>
             </div>
           </form>
@@ -887,52 +991,63 @@ export function CashAndBankPage() {
       {/* Modal: Contra Fund Transfer */}
       {isTransferOpen && (
         <Modal
+          size="lg"
           title="Inter-Account Contra Transfer"
           open={isTransferOpen}
           onClose={() => setIsTransferOpen(false)}
         >
           <form onSubmit={handleExecuteTransfer} className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  Source Account (Credit) <span className="text-rose-500">*</span>
-                </label>
-                <select
-                  required
-                  value={transferFrom}
-                  onChange={(e) => setTransferFrom(e.target.value)}
-                  className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg bg-white"
-                >
-                  {bankAccounts.map((b) => (
-                    <option key={b.id} value={b.id}>
-                      {b.bankName} - {b.name} ({inr(b.balance || 0)})
-                    </option>
-                  ))}
-                </select>
+            {/* Visual Transfer Pipeline */}
+            <div className="bg-slate-50/90 p-4 rounded-xl border border-slate-200 space-y-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-white p-3 rounded-lg border border-slate-200 shadow-xs">
+                  <span className="text-[11px] font-semibold text-slate-500 block uppercase tracking-wider mb-1">
+                    Source Account (Credit / Outflow) <span className="text-rose-500">*</span>
+                  </span>
+                  <select
+                    required
+                    value={transferFrom}
+                    onChange={(e) => setTransferFrom(e.target.value)}
+                    className="w-full p-2 text-xs font-medium border border-slate-200 rounded-lg bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                  >
+                    {bankAccounts.map((b) => (
+                      <option key={b.id} value={b.id}>
+                        {b.bankName} - {b.name} ({inr(b.balance || 0)})
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="bg-white p-3 rounded-lg border border-slate-200 shadow-xs">
+                  <span className="text-[11px] font-semibold text-slate-500 block uppercase tracking-wider mb-1">
+                    Destination Account (Debit / Inflow) <span className="text-rose-500">*</span>
+                  </span>
+                  <select
+                    required
+                    value={transferTo}
+                    onChange={(e) => setTransferTo(e.target.value)}
+                    className="w-full p-2 text-xs font-medium border border-slate-200 rounded-lg bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                  >
+                    {bankAccounts.map((b) => (
+                      <option key={b.id} value={b.id}>
+                        {b.bankName} - {b.name} ({inr(b.balance || 0)})
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  Destination Account (Debit) <span className="text-rose-500">*</span>
-                </label>
-                <select
-                  required
-                  value={transferTo}
-                  onChange={(e) => setTransferTo(e.target.value)}
-                  className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg bg-white"
-                >
-                  {bankAccounts.map((b) => (
-                    <option key={b.id} value={b.id}>
-                      {b.bankName} - {b.name} ({inr(b.balance || 0)})
-                    </option>
-                  ))}
-                </select>
-              </div>
+              {transferFrom && transferTo && transferFrom === transferTo && (
+                <div className="p-2.5 bg-rose-50 border border-rose-200 rounded-lg text-xs text-rose-800 flex items-center gap-2">
+                  <WarningCircle size={16} weight="bold" />
+                  <span>Source and Destination accounts must be different for a valid Contra transfer.</span>
+                </div>
+              )}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-semibold text-slate-700 mb-1">
                   Transfer Amount (INR) <span className="text-rose-500">*</span>
                 </label>
                 <input
@@ -943,42 +1058,77 @@ export function CashAndBankPage() {
                   placeholder="0.00"
                   value={transferAmount || ''}
                   onChange={(e) => setTransferAmount(Number(e.target.value))}
-                  className="w-full px-3 py-2 text-sm font-mono border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                  className="w-full px-3 py-2 text-xs font-mono font-bold text-slate-900 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  Reference / Cheque / UTR No.
+                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  Transfer Mode
+                </label>
+                <select
+                  value={transferMode}
+                  onChange={(e) => setTransferMode(e.target.value)}
+                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20 font-medium"
+                >
+                  <option value="NEFT">NEFT (National Electronic Transfer)</option>
+                  <option value="RTGS">RTGS (Real-Time Gross Settlement)</option>
+                  <option value="IMPS">IMPS (Immediate Payment)</option>
+                  <option value="Cheque">Bank Clearing Cheque</option>
+                  <option value="Cash Deposit">Bank Cash Deposit</option>
+                  <option value="Cash Withdrawal">Bank Cash Withdrawal</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  Transfer Date
+                </label>
+                <input
+                  type="date"
+                  required
+                  value={transferDate}
+                  onChange={(e) => setTransferDate(e.target.value)}
+                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  Cheque / UTR / Reference No.
                 </label>
                 <input
                   type="text"
                   placeholder="e.g. UTR-0294821"
                   value={transferRef}
                   onChange={(e) => setTransferRef(e.target.value)}
-                  className="w-full px-3 py-2 text-sm font-mono border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                  className="w-full px-3 py-2 text-xs font-mono border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  Purpose / Narration
+                </label>
+                <input
+                  type="text"
+                  placeholder="e.g. Transfer to Project Escrow account..."
+                  value={transferRemarks}
+                  onChange={(e) => setTransferRemarks(e.target.value)}
+                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20"
                 />
               </div>
             </div>
 
-            <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
-                Remarks / Purpose
-              </label>
-              <textarea
-                rows={2}
-                placeholder="Reason for inter-account transfer..."
-                value={transferRemarks}
-                onChange={(e) => setTransferRemarks(e.target.value)}
-                className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-              />
-            </div>
-
-            <div className="flex items-center justify-end gap-2 pt-4 border-t border-slate-100">
+            <div className="flex items-center justify-end gap-2 pt-4 border-t border-slate-200">
               <Button type="button" variant="outline" onClick={() => setIsTransferOpen(false)}>
                 Cancel
               </Button>
-              <Button type="submit">Execute Transfer</Button>
+              <Button type="submit" disabled={transferFrom === transferTo || transferAmount <= 0}>
+                Execute Contra Transfer
+              </Button>
             </div>
           </form>
         </Modal>
@@ -987,31 +1137,53 @@ export function CashAndBankPage() {
       {/* Modal: Top-Up Site Petty Cash */}
       {isTopUpOpen && selectedSiteTopUp && (
         <Modal
+          size="md"
           title={`Replenish Petty Cash · ${selectedSiteTopUp.siteName}`}
           open={isTopUpOpen}
           onClose={() => setIsTopUpOpen(false)}
         >
           <form onSubmit={handleExecuteTopUp} className="space-y-4">
-            <div className="p-3 bg-slate-50 rounded-lg border border-slate-100 text-xs space-y-1">
+            <div className="p-3.5 bg-slate-50/90 rounded-xl border border-slate-200 text-xs space-y-1.5">
               <div className="flex justify-between">
-                <span className="text-slate-500">Imprest Limit:</span>
+                <span className="text-slate-500">Site Custodian:</span>
+                <span className="font-semibold text-slate-800">{selectedSiteTopUp.custodian}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-500">Imprest Maximum Limit:</span>
                 <span className="font-mono font-medium">{inr(selectedSiteTopUp.imprestLimit)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-500">Current Balance:</span>
+                <span className="text-slate-500">Current Locker Cash In Hand:</span>
                 <span className="font-mono font-bold text-slate-900">{inr(selectedSiteTopUp.cashInHand)}</span>
               </div>
-              <div className="flex justify-between text-amber-700">
-                <span>Maximum Replenishment:</span>
-                <span className="font-mono font-semibold">
+              <div className="flex justify-between text-amber-700 font-semibold pt-1 border-t border-slate-200">
+                <span>Maximum Eligible Top-Up:</span>
+                <span className="font-mono">
                   {inr(selectedSiteTopUp.imprestLimit - selectedSiteTopUp.cashInHand)}
                 </span>
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
-                Top-Up Amount (INR) <span className="text-rose-500">*</span>
+              <label className="block text-xs font-semibold text-slate-700 mb-1">
+                Disbursing Bank Account
+              </label>
+              <select
+                value={topUpBankId}
+                onChange={(e) => setTopUpBankId(e.target.value)}
+                className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+              >
+                {bankAccounts.map((b) => (
+                  <option key={b.id} value={b.id}>
+                    {b.bankName} - {b.name} ({inr(b.balance || 0)})
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-700 mb-1">
+                Top-Up Replenishment Amount (INR) <span className="text-rose-500">*</span>
               </label>
               <input
                 type="number"
@@ -1019,15 +1191,93 @@ export function CashAndBankPage() {
                 required
                 value={topUpAmount}
                 onChange={(e) => setTopUpAmount(Number(e.target.value))}
-                className="w-full px-3 py-2 text-sm font-mono border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                className="w-full px-3 py-2 text-xs font-mono font-bold text-slate-900 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20"
               />
             </div>
 
-            <div className="flex items-center justify-end gap-2 pt-4 border-t border-slate-100">
+            <div className="flex items-center justify-end gap-2 pt-4 border-t border-slate-200">
               <Button type="button" variant="outline" onClick={() => setIsTopUpOpen(false)}>
                 Cancel
               </Button>
-              <Button type="submit">Confirm Top-Up</Button>
+              <Button type="submit">Confirm Replenishment</Button>
+            </div>
+          </form>
+        </Modal>
+      )}
+
+      {/* Modal: Add Site Petty Cash Float */}
+      {isAddFloatOpen && (
+        <Modal
+          size="md"
+          title="Register Site Petty Cash Float"
+          open={isAddFloatOpen}
+          onClose={() => setIsAddFloatOpen(false)}
+        >
+          <form onSubmit={handleSaveFloat} className="space-y-4">
+            <div>
+              <label className="block text-xs font-semibold text-slate-700 mb-1">
+                Site Office / Project Name <span className="text-rose-500">*</span>
+              </label>
+              <input
+                type="text"
+                required
+                placeholder="e.g. Metro Line 4 · Casting Yard"
+                value={formFloatSite}
+                onChange={(e) => setFormFloatSite(e.target.value)}
+                className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 font-medium"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-700 mb-1">
+                Custodian Name & Role <span className="text-rose-500">*</span>
+              </label>
+              <input
+                type="text"
+                required
+                placeholder="e.g. Suresh Patil (Resident Engineer)"
+                value={formFloatCustodian}
+                onChange={(e) => setFormFloatCustodian(e.target.value)}
+                className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  Imprest Maximum Limit (INR) <span className="text-rose-500">*</span>
+                </label>
+                <input
+                  type="number"
+                  min={1000}
+                  step="any"
+                  required
+                  value={formFloatLimit}
+                  onChange={(e) => setFormFloatLimit(Number(e.target.value))}
+                  className="w-full px-3 py-2 text-xs font-mono font-medium border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  Initial Cash Float Handover (INR)
+                </label>
+                <input
+                  type="number"
+                  min={0}
+                  step="any"
+                  value={formFloatCash}
+                  onChange={(e) => setFormFloatCash(Number(e.target.value))}
+                  className="w-full px-3 py-2 text-xs font-mono font-medium border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                />
+              </div>
+            </div>
+
+            <div className="flex items-center justify-end gap-2 pt-4 border-t border-slate-200">
+              <Button type="button" variant="outline" onClick={() => setIsAddFloatOpen(false)}>
+                Cancel
+              </Button>
+              <Button type="submit">Register Cash Float</Button>
             </div>
           </form>
         </Modal>
@@ -1035,3 +1285,4 @@ export function CashAndBankPage() {
     </div>
   );
 }
+

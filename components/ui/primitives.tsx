@@ -33,6 +33,8 @@ export function Modal({
   title,
   description,
   children,
+  className,
+  size = 'md',
 }: {
   open: boolean;
   onOpenChange?: (v: boolean) => void;
@@ -40,16 +42,31 @@ export function Modal({
   title: string;
   description?: string;
   children: React.ReactNode;
+  className?: string;
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
 }) {
   const handleOpenChange = (v: boolean) => {
     onOpenChange?.(v);
     if (!v) onClose?.();
   };
+
+  const sizeWidths: Record<string, string> = {
+    sm: 'min(440px, calc(100% - 32px))',
+    md: 'min(540px, calc(100% - 32px))',
+    lg: 'min(720px, calc(100% - 32px))',
+    xl: 'min(920px, calc(100% - 32px))',
+    '2xl': 'min(1140px, calc(100% - 32px))',
+    full: 'calc(100% - 32px)',
+  };
+
   return (
     <Dialog.Root open={open} onOpenChange={handleOpenChange}>
       <Dialog.Portal>
         <Dialog.Overlay className="modal-overlay" />
-        <Dialog.Content className="modal-content">
+        <Dialog.Content
+          className={`modal-content ${className || ''}`}
+          style={size ? { width: sizeWidths[size] || undefined, maxWidth: sizeWidths[size] || undefined } : undefined}
+        >
           <div className="modal-head">
             <Dialog.Title>{title}</Dialog.Title>
             <Dialog.Close asChild>

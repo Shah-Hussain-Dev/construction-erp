@@ -126,9 +126,9 @@ describe('Purchase & Procurement Logic', () => {
   });
 
   it('flags quantity mismatch in 3-way matching', () => {
-    const poQuantity = 500;
-    const grnAccepted = 450; // 50 rejected
-    const billQuantity = 500; // Billed for full 500
+    const poQuantity: number = 500;
+    const grnAccepted: number = 450; // 50 rejected
+    const billQuantity: number = 500; // Billed for full 500
 
     const isMatch = poQuantity === grnAccepted && grnAccepted === billQuantity;
     expect(isMatch).toBe(false);

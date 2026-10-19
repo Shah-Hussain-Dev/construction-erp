@@ -59,10 +59,12 @@ export function VouchersPage() {
   const [formType, setFormType] = useState<'payment' | 'receipt' | 'journal' | 'contra'>('payment');
   const [formDate, setFormDate] = useState(new Date().toISOString().slice(0, 10));
   const [formReferenceNo, setFormReferenceNo] = useState('');
+  const [formFirmId, setFormFirmId] = useState('');
+  const [formProjectId, setFormProjectId] = useState('');
   const [formPurpose, setFormPurpose] = useState('');
-  const [formLines, setFormLines] = useState<Array<{ id: string; accountId: string; debit: number; credit: number }>>([
-    { id: '1', accountId: '', debit: 0, credit: 0 },
-    { id: '2', accountId: '', debit: 0, credit: 0 },
+  const [formLines, setFormLines] = useState<Array<{ id: string; accountId: string; debit: number; credit: number; description?: string }>>([
+    { id: '1', accountId: '', debit: 0, credit: 0, description: '' },
+    { id: '2', accountId: '', debit: 0, credit: 0, description: '' },
   ]);
 
   // Load Vouchers
@@ -75,6 +77,17 @@ export function VouchersPage() {
   const { data: ledgers = [] } = useQuery({
     queryKey: ['ledgers'],
     queryFn: () => dataClient.list('ledgers') as Promise<LedgerRecord[]>,
+  });
+
+  // Load Firms & Projects
+  const { data: firms = [] } = useQuery({
+    queryKey: ['firms'],
+    queryFn: () => dataClient.list('firms') as Promise<any[]>,
+  });
+
+  const { data: projects = [] } = useQuery({
+    queryKey: ['projects'],
+    queryFn: () => dataClient.list('projects') as Promise<any[]>,
   });
 
   // Ledger Lookup Map
@@ -105,10 +118,12 @@ export function VouchersPage() {
     setFormType('payment');
     setFormDate(new Date().toISOString().slice(0, 10));
     setFormReferenceNo(`REF-${Date.now().toString().slice(-5)}`);
+    setFormFirmId(firms[0]?.id || '');
+    setFormProjectId(projects[0]?.id || '');
     setFormPurpose('');
     setFormLines([
-      { id: '1', accountId: defaultAcc1, debit: 0, credit: 0 },
-      { id: '2', accountId: defaultAcc2, debit: 0, credit: 0 },
+      { id: '1', accountId: defaultAcc1, debit: 0, credit: 0, description: '' },
+      { id: '2', accountId: defaultAcc2, debit: 0, credit: 0, description: '' },
     ]);
     setIsAddOpen(true);
   };
@@ -119,6 +134,8 @@ export function VouchersPage() {
     setFormType(v.type || 'payment');
     setFormDate(v.date || new Date().toISOString().slice(0, 10));
     setFormReferenceNo(v.referenceNo || '');
+    setFormFirmId((v as any).firmId || firms[0]?.id || '');
+    setFormProjectId((v as any).projectId || projects[0]?.id || '');
     setFormPurpose(v.purpose || '');
     setFormLines(
       (v.lines || []).map((l, i) => ({
@@ -126,6 +143,7 @@ export function VouchersPage() {
         accountId: l.accountId || '',
         debit: Number(l.debit || 0),
         credit: Number(l.credit || 0),
+        description: (l as any).description || '',
       }))
     );
   };
@@ -134,7 +152,7 @@ export function VouchersPage() {
   const handleAddLine = () => {
     setFormLines((prev) => [
       ...prev,
-      { id: String(Date.now()), accountId: ledgers[0]?.id || '', debit: 0, credit: 0 },
+      { id: String(Date.now()), accountId: ledgers[0]?.id || '', debit: 0, credit: 0, description: '' },
     ]);
   };
 
@@ -150,7 +168,7 @@ export function VouchersPage() {
   // Update line field
   const handleLineChange = (
     index: number,
-    field: 'accountId' | 'debit' | 'credit',
+    field: 'accountId' | 'debit' | 'credit' | 'description',
     value: string | number
   ) => {
     setFormLines((prev) => {
@@ -163,6 +181,8 @@ export function VouchersPage() {
         next[index] = { ...next[index], credit: c, debit: c > 0 ? 0 : next[index].debit };
       } else if (field === 'accountId') {
         next[index] = { ...next[index], accountId: String(value) };
+      } else if (field === 'description') {
+        next[index] = { ...next[index], description: String(value) };
       }
       return next;
     });
@@ -269,12 +289,15 @@ export function VouchersPage() {
       date: formDate,
       referenceNo: formReferenceNo.trim(),
       purpose: formPurpose.trim(),
+      firmId: formFirmId || undefined,
+      projectId: formProjectId || undefined,
       status: 'posted',
       lines: formLines.map((l) => ({
         id: l.id,
         accountId: l.accountId,
         debit: Number(l.debit || 0),
         credit: Number(l.credit || 0),
+        description: l.description?.trim() || undefined,
       })),
     });
   };
@@ -304,11 +327,14 @@ export function VouchersPage() {
         date: formDate,
         referenceNo: formReferenceNo.trim(),
         purpose: formPurpose.trim(),
+        firmId: formFirmId || undefined,
+        projectId: formProjectId || undefined,
         lines: formLines.map((l) => ({
           id: l.id,
           accountId: l.accountId,
           debit: Number(l.debit || 0),
           credit: Number(l.credit || 0),
+          description: l.description?.trim() || undefined,
         })),
       },
     });
@@ -718,6 +744,7 @@ export function VouchersPage() {
       {/* Modal: New / Edit Voucher */}
       {(isAddOpen || editingVoucher) && (
         <Modal
+          size="xl"
           title={isAddOpen ? 'New Double-Entry Voucher' : `Edit Voucher · ${editingVoucher?.number}`}
           open={isAddOpen || Boolean(editingVoucher)}
           onClose={() => {
@@ -726,112 +753,167 @@ export function VouchersPage() {
           }}
         >
           <form onSubmit={isAddOpen ? handleSaveAdd : handleSaveEdit} className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  Voucher Type <span className="text-rose-500">*</span>
-                </label>
-                <select
-                  required
-                  value={formType}
-                  onChange={(e) => setFormType(e.target.value as any)}
-                  className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-                >
-                  <option value="payment">Payment Voucher (Outflow)</option>
-                  <option value="receipt">Receipt Voucher (Inflow)</option>
-                  <option value="contra">Contra Voucher (Bank/Cash Transfer)</option>
-                  <option value="journal">Journal Voucher (Adjustment)</option>
-                </select>
+            {/* Header Form Controls */}
+            <div className="bg-slate-50/80 p-4 rounded-xl border border-slate-200/80 space-y-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Voucher Type <span className="text-rose-500">*</span>
+                  </label>
+                  <select
+                    required
+                    value={formType}
+                    onChange={(e) => setFormType(e.target.value as any)}
+                    className="w-full px-3 py-2 text-xs font-medium border border-slate-200 rounded-lg bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                  >
+                    <option value="payment">Payment Voucher (Outflow)</option>
+                    <option value="receipt">Receipt Voucher (Inflow)</option>
+                    <option value="contra">Contra Voucher (Bank/Cash)</option>
+                    <option value="journal">Journal Voucher (Adjustment)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Voucher Date <span className="text-rose-500">*</span>
+                  </label>
+                  <input
+                    type="date"
+                    required
+                    value={formDate}
+                    onChange={(e) => setFormDate(e.target.value)}
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Project / Cost Center
+                  </label>
+                  <select
+                    value={formProjectId}
+                    onChange={(e) => setFormProjectId(e.target.value)}
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                  >
+                    <option value="">General Overhead / Head Office</option>
+                    {projects.map((p) => (
+                      <option key={p.id} value={p.id}>
+                        {p.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Ref / Cheque / UTR No.
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. UTR-902184"
+                    value={formReferenceNo}
+                    onChange={(e) => setFormReferenceNo(e.target.value)}
+                    className="w-full px-3 py-2 text-xs font-mono border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                  />
+                </div>
               </div>
 
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  Voucher Date <span className="text-rose-500">*</span>
-                </label>
-                <input
-                  type="date"
-                  required
-                  value={formDate}
-                  onChange={(e) => setFormDate(e.target.value)}
-                  className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
-                />
-              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Entity / Operating Firm
+                  </label>
+                  <select
+                    value={formFirmId}
+                    onChange={(e) => setFormFirmId(e.target.value)}
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                  >
+                    {firms.map((f) => (
+                      <option key={f.id} value={f.id}>
+                        {f.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  Cheque / UTR / Reference No.
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g. CHQ-902148 / UTR-09823"
-                  value={formReferenceNo}
-                  onChange={(e) => setFormReferenceNo(e.target.value)}
-                  className="w-full px-3 py-2 text-sm font-mono border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
-                />
+                <div className="md:col-span-2">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Narration / Transaction Purpose <span className="text-rose-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Clear description of transaction for GL audit trail..."
+                    value={formPurpose}
+                    onChange={(e) => setFormPurpose(e.target.value)}
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                  />
+                </div>
               </div>
-            </div>
-
-            <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
-                Narration / Explanation <span className="text-rose-500">*</span>
-              </label>
-              <textarea
-                required
-                rows={2}
-                placeholder="Detailed reason for this transaction..."
-                value={formPurpose}
-                onChange={(e) => setFormPurpose(e.target.value)}
-                className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
-              />
             </div>
 
             {/* Double-Entry Ledger Lines Table */}
-            <div className="space-y-2 pt-2">
+            <div className="space-y-2 pt-1">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-                  Double-Entry Account Legs
-                </span>
+                <div>
+                  <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                    Double-Entry Account Legs
+                  </span>
+                  <span className="text-xs text-slate-500 ml-2">
+                    (Each leg must be either Debit or Credit)
+                  </span>
+                </div>
                 <Button
                   type="button"
                   variant="outline"
                   size="sm"
                   onClick={handleAddLine}
-                  className="h-7 text-xs"
+                  className="h-7 text-xs bg-white shadow-sm"
                 >
                   <Plus size={14} className="mr-1" />
                   Add Leg
                 </Button>
               </div>
 
-              <div className="border border-slate-200 rounded-lg overflow-hidden">
+              <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
                 <table className="w-full text-xs text-left">
-                  <thead className="bg-slate-50 border-b border-slate-200 text-slate-600 font-semibold">
+                  <thead className="bg-slate-50/90 border-b border-slate-200 text-slate-600 font-semibold">
                     <tr>
-                      <th className="p-2.5">Account / Ledger</th>
+                      <th className="p-2.5 w-72">Account Head / Ledger</th>
+                      <th className="p-2.5">Particulars / Narration</th>
                       <th className="p-2.5 w-36 text-right">Debit (INR)</th>
                       <th className="p-2.5 w-36 text-right">Credit (INR)</th>
                       <th className="p-2.5 w-10 text-center"></th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100">
+                  <tbody className="divide-y divide-slate-100 bg-white">
                     {formLines.map((line, idx) => (
-                      <tr key={line.id || idx}>
+                      <tr key={line.id || idx} className="hover:bg-slate-50/50">
                         <td className="p-2">
                           <select
                             required
                             value={line.accountId}
                             onChange={(e) => handleLineChange(idx, 'accountId', e.target.value)}
-                            className="w-full p-1.5 text-xs border border-slate-200 rounded bg-white text-slate-800 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                            className="w-full p-2 text-xs border border-slate-200 rounded-lg bg-white text-slate-800 focus:outline-none focus:ring-1 focus:ring-blue-500 font-medium"
                           >
                             <option value="" disabled>
-                              Select Account Ledger
+                              Select Ledger Account
                             </option>
                             {ledgers.map((l) => (
                               <option key={l.id} value={l.id}>
-                                {l.name} ({l.group || 'Account'})
+                                {l.code ? `[${l.code}] ` : ''}{l.name} ({l.group || 'Account'})
                               </option>
                             ))}
                           </select>
+                        </td>
+                        <td className="p-2">
+                          <input
+                            type="text"
+                            placeholder="Optional leg remark..."
+                            value={line.description || ''}
+                            onChange={(e) => handleLineChange(idx, 'description', e.target.value)}
+                            className="w-full p-2 text-xs border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                          />
                         </td>
                         <td className="p-2">
                           <input
@@ -841,7 +923,7 @@ export function VouchersPage() {
                             placeholder="0.00"
                             value={line.debit || ''}
                             onChange={(e) => handleLineChange(idx, 'debit', e.target.value)}
-                            className="w-full p-1.5 text-xs text-right font-mono border border-slate-200 rounded bg-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                            className="w-full p-2 text-xs text-right font-mono font-medium border border-slate-200 rounded-lg bg-white text-emerald-700 focus:outline-none focus:ring-1 focus:ring-emerald-500"
                           />
                         </td>
                         <td className="p-2">
@@ -852,7 +934,7 @@ export function VouchersPage() {
                             placeholder="0.00"
                             value={line.credit || ''}
                             onChange={(e) => handleLineChange(idx, 'credit', e.target.value)}
-                            className="w-full p-1.5 text-xs text-right font-mono border border-slate-200 rounded bg-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                            className="w-full p-2 text-xs text-right font-mono font-medium border border-slate-200 rounded-lg bg-white text-rose-700 focus:outline-none focus:ring-1 focus:ring-rose-500"
                           />
                         </td>
                         <td className="p-2 text-center">
@@ -860,7 +942,7 @@ export function VouchersPage() {
                             type="button"
                             disabled={formLines.length <= 2}
                             onClick={() => handleRemoveLine(idx)}
-                            className="text-slate-400 hover:text-rose-600 disabled:opacity-20"
+                            className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-md transition-colors disabled:opacity-20"
                             title="Remove Leg"
                           >
                             <Trash size={14} />
@@ -869,9 +951,9 @@ export function VouchersPage() {
                       </tr>
                     ))}
                   </tbody>
-                  <tfoot className="bg-slate-50 border-t border-slate-200 font-semibold">
+                  <tfoot className="bg-slate-50 border-t border-slate-200 font-bold text-xs">
                     <tr>
-                      <td className="p-2.5 text-slate-700">Total Entries</td>
+                      <td colSpan={2} className="p-2.5 text-slate-700 text-right">Total Debit & Credit Turnover:</td>
                       <td className="p-2.5 text-right font-mono text-emerald-700">
                         {inr(totalDebits)}
                       </td>
@@ -886,39 +968,46 @@ export function VouchersPage() {
 
               {/* Balance Verification Banner */}
               <div
-                className={`p-2.5 rounded-lg border flex items-center justify-between text-xs ${
+                className={`p-3 rounded-xl border flex items-center justify-between text-xs ${
                   isBalanced
-                    ? 'bg-emerald-50 border-emerald-200 text-emerald-800'
-                    : 'bg-rose-50 border-rose-200 text-rose-800'
+                    ? 'bg-emerald-50/80 border-emerald-200 text-emerald-800'
+                    : 'bg-rose-50/80 border-rose-200 text-rose-800'
                 }`}
               >
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2.5">
                   {isBalanced ? (
-                    <CheckCircle size={16} weight="bold" />
+                    <CheckCircle size={18} weight="bold" className="text-emerald-600 flex-shrink-0" />
                   ) : (
-                    <WarningCircle size={16} weight="bold" />
+                    <WarningCircle size={18} weight="bold" className="text-rose-600 flex-shrink-0" />
                   )}
-                  <span>
-                    {isBalanced
-                      ? 'Voucher is perfectly balanced.'
-                      : `Difference: ${inr(balanceDifference)} (Debits and Credits must be equal)`}
-                  </span>
+                  <div>
+                    <p className="font-semibold">
+                      {isBalanced
+                        ? 'Voucher is mathematically balanced (Total Debit == Total Credit).'
+                        : `Voucher is unbalanced · Difference: ${inr(balanceDifference)}`}
+                    </p>
+                    <p className="text-[11px] opacity-80">
+                      {isBalanced
+                        ? 'Ready to post into the General Ledger audit trail.'
+                        : 'Double-entry accounting requires total debits and credits to be identical before posting.'}
+                    </p>
+                  </div>
                 </div>
                 {!isBalanced && (
                   <Button
                     type="button"
                     variant="outline"
                     size="sm"
-                    className="h-6 text-[11px] bg-white text-rose-700 border-rose-300 hover:bg-rose-50"
+                    className="h-7 text-xs bg-white text-rose-700 border-rose-300 hover:bg-rose-50 font-semibold shadow-sm"
                     onClick={handleAutoBalance}
                   >
-                    Auto-Balance
+                    Auto-Balance Difference
                   </Button>
                 )}
               </div>
             </div>
 
-            <div className="flex items-center justify-end gap-2 pt-4 border-t border-slate-100">
+            <div className="flex items-center justify-end gap-2 pt-4 border-t border-slate-200">
               <Button
                 type="button"
                 variant="outline"
@@ -938,9 +1027,9 @@ export function VouchersPage() {
                 }
               >
                 {createMutation.isPending || editMutation.isPending
-                  ? 'Saving...'
+                  ? 'Posting to GL...'
                   : isAddOpen
-                    ? 'Post Voucher'
+                    ? 'Post Voucher to GL'
                     : 'Save Changes'}
               </Button>
             </div>
@@ -951,6 +1040,7 @@ export function VouchersPage() {
       {/* Modal: View Voucher Legs */}
       {viewingVoucher && (
         <Modal
+          size="lg"
           title={`Voucher Details · ${viewingVoucher.number}`}
           open={Boolean(viewingVoucher)}
           onClose={() => setViewingVoucher(null)}
@@ -1028,6 +1118,7 @@ export function VouchersPage() {
       {/* Modal: Official Printable Voucher Slip */}
       {slipVoucher && (
         <Modal
+          size="xl"
           title={`Official Voucher Slip · ${slipVoucher.number}`}
           open={Boolean(slipVoucher)}
           onClose={() => setSlipVoucher(null)}

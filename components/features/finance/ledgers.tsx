@@ -58,8 +58,11 @@ export function LedgersPage() {
   const [formName, setFormName] = useState('');
   const [formCode, setFormCode] = useState('');
   const [formGroup, setFormGroup] = useState<'Asset' | 'Liability' | 'Equity' | 'Income' | 'Expense'>('Asset');
+  const [formSubGroup, setFormSubGroup] = useState('Bank Account');
   const [formOpeningBalance, setFormOpeningBalance] = useState<number>(0);
   const [formOpeningType, setFormOpeningType] = useState<'Dr' | 'Cr'>('Dr');
+  const [formGstRate, setFormGstRate] = useState('None');
+  const [formIsReconciled, setFormIsReconciled] = useState(false);
   const [formDescription, setFormDescription] = useState('');
 
   // Load Ledgers
@@ -98,8 +101,11 @@ export function LedgersPage() {
     setFormName('');
     setFormCode(`ACC-${String(ledgers.length + 1).padStart(3, '0')}`);
     setFormGroup('Asset');
+    setFormSubGroup('Bank Account');
     setFormOpeningBalance(0);
     setFormOpeningType('Dr');
+    setFormGstRate('None');
+    setFormIsReconciled(false);
     setFormDescription('');
     setIsAddOpen(true);
   };
@@ -110,8 +116,11 @@ export function LedgersPage() {
     setFormName(l.name || '');
     setFormCode(l.code || '');
     setFormGroup((l.group as any) || 'Asset');
+    setFormSubGroup((l as any).subGroup || 'General Account');
     setFormOpeningBalance(Number(l.openingBalance || 0));
     setFormOpeningType(l.openingType || 'Dr');
+    setFormGstRate((l as any).gstRate || 'None');
+    setFormIsReconciled(Boolean((l as any).isReconciled));
     setFormDescription(l.description || '');
   };
 
@@ -171,11 +180,14 @@ export function LedgersPage() {
       name: formName.trim(),
       code: formCode.trim().toUpperCase(),
       group: formGroup,
+      subGroup: formSubGroup,
       openingBalance: Number(formOpeningBalance || 0),
       openingType: formOpeningType,
+      gstRate: formGstRate,
+      isReconciled: formIsReconciled,
       description: formDescription.trim(),
       status: 'active',
-    });
+    } as any);
   };
 
   const handleSaveEdit = (e: React.FormEvent) => {
@@ -192,10 +204,13 @@ export function LedgersPage() {
         name: formName.trim(),
         code: formCode.trim().toUpperCase(),
         group: formGroup,
+        subGroup: formSubGroup,
         openingBalance: Number(formOpeningBalance || 0),
         openingType: formOpeningType,
+        gstRate: formGstRate,
+        isReconciled: formIsReconciled,
         description: formDescription.trim(),
-      },
+      } as any,
     });
   };
 
@@ -602,7 +617,8 @@ export function LedgersPage() {
       {/* Modal: Add / Edit Ledger */}
       {(isAddOpen || editingLedger) && (
         <Modal
-          title={isAddOpen ? 'Add Ledger Account' : `Edit Ledger · ${editingLedger?.name}`}
+          size="lg"
+          title={isAddOpen ? 'Add Master Ledger Account' : `Edit Ledger · ${editingLedger?.name}`}
           open={isAddOpen || Boolean(editingLedger)}
           onClose={() => {
             setIsAddOpen(false);
@@ -610,95 +626,164 @@ export function LedgersPage() {
           }}
         >
           <form onSubmit={isAddOpen ? handleSaveAdd : handleSaveEdit} className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  Account Name <span className="text-rose-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. HDFC Current Operating Account"
-                  value={formName}
-                  onChange={(e) => setFormName(e.target.value)}
-                  className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  Account Code <span className="text-rose-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. BANK-HDFC"
-                  value={formCode}
-                  onChange={(e) => setFormCode(e.target.value)}
-                  className="w-full px-3 py-2 text-sm font-mono border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  Account Classification Group <span className="text-rose-500">*</span>
-                </label>
-                <select
-                  required
-                  value={formGroup}
-                  onChange={(e) => setFormGroup(e.target.value as any)}
-                  className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-                >
-                  <option value="Asset">Asset (Cash, Bank, Receivables, Stock)</option>
-                  <option value="Liability">Liability (Payables, Loans, Retainage)</option>
-                  <option value="Equity">Equity (Capital, Retained Earnings)</option>
-                  <option value="Income">Income (Contract Revenue, Other Sales)</option>
-                  <option value="Expense">Expense (Direct Materials, Subcontracts, Overheads)</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
-                  Opening Balance
-                </label>
-                <div className="flex gap-2">
+            {/* Group 1: Identity & Classification */}
+            <div className="bg-slate-50/80 p-4 rounded-xl border border-slate-200/80 space-y-3">
+              <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
+                <Book size={14} className="text-blue-600" />
+                Account Particulars & Master Hierarchy
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div className="md:col-span-2">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Account Head Name <span className="text-rose-500">*</span>
+                  </label>
                   <input
-                    type="number"
-                    min={0}
-                    step="any"
-                    value={formOpeningBalance || ''}
-                    onChange={(e) => setFormOpeningBalance(Number(e.target.value))}
-                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-                    placeholder="0.00"
+                    type="text"
+                    required
+                    placeholder="e.g. HDFC Operating Current Account"
+                    value={formName}
+                    onChange={(e) => setFormName(e.target.value)}
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 font-medium"
                   />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Account Code <span className="text-rose-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. BANK-HDFC-01"
+                    value={formCode}
+                    onChange={(e) => setFormCode(e.target.value)}
+                    className="w-full px-3 py-2 text-xs font-mono font-bold uppercase border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Balance Sheet / P&L Group <span className="text-rose-500">*</span>
+                  </label>
                   <select
-                    value={formOpeningType}
-                    onChange={(e) => setFormOpeningType(e.target.value as any)}
-                    className="px-2 py-2 text-sm border border-slate-200 rounded-lg bg-white font-mono"
+                    required
+                    value={formGroup}
+                    onChange={(e) => {
+                      const grp = e.target.value as any;
+                      setFormGroup(grp);
+                      if (grp === 'Asset') setFormSubGroup('Bank Account');
+                      else if (grp === 'Liability') setFormSubGroup('Sundry Creditors (Trade)');
+                      else if (grp === 'Equity') setFormSubGroup('Capital Reserves');
+                      else if (grp === 'Income') setFormSubGroup('Contract Revenue');
+                      else if (grp === 'Expense') setFormSubGroup('Direct Construction Material');
+                    }}
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20 font-medium"
                   >
-                    <option value="Dr">Dr</option>
-                    <option value="Cr">Cr</option>
+                    <option value="Asset">Asset (Cash, Bank, Receivables, Fixed Assets)</option>
+                    <option value="Liability">Liability (Payables, Loans, Retentions, Taxes)</option>
+                    <option value="Equity">Equity (Capital, Retained Earnings)</option>
+                    <option value="Income">Income (Contract Revenue, Scrap & Recoveries)</option>
+                    <option value="Expense">Expense (Direct Materials, Labor, Overheads)</option>
                   </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Sub-Classification Head
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Current Bank Account, Trade Creditors..."
+                    value={formSubGroup}
+                    onChange={(e) => setFormSubGroup(e.target.value)}
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                  />
                 </div>
               </div>
             </div>
 
-            <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
-                Account Description / Notes
-              </label>
-              <textarea
-                rows={2}
-                placeholder="Operational purpose of this ledger account..."
-                value={formDescription}
-                onChange={(e) => setFormDescription(e.target.value)}
-                className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
-              />
+            {/* Group 2: Opening Balance, Statutory Taxes & BRS */}
+            <div className="bg-slate-50/80 p-4 rounded-xl border border-slate-200/80 space-y-3">
+              <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
+                <Scales size={14} className="text-emerald-600" />
+                Financial Balance & Statutory Compliance
+              </h4>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Opening Financial Balance
+                  </label>
+                  <div className="flex gap-2">
+                    <input
+                      type="number"
+                      min={0}
+                      step="any"
+                      value={formOpeningBalance || ''}
+                      onChange={(e) => setFormOpeningBalance(Number(e.target.value))}
+                      className="w-full px-3 py-2 text-xs font-mono font-medium border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                      placeholder="0.00"
+                    />
+                    <select
+                      value={formOpeningType}
+                      onChange={(e) => setFormOpeningType(e.target.value as any)}
+                      className="px-3 py-2 text-xs font-mono font-bold border border-slate-200 rounded-lg bg-white text-slate-900"
+                    >
+                      <option value="Dr">Dr (Debit)</option>
+                      <option value="Cr">Cr (Credit)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    GST / Statutory Tax Rate
+                  </label>
+                  <select
+                    value={formGstRate}
+                    onChange={(e) => setFormGstRate(e.target.value)}
+                    className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                  >
+                    <option value="None">None / Not Applicable</option>
+                    <option value="GST 0%">GST 0% (Exempt Materials)</option>
+                    <option value="GST 5%">GST 5% (Aggregates, Sand, Earthwork)</option>
+                    <option value="GST 12%">GST 12% (Government Works Contracts)</option>
+                    <option value="GST 18%">GST 18% (Commercial Construction, Steel, Plant)</option>
+                    <option value="GST 28%">GST 28% (Cement OPC/PPC, Heavy Equipment)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  Ledger Description / Operational Purpose
+                </label>
+                <textarea
+                  rows={2}
+                  placeholder="Operational accounting guidance or notes for this head..."
+                  value={formDescription}
+                  onChange={(e) => setFormDescription(e.target.value)}
+                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                />
+              </div>
+
+              <div className="flex items-center gap-2 pt-1">
+                <input
+                  type="checkbox"
+                  id="reconcile-check"
+                  checked={formIsReconciled}
+                  onChange={(e) => setFormIsReconciled(e.target.checked)}
+                  className="rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                />
+                <label htmlFor="reconcile-check" className="text-xs text-slate-700 cursor-pointer font-medium">
+                  Enable automated Bank Reconciliation Statement (BRS) tracking for this account
+                </label>
+              </div>
             </div>
 
-            <div className="flex items-center justify-end gap-2 pt-4 border-t border-slate-100">
+            <div className="flex items-center justify-end gap-2 pt-4 border-t border-slate-200">
               <Button
                 type="button"
                 variant="outline"
@@ -714,9 +799,9 @@ export function LedgersPage() {
                 disabled={createMutation.isPending || editMutation.isPending}
               >
                 {createMutation.isPending || editMutation.isPending
-                  ? 'Saving...'
+                  ? 'Saving to Ledger...'
                   : isAddOpen
-                    ? 'Create Ledger'
+                    ? 'Create Master Ledger'
                     : 'Save Changes'}
               </Button>
             </div>
@@ -727,6 +812,7 @@ export function LedgersPage() {
       {/* Modal: Full Ledger Statement Drill-Down */}
       {statementLedger && (
         <Modal
+          size="xl"
           title={`Statement of Account · ${statementLedger.name}`}
           open={Boolean(statementLedger)}
           onClose={() => setStatementLedger(null)}
