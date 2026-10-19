@@ -1,0 +1,1019 @@
+{
+  "overview": {
+    "welcomeTitle": "Welcome to",
+    "welcomeHeadline": "Prince Constructions ERP Training Center",
+    "welcomeDescription": "Everything you need to learn and master the ERP system. Watch videos, follow step-by-step guides or explore FAQs.",
+    "badges": [
+      {
+        "id": "video-tutorials",
+        "title": "Video Tutorials",
+        "subtitle": "Short & easy videos",
+        "icon": "VideoCamera"
+      },
+      {
+        "id": "step-by-step",
+        "title": "Step-by-Step Guides",
+        "subtitle": "Detailed instructions",
+        "icon": "FileText"
+      },
+      {
+        "id": "faqs",
+        "title": "FAQs",
+        "subtitle": "Get quick answers",
+        "icon": "Question"
+      }
+    ]
+  },
+  "progress": {
+    "completionPercentage": 25,
+    "completedModules": 3,
+    "totalModules": 10,
+    "completedLessons": 28,
+    "totalLessons": 86,
+    "learningHours": 2.5
+  },
+  "popularTopics": [
+    {
+      "id": "getting-started",
+      "moduleId": 1,
+      "title": "Getting Started",
+      "lessonsCount": 8,
+      "theme": "blue"
+    },
+    {
+      "id": "project-management",
+      "moduleId": 3,
+      "title": "Project Management",
+      "lessonsCount": 12,
+      "theme": "green"
+    },
+    {
+      "id": "procurement",
+      "moduleId": 4,
+      "title": "Purchase & Procurement",
+      "lessonsCount": 10,
+      "theme": "purple"
+    },
+    {
+      "id": "inventory",
+      "moduleId": 5,
+      "title": "Inventory Management",
+      "lessonsCount": 8,
+      "theme": "amber"
+    },
+    {
+      "id": "contractor-billing",
+      "moduleId": 6,
+      "title": "Contractor & Billing",
+      "lessonsCount": 10,
+      "theme": "rose"
+    },
+    {
+      "id": "accounting-finance",
+      "moduleId": 7,
+      "title": "Accounting & Finance",
+      "lessonsCount": 14,
+      "theme": "emerald"
+    }
+  ],
+  "modules": [
+    {
+      "id": 1,
+      "number": 1,
+      "title": "1. Getting Started",
+      "name": "Getting Started",
+      "summary": "System overview, login, profile setup",
+      "description": "Learn the basics and get familiar with the system.",
+      "status": "ready",
+      "completedCount": 3,
+      "totalCount": 8,
+      "icon": "House",
+      "lessons": [
+        {
+          "id": "1.1",
+          "number": "1.1",
+          "title": "System Overview and Dashboard Tour",
+          "description": "Get an overview of the dashboard and understand the main modules in Prince Constructions ERP.",
+          "type": "video",
+          "duration": "08:30",
+          "completed": true,
+          "videoMockUrl": "/images/training-hero.jpg",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Accessing the Main Navigation Shell",
+              "content": "Click the sidebar on the left to expand or collapse modules. Use ⌘B / Ctrl+B anytime to toggle sidebar density."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Switching Active Site Scope",
+              "content": "Click the site dropdown in the top bar to filter telemetry, site diaries, and stock balance to a specific location."
+            },
+            {
+              "stepNumber": 3,
+              "title": "Interpreting Dashboard KPI Tiles",
+              "content": "Review live site network metrics: Active Sites, Material Indents, Monthly Running Bills, and Cash Balances."
+            }
+          ]
+        },
+        {
+          "id": "1.2",
+          "number": "1.2",
+          "title": "How to Login and Reset Password",
+          "description": "Learn secure sign-in, role switching with demo credentials, and password recovery via work email.",
+          "type": "guide",
+          "duration": "05:12",
+          "completed": true,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Navigating to Login Screen",
+              "content": "Open the ERP URL. Enter your corporate email and password or click any Demo Role quick-badge for testing."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Requesting Password Reset",
+              "content": "If you forgot your password, click 'Forgot password?' on the login card, enter your registered email, and follow the instructions."
+            }
+          ]
+        },
+        {
+          "id": "1.3",
+          "number": "1.3",
+          "title": "Update Profile and Preferences",
+          "description": "Configure your display name, notification preferences, dark/light themes, and offline cache settings.",
+          "type": "guide",
+          "duration": "04:45",
+          "completed": true,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Opening Settings",
+              "content": "Click the avatar or Settings gear icon in the lower sidebar navigation."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Setting Active Firm and Default Site",
+              "content": "Select your primary engineering firm and working site to automatically scope forms upon creation."
+            }
+          ]
+        },
+        {
+          "id": "1.4",
+          "number": "1.4",
+          "title": "Navigation and Module Overview",
+          "description": "Master accordion menus, quick-action flyouts in collapsed mode, and breadcrumb trails.",
+          "type": "guide",
+          "duration": "06:20",
+          "completed": false,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Exploring Module Sections",
+              "content": "Notice 9 distinct engineering groups: Organization, Project Management, Procurement, Inventory, Contractor & Billing, Accounting & Finance, Communication, Reports, and Settings."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Using Flyout Menus in Mini Mode",
+              "content": "When sidebar is collapsed, clicking any section icon reveals a floating contextual action menu."
+            }
+          ]
+        },
+        {
+          "id": "1.5",
+          "number": "1.5",
+          "title": "Mobile Access (PWA) Introduction",
+          "description": "Install Prince Constructions ERP directly on Android, iPhone, or iPad for complete offline site support.",
+          "type": "video",
+          "duration": "07:10",
+          "completed": false,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Opening Install Prompt",
+              "content": "Click 'Install App' at the bottom of the sidebar or the banner in your mobile browser."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Using Offline Mode on Site",
+              "content": "When cellular reception is lost, the ERP automatically switches to local IndexedDB storage and queues drafts."
+            }
+          ]
+        },
+        {
+          "id": "1.6",
+          "number": "1.6",
+          "title": "Multi-Site Switching & Permissions",
+          "description": "How supervisors and project directors switch between multi-location construction sites.",
+          "type": "guide",
+          "duration": "05:40",
+          "completed": false
+        },
+        {
+          "id": "1.7",
+          "number": "1.7",
+          "title": "Global Search with ⌘K Quick Shortcuts",
+          "description": "Instant keyboard navigation across projects, vouchers, materials, and contractor contacts.",
+          "type": "guide",
+          "duration": "03:50",
+          "completed": false
+        },
+        {
+          "id": "1.8",
+          "number": "1.8",
+          "title": "Offline Data Sync & Local Storage",
+          "description": "Detailed mechanics of how DPR drafts and photo evidence sync safely when reconnecting.",
+          "type": "video",
+          "duration": "06:15",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "number": 2,
+      "title": "2. Organization Setup",
+      "name": "Organization Setup",
+      "summary": "Firms, projects, sites, users & roles",
+      "description": "Establish legal companies, construction projects, geographical sites, and team roles.",
+      "status": "ready",
+      "completedCount": 0,
+      "totalCount": 10,
+      "icon": "Buildings",
+      "lessons": [
+        {
+          "id": "2.1",
+          "number": "2.1",
+          "title": "Creating Company Firms & Legal Entities",
+          "description": "Configure company legal name, GSTIN number, registered state, and PAN details for billing.",
+          "type": "guide",
+          "duration": "07:20",
+          "completed": false,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Access Firms & Companies Register",
+              "content": "Navigate to Organization -> Firms & Companies. Click '+ New Firm' in the top action bar."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Fill Legal & Tax Identifiers",
+              "content": "Input legal trade name, 15-digit GSTIN, state code, PAN number, and corporate billing address."
+            },
+            {
+              "stepNumber": 3,
+              "title": "Save & Set Default Firm",
+              "content": "Click 'Save Record'. The firm is now available for all invoice headers and purchase orders."
+            }
+          ]
+        },
+        {
+          "id": "2.2",
+          "number": "2.2",
+          "title": "Setting Up Projects & Site Locations",
+          "description": "Define parent civil projects, contract values, target completion dates, and physical site locations.",
+          "type": "video",
+          "duration": "09:15",
+          "completed": false,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Create Project Record",
+              "content": "Navigate to Organization -> Projects. Enter project code, client reference, estimated budget, and start/finish dates."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Link Geo-Fenced Site Locations",
+              "content": "Go to Organization -> Sites / Locations. Associate each site with a parent project and capture latitude/longitude."
+            }
+          ]
+        },
+        {
+          "id": "2.3",
+          "number": "2.3",
+          "title": "Adding Users & Role-Based Access Controls",
+          "description": "Assign owner, project manager, site supervisor, storekeeper, and purchase officer roles with fine-grained rights.",
+          "type": "guide",
+          "duration": "08:40",
+          "completed": false
+        },
+        {
+          "id": "2.4",
+          "number": "2.4",
+          "title": "Client Master Setup & Contact Directory",
+          "description": "Register government agencies, private developers, billing addresses, and payment terms.",
+          "type": "guide",
+          "duration": "05:30",
+          "completed": false
+        },
+        {
+          "id": "2.5",
+          "number": "2.5",
+          "title": "Contractor Registry & Compliance Documents",
+          "description": "Enroll subcontractors, trade specializations, PAN/GST certificates, and bank account details.",
+          "type": "video",
+          "duration": "06:50",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "number": 3,
+      "title": "3. Project Management",
+      "name": "Project Management",
+      "summary": "Project setup, tasks, budgets, reports",
+      "description": "Track site progress, daily DPR site diaries, task activities, and milestone budgets.",
+      "status": "ready",
+      "completedCount": 0,
+      "totalCount": 12,
+      "icon": "Kanban",
+      "lessons": [
+        {
+          "id": "3.1",
+          "number": "3.1",
+          "title": "Project Dashboard & Telemetry Overview",
+          "description": "Monitor overall project health, physical vs financial progress curves, and open roadblocks.",
+          "type": "video",
+          "duration": "08:45",
+          "completed": false,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Open Project Dashboard",
+              "content": "Go to Project Management -> Project Dashboard. Select your active project in the header filter."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Examine Physical vs Financial S-Curves",
+              "content": "Compare cumulative certified work against planned baseline budgets and time elapsed."
+            }
+          ]
+        },
+        {
+          "id": "3.2",
+          "number": "3.2",
+          "title": "Creating Daily Site Diary (DPR) Entries",
+          "description": "Record daily site weather, labour headcount (skilled/unskilled), machinery hours, and work executed.",
+          "type": "guide",
+          "duration": "10:15",
+          "completed": false,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Open Site Diary Register",
+              "content": "Navigate to Project Management -> Site Diary and click '+ New DPR Entry'."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Record Weather & Site Conditions",
+              "content": "Specify sunny, cloudy, or rain interruption hours, and temperature."
+            },
+            {
+              "stepNumber": 3,
+              "title": "Log Labour & Equipment Deployed",
+              "content": "Enter counts for carpenters, masons, bar benders, helpers, and excavator/transit mixer hours."
+            },
+            {
+              "stepNumber": 4,
+              "title": "Document Output & Submit",
+              "content": "Summarize BOQ work completed (e.g. 85 m³ raft concreting) and submit for Project Manager approval."
+            }
+          ]
+        },
+        {
+          "id": "3.3",
+          "number": "3.3",
+          "title": "Geotagged Site Photo & GPS Evidence Logging",
+          "description": "Capture tamper-evident photos embedding device coordinates, accuracy radius, and server timestamp.",
+          "type": "video",
+          "duration": "06:30",
+          "completed": false
+        },
+        {
+          "id": "3.4",
+          "number": "3.4",
+          "title": "Work Breakdown Structure & Activity Tasks",
+          "description": "Organize excavation, PCC, RCC, masonry, and finishing into manageable milestone tasks.",
+          "type": "guide",
+          "duration": "07:50",
+          "completed": false
+        },
+        {
+          "id": "3.5",
+          "number": "3.5",
+          "title": "Budget Allocation vs Actual Milestone Tracking",
+          "description": "Compare sanctioned estimate line items against cumulative procurement and labour billing.",
+          "type": "guide",
+          "duration": "09:20",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "number": 4,
+      "title": "4. Procurement",
+      "name": "Procurement",
+      "summary": "Material requests, POs, GRN, bills",
+      "description": "Streamline requisition from sites, quotation approvals, purchase orders, and goods receipt.",
+      "status": "ready",
+      "completedCount": 0,
+      "totalCount": 10,
+      "icon": "ShoppingCart",
+      "lessons": [
+        {
+          "id": "4.1",
+          "number": "4.1",
+          "title": "Raising Material Requisitions from Mobile/Site",
+          "description": "How site engineers request cement, TMT steel, coarse aggregate, and pipe fittings directly from the field.",
+          "type": "guide",
+          "duration": "06:40",
+          "completed": false,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Navigate to Material Requests",
+              "content": "Go to Procurement -> Material Requests and click '+ New Request'."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Select Site and Item Lines",
+              "content": "Choose the receiving site, urgency level (Normal/Urgent), and required-by date."
+            },
+            {
+              "stepNumber": 3,
+              "title": "Add Quantities and Specifications",
+              "content": "Add item line items (e.g. 500 Bags OPC 53 Cement) and submit into the approval queue."
+            }
+          ]
+        },
+        {
+          "id": "4.2",
+          "number": "4.2",
+          "title": "Approving Indents & Generating Purchase Orders",
+          "description": "Purchase officer workflow: vendor quotation selection, GST rate configuration, and PO generation.",
+          "type": "video",
+          "duration": "08:20",
+          "completed": false
+        },
+        {
+          "id": "4.3",
+          "number": "4.3",
+          "title": "Gate Inward & Goods Receipt Note (GRN)",
+          "description": "Storekeeper inspection, vehicle number entry, weighbridge slips, and accepting inward quantity.",
+          "type": "guide",
+          "duration": "09:10",
+          "completed": false
+        },
+        {
+          "id": "4.4",
+          "number": "4.4",
+          "title": "Three-Way Matching: PO vs Challan vs Bill",
+          "description": "Verifying delivery challan quantities and vendor tax invoice against approved purchase order terms.",
+          "type": "guide",
+          "duration": "07:35",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "number": 5,
+      "title": "5. Inventory Management",
+      "name": "Inventory Management",
+      "summary": "Stock, issues, transfers, adjustments",
+      "description": "Real-time site stock tracking, store issues to subcontractors, inter-site transfers, and stock audits.",
+      "status": "coming_soon",
+      "completedCount": 0,
+      "totalCount": 8,
+      "icon": "Cube",
+      "comingSoonMessage": "Training Module will add soon. Our content team is actively creating high-definition video walkthroughs and step-by-step documentation for inventory registers.",
+      "upcomingTopics": [
+        "Real-Time Site Store Stock Balances",
+        "Material Issue to Contractors with Auto-Deduction",
+        "Inter-Site Material Transfers & Transit Tracking",
+        "Damaged / Scrap Stock Adjustments",
+        "Automated Reorder Threshold Alerts"
+      ]
+    },
+    {
+      "id": 6,
+      "number": 6,
+      "title": "6. Contractor & Billing",
+      "name": "Contractor & Billing",
+      "summary": "Work orders, running bills, measurements",
+      "description": "Subcontractor work orders, item-rate BOQ measurement sheets, RA bills, and retention holdbacks.",
+      "status": "coming_soon",
+      "completedCount": 0,
+      "totalCount": 10,
+      "icon": "Scroll",
+      "comingSoonMessage": "Training Module will add soon. Video recordings for measurement book validation and running account bill approvals are being finalized.",
+      "upcomingTopics": [
+        "Issuing Subcontractor Work Orders with BOQ Rates",
+        "Entering Measurement Sheets with Deductions",
+        "Generating Running Account (RA) Bills",
+        "Retention Money, Advance & TDS Deductions",
+        "Contractor Payment Certification & Vouchers"
+      ]
+    },
+    {
+      "id": 7,
+      "number": 7,
+      "title": "7. Accounting & Finance",
+      "name": "Accounting & Finance",
+      "summary": "Vouchers, ledgers, reports, TDS, GST",
+      "description": "Complete step-by-step masterclass on double-entry accounting, vouchers, bank reconciliation, TDS, GST, and balance sheets.",
+      "status": "ready",
+      "completedCount": 0,
+      "totalCount": 14,
+      "icon": "Bank",
+      "lessons": [
+        {
+          "id": "7.1",
+          "number": "7.1",
+          "title": "Overview of Double-Entry Accounting in Civil ERP",
+          "description": "Understand how Prince Constructions ERP maintains automated double-entry ledger postings across all sites, purchase bills, and contractor payments.",
+          "type": "video",
+          "duration": "09:40",
+          "completed": false,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Understanding Chart of Accounts",
+              "content": "Learn the 5 top-level heads: Assets (Bank, Cash, Site Inventory, Retention Receivable), Liabilities (Sundry Creditors, Contractor Retention Payable, GST/TDS Payable), Equity, Income (Client Billing), and Expenses (Direct Site Material, Labour, Equipment Hire)."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Site-Wise Cost Centers",
+              "content": "Every voucher transaction is tagged with a Site ID and Project ID, allowing automated site-specific Profit & Loss calculation."
+            }
+          ]
+        },
+        {
+          "id": "7.2",
+          "number": "7.2",
+          "title": "Step-by-Step Guide: Creating Cash & Bank Payment Vouchers",
+          "description": "Complete walkthrough of recording payments to vendors, fuel suppliers, petty cash site expenses, and utility bills.",
+          "type": "guide",
+          "duration": "11:20",
+          "completed": false,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Open Voucher Entry Form",
+              "content": "Go to Accounting & Finance -> Vouchers. Click '+ New Voucher' in the upper-right corner."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Select Voucher Type: Payment",
+              "content": "Choose 'Payment Voucher'. Select your payment account (e.g. 'IDBI Bank Current A/c' or 'Site Petty Cash')."
+            },
+            {
+              "stepNumber": 3,
+              "title": "Choose Opposing Ledger & Site Allocation",
+              "content": "Select the beneficiary ledger (e.g. 'Shree Cement Ltd' or 'Site Generator Diesel Expense'). Tag the active construction site."
+            },
+            {
+              "stepNumber": 4,
+              "title": "Enter Amount, Reference & Narration",
+              "content": "Input the transaction amount, cheque / RTGS / UTR reference number, and a detailed narration for audit trail."
+            },
+            {
+              "stepNumber": 5,
+              "title": "Post and Print Voucher",
+              "content": "Click 'Post Voucher'. The debit and credit entries immediately reflect in your Bank Book and General Ledger. Click Print for physical sign-off."
+            }
+          ]
+        },
+        {
+          "id": "7.3",
+          "number": "7.3",
+          "title": "Step-by-Step Guide: Recording Receipt Vouchers & Client Inflows",
+          "description": "How to record mobilization advances, interim client payment certificates, and retention releases from project clients.",
+          "type": "guide",
+          "duration": "08:50",
+          "completed": false,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Create Receipt Voucher",
+              "content": "Navigate to Accounting & Finance -> Vouchers. Select 'Receipt Voucher' as the type."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Debit Bank & Credit Client Ledger",
+              "content": "Select the receiving bank account. Choose the client account (e.g. 'UP Jal Nigam' or 'NHAI Project Division')."
+            },
+            {
+              "stepNumber": 3,
+              "title": "Record TDS & GST Withholdings",
+              "content": "Specify any TDS u/s 194C deducted by client and GST-TDS (2%) to reconcile the net bank deposit with gross certified bill."
+            }
+          ]
+        },
+        {
+          "id": "7.4",
+          "number": "7.4",
+          "title": "Step-by-Step Guide: Contractor Running Bill Accounting & Deductions",
+          "description": "In-depth guide on booking subcontractor RA bills with automatic retention money, advance recovery, and TDS deductions.",
+          "type": "guide",
+          "duration": "14:15",
+          "completed": false,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Select Approved Running Bill",
+              "content": "Navigate to Contractor & Billing -> Bill Approvals or Vouchers. Open the certified RA bill."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Examine Gross vs Net Deductions",
+              "content": "Gross Work Value: Debit 'Contractor Site Expense'. Deductions: Credit 'Retention Money Payable' (typically 5%), Credit 'Labour Cess' (1%), Credit 'TDS 194C' (1% or 2%)."
+            },
+            {
+              "stepNumber": 3,
+              "title": "Post Bill to Contractor Payable Ledger",
+              "content": "The net payable amount is credited to the Subcontractor's Personal Ledger, ready for payment scheduling."
+            }
+          ]
+        },
+        {
+          "id": "7.5",
+          "number": "7.5",
+          "title": "Step-by-Step Guide: Vendor Purchase Bill Posting & GST ITC Claim",
+          "description": "Process material vendor invoices with CGST, SGST, IGST input tax credit allocation and RCM checks.",
+          "type": "guide",
+          "duration": "10:30",
+          "completed": false,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Match Invoice with GRN",
+              "content": "In Procurement -> Purchase Bills, click '+ New Bill' and attach the Goods Receipt Note (GRN)."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Verify GST Breakdown",
+              "content": "Confirm taxable value and GST rates (5%, 12%, 18%, 28%). The system debits 'Input CGST' and 'Input SGST' / 'Input IGST'."
+            },
+            {
+              "stepNumber": 3,
+              "title": "Post to Sundry Creditors",
+              "content": "Approve bill. The vendor ledger updates with net payable and payment due date."
+            }
+          ]
+        },
+        {
+          "id": "7.6",
+          "number": "7.6",
+          "title": "Step-by-Step Guide: Journal Vouchers for Site Adjustments & Contra",
+          "description": "How to record depreciation on site machinery, prepaid insurances, inter-bank cash withdrawals, and year-end accruals.",
+          "type": "guide",
+          "duration": "07:45",
+          "completed": false,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Open Journal Voucher Form",
+              "content": "Go to Accounting & Finance -> Vouchers and click '+ New Voucher'. Select 'Journal Voucher' or 'Contra Voucher'."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Debit Expense or Asset & Credit Contra Account",
+              "content": "For depreciation: Debit 'Depreciation - Site Plant & Machinery', Credit 'Accumulated Depreciation'. For inter-bank: Debit Destination Bank, Credit Source Bank."
+            },
+            {
+              "stepNumber": 3,
+              "title": "Enter Site Tag & Audit Narration",
+              "content": "Tag the specific construction site and record clear reference notes explaining the adjustment."
+            }
+          ]
+        },
+        {
+          "id": "7.7",
+          "number": "7.7",
+          "title": "Step-by-Step Guide: Bank Reconciliation Statement (BRS)",
+          "description": "Match bank passbook statements with ERP book entries, clear unpresented cheques, and record bank charges.",
+          "type": "video",
+          "duration": "12:00",
+          "completed": false,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Access BRS Reconciliation Screen",
+              "content": "Navigate to Accounting & Finance -> Cash & Bank -> BRS. Select your bank account and statement cut-off date."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Match Cleared Cheques & RTGS Credits",
+              "content": "Mark payments that have cleared the bank. Compare transaction reference numbers (UTR) against bank statement."
+            },
+            {
+              "stepNumber": 3,
+              "title": "Record Bank Interest & Service Charges",
+              "content": "One-click post direct debit bank charges, loan interest, and processing fees to reconcile book balance with statement balance."
+            },
+            {
+              "stepNumber": 4,
+              "title": "Reconciliation Completion Sign-Off",
+              "content": "Confirm 'Balance as per Books' perfectly reconciles with 'Balance as per Bank Passbook' and save the statement."
+            }
+          ]
+        },
+        {
+          "id": "7.8",
+          "number": "7.8",
+          "title": "Step-by-Step Guide: Generating General Ledger & Sub-Ledger Reports",
+          "description": "Filter ledger statements by date range, voucher type, site code, and export to Excel/PDF.",
+          "type": "guide",
+          "duration": "08:15",
+          "completed": false,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Open General Ledger Register",
+              "content": "Go to Accounting & Finance -> Ledger & Reports. Select the ledger account (e.g., 'Shree Cement', 'Petty Cash Site A')."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Apply Site and Date Filters",
+              "content": "Choose the fiscal quarter or custom date range. Filter by Site to view project-specific financial movements."
+            },
+            {
+              "stepNumber": 3,
+              "title": "Audit Running Balances & Drill-Down",
+              "content": "Review Opening Balance, Running Debits, Credits, and Closing Balance. Click any voucher row to inspect the source document."
+            }
+          ]
+        },
+        {
+          "id": "7.9",
+          "number": "7.9",
+          "title": "Step-by-Step Guide: TDS Deduction, Section 194C / 194J & Challan 281 Filing",
+          "description": "Reconcile monthly TDS withholdings from contractors and professionals, generate Challan 281, and prepare Form 26Q quarterly returns.",
+          "type": "guide",
+          "duration": "09:50",
+          "completed": false,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Access Monthly TDS Register",
+              "content": "Navigate to Accounting & Finance -> TDS & GST. View deductions organized by Section 194C (Contractors) and 194J (Consultants)."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Verify PAN and Deduction Rates",
+              "content": "Confirm individual contractors are deducted at 1% (or company contractors at 2%). Check for non-PAN flags requiring 20% rate."
+            },
+            {
+              "stepNumber": 3,
+              "title": "Generate Challan 281 Payment Entry",
+              "content": "Generate the Challan 281 tax deposit voucher by the 7th of the following month with BSR Code and Challan Serial Number."
+            },
+            {
+              "stepNumber": 4,
+              "title": "Export Form 26Q e-TDS Return File",
+              "content": "Generate and download the NSDL-compliant Form 26Q quarterly return file for direct upload to TRACES portal."
+            }
+          ]
+        },
+        {
+          "id": "7.10",
+          "number": "7.10",
+          "title": "Step-by-Step Guide: GST GSTR-1, GSTR-3B & E-Way Bill Reconciliation",
+          "description": "Audit outward client supplies, match vendor invoices against GSTR-2B, and reconcile net monthly GST liability.",
+          "type": "guide",
+          "duration": "11:10",
+          "completed": false,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Review Outward Supplies (GSTR-1)",
+              "content": "Open GST Compliance -> Outward Invoices. Verify all certified client invoices with correct HSN/SAC codes (9954 for civil construction)."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Reconcile Input Tax Credit (ITC) with GSTR-2B",
+              "content": "Cross-match purchase bills with the government 2B ledger to identify missing vendor invoices before claiming tax credit."
+            },
+            {
+              "stepNumber": 3,
+              "title": "Compute Net Monthly GSTR-3B Liability",
+              "content": "System automatically offsets eligible input credit against output liability and displays net cash tax payable."
+            }
+          ]
+        },
+        {
+          "id": "7.11",
+          "number": "7.11",
+          "title": "Step-by-Step Guide: Site-Wise Profit & Loss Statement (P&L)",
+          "description": "Compare revenue certified against direct site costs (steel, cement, labor, fuel, equipment depreciation) for individual projects.",
+          "type": "video",
+          "duration": "10:40",
+          "completed": false,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Open Profit & Loss Report",
+              "content": "Navigate to Accounting & Finance -> Financial Statements -> Profit & Loss. Choose 'Site Cost-Center View'."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Select Target Project / Site",
+              "content": "Filter by specific site location to isolate revenues, vendor material debits, and contractor payments for that project."
+            },
+            {
+              "stepNumber": 3,
+              "title": "Analyze Gross Site Margin & Net Profitability",
+              "content": "Review Certified Turnover vs Direct Site Cost (Steel, Cement, Subcontractor RA, Machinery). Check gross operating margins."
+            }
+          ]
+        },
+        {
+          "id": "7.12",
+          "number": "7.12",
+          "title": "Step-by-Step Guide: Trial Balance & Balance Sheet Preparation",
+          "description": "Verify debit/credit balance integrity across all accounts and generate consolidated Balance Sheet reports.",
+          "type": "guide",
+          "duration": "13:20",
+          "completed": false,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Generate Trial Balance",
+              "content": "Open Accounting & Finance -> Statements -> Trial Balance. Check that total debits match total credits across all heads."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Verify Balance Sheet Classifications",
+              "content": "Switch to Balance Sheet. Review Current Assets (Bank, Cash, Site Stores, Retention Due) and Current Liabilities (Retention Payable, Sundry Creditors)."
+            },
+            {
+              "stepNumber": 3,
+              "title": "Review Capital & Net Worth Position",
+              "content": "Inspect Reserves, Partner Capital Accounts, and Secured Construction Loans for the consolidated enterprise."
+            }
+          ]
+        },
+        {
+          "id": "7.13",
+          "number": "7.13",
+          "title": "Step-by-Step Guide: Financial Year-End Closing & Opening Balances Roll-Forward",
+          "description": "Close profit & loss to retained earnings and roll forward ledger balances for the new fiscal year.",
+          "type": "guide",
+          "duration": "08:30",
+          "completed": false,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Execute Year-End Accruals & Physical Audits",
+              "content": "Verify physical stock in all site stores, provision for retention receivables, and record audit fee accruals."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Trigger Financial Year Roll-Forward",
+              "content": "Click 'Year-End Close'. System posts net P&L balance to Retained Earnings and carries forward all asset/liability balances into the new fiscal year."
+            }
+          ]
+        },
+        {
+          "id": "7.14",
+          "number": "7.14",
+          "title": "Step-by-Step Guide: Exporting Accounting Reports to Excel/Tally/PDF",
+          "description": "One-click export of daybook, cash registers, voucher listings, and audit trails.",
+          "type": "guide",
+          "duration": "06:10",
+          "completed": false,
+          "steps": [
+            {
+              "stepNumber": 1,
+              "title": "Select Export Options",
+              "content": "From any accounting screen or register, click the 'Export' button in the toolbar."
+            },
+            {
+              "stepNumber": 2,
+              "title": "Choose Format (Excel, PDF, Tally XML)",
+              "content": "Select Excel for audit analysis, formatted PDF with company header for print, or Tally XML for statutory auditor import."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "number": 8,
+      "title": "8. Communication",
+      "name": "Communication",
+      "summary": "Chat, announcements, site updates",
+      "description": "Real-time site messaging, material request discussion threads, broadcast circulars, and weather alerts.",
+      "status": "coming_soon",
+      "completedCount": 0,
+      "totalCount": 6,
+      "icon": "ChatDots",
+      "comingSoonMessage": "Training Module will add soon. Video tutorials covering site group discussions, media attachments, and company announcements are currently in production.",
+      "upcomingTopics": [
+        "Site-Specific Group Chats with Engineers",
+        "Attaching Photos & Geotagged Evidence in Chat",
+        "Company-Wide Safety & Operational Circulars",
+        "Direct Messaging between PMs and Supervisors"
+      ]
+    },
+    {
+      "id": 9,
+      "number": 9,
+      "title": "9. Reports",
+      "name": "Reports",
+      "summary": "Project, financial, stock and MIS reports",
+      "description": "Comprehensive MIS dashboards, site expenditure analysis, vendor ageing, and executive summary exports.",
+      "status": "coming_soon",
+      "completedCount": 0,
+      "totalCount": 8,
+      "icon": "ChartPie",
+      "comingSoonMessage": "Training Module will add soon. Interactive walkthroughs for customized MIS reporting, pivot analytics, and PDF exports are in progress.",
+      "upcomingTopics": [
+        "Executive Project Health MIS Reports",
+        "Site Expenditure & Cost-to-Complete Forecasts",
+        "Vendor Ageing & Payment Due Schedules",
+        "Stock Consumption & Wastage Variance Reports"
+      ]
+    },
+    {
+      "id": 10,
+      "number": 10,
+      "title": "10. Mobile Access (PWA)",
+      "name": "Mobile Access (PWA)",
+      "summary": "Use on mobile, offline features",
+      "description": "Mastering the offline Progressive Web Application on iOS & Android devices in remote construction zones.",
+      "status": "coming_soon",
+      "completedCount": 0,
+      "totalCount": 6,
+      "icon": "DeviceMobile",
+      "comingSoonMessage": "Training Module will add soon. Video demonstrations of offline site diaries, field camera GPS tagging, and automatic synchronization are being prepared.",
+      "upcomingTopics": [
+        "Installing the PWA on iOS (Safari) and Android (Chrome)",
+        "Offline Daily Progress Report (DPR) Filing",
+        "GPS Location Calibration & Site Geo-fencing",
+        "Background Sync upon Reconnection"
+      ]
+    }
+  ],
+  "quickLinks": [
+    {
+      "id": "video-tutorials",
+      "title": "Video Tutorials",
+      "description": "Watch short videos",
+      "icon": "VideoCamera"
+    },
+    {
+      "id": "step-by-step",
+      "title": "Step-by-Step Guides",
+      "description": "Detailed walkthroughs",
+      "icon": "FileText"
+    },
+    {
+      "id": "faqs",
+      "title": "Frequently Asked Questions",
+      "description": "Find instant answers",
+      "icon": "Question"
+    },
+    {
+      "id": "download-manual",
+      "title": "Download User Manual",
+      "description": "PDF guide for offline use",
+      "icon": "DownloadSimple"
+    }
+  ],
+  "faqs": [
+    {
+      "id": "faq-1",
+      "question": "How do I create a new project?",
+      "answer": "Navigate to Organization -> Projects from the left sidebar and click '+ New Project'. Fill in the project name, client contract value, start date, target handover date, and assign a Project Manager. Click 'Save Record' to initialize the project workspace."
+    },
+    {
+      "id": "faq-2",
+      "question": "How to raise a material request from site?",
+      "answer": "Open Procurement -> Material Requests (or click 'Requests' in the bottom navigation). Tap '+ New Request', choose your active site, pick required items (e.g. TMT Steel 16mm, Cement, Sand), enter required quantities, and submit for Purchase Officer approval."
+    },
+    {
+      "id": "faq-3",
+      "question": "How to create a purchase order?",
+      "answer": "Go to Procurement -> Purchase Orders and click '+ New Order'. Select the verified vendor, reference approved material requisitions, verify unit rates and GST slabs, specify delivery site address, and click 'Create Purchase Order'."
+    },
+    {
+      "id": "faq-4",
+      "question": "How to generate a running bill?",
+      "answer": "Navigate to Contractor & Billing -> Contractor Running Bills. Click '+ New Running Bill', select the subcontractor and work order. Enter measurement sheet quantities; the system automatically calculates gross value, 5% retention holdback, advance recovery, and net payable."
+    },
+    {
+      "id": "faq-5",
+      "question": "How to add a new user and give permissions?",
+      "answer": "Go to Organization -> Users & Roles (Admin Only). Click '+ New User', enter employee name, email, and choose their role (e.g. Site Supervisor, Store Manager, Accountant). Role-based permissions are automatically enforced across the app."
+    },
+    {
+      "id": "faq-6",
+      "question": "How to take a backup of data?",
+      "answer": "Open Settings -> System Backup. Click 'Export Snapshot (JSON)'. The ERP will compile all local site records, offline drafts, and preferences into a timestamped JSON file that can be archived or restored at any time."
+    }
+  ]
+}

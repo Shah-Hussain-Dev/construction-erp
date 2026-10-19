@@ -1,0 +1,14 @@
+node_modules/
+.next/
+.env*.local
+mocks/data/db.json
+playwright-report/
+test-results/
+coverage/
+*.tsbuildinfo
+
+.next-e2e/
+
+.pnpm-store/
+.DS_Store
+*.log

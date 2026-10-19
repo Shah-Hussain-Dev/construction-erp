@@ -1,0 +1,10 @@
+packages:
+  - .
+verifyDepsBeforeRun: false
+strictDepBuilds: false
+onlyBuiltDependencies:
+  - unrs-resolver
+  - sharp
+  - esbuild
+allowBuilds:
+  unrs-resolver: set this to true or false

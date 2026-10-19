@@ -1,0 +1,2297 @@
+{
+  "firms": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "name": "Vardhan Civil & Infrastructure",
+      "code": "FIRM",
+      "status": "active",
+      "gstin": "29AABCV1234F1Z5",
+      "email": "office@vardhan.example"
+    }
+  ],
+  "projects": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "name": "Whitefield Tower",
+      "code": "PROJECT",
+      "status": "active",
+      "clientName": "Raya Infra Developers",
+      "contractValueInr": 186500000,
+      "startsOn": "2026-04-01",
+      "endsOn": "2027-09-30"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "36f9d941-f25e-4c18-acba-00e9c80ecb66",
+      "siteId": "9495a89f-2579-45fc-adcc-4ae33f316293",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "36f9d941-f25e-4c18-acba-00e9c80ecb66",
+      "name": "Electronic City Campus",
+      "code": "PROJECT-2",
+      "status": "active",
+      "clientName": "Southline Technologies",
+      "contractValueInr": 94000000
+    }
+  ],
+  "sites": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "name": "Whitefield · Tower A",
+      "code": "SITE",
+      "status": "active",
+      "address": "Plot 45, EPIP Zone, Whitefield",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "inCharge": "Rajesh Kumar (Site In-Charge)",
+      "inChargePhone": "+91 98450 11223"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "36f9d941-f25e-4c18-acba-00e9c80ecb66",
+      "siteId": "9495a89f-2579-45fc-adcc-4ae33f316293",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "9495a89f-2579-45fc-adcc-4ae33f316293",
+      "name": "Electronic City · Block B",
+      "code": "SITE-2",
+      "status": "active",
+      "address": "Phase 1, Hosur Road, Electronic City",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "inCharge": "Kiran Rao (Resident Engineer)",
+      "inChargePhone": "+91 98452 44556"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "afd29500-9c67-45a4-a044-ffdb4350fa84",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "afd29500-9c67-45a4-a044-ffdb4350fa84",
+      "name": "Sarjapur Luxury Villas",
+      "code": "SITE-3",
+      "status": "active",
+      "address": "Carmelaram Post, Sarjapur Road",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "inCharge": "Anil Verma (Site Supervisor)",
+      "inChargePhone": "+91 98201 99887"
+    }
+  ],
+  "stores": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "8cd892b7-b97e-4948-aae4-479d3f4ef0fc",
+      "name": "Main site store",
+      "code": "STORE",
+      "status": "active"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "64b9f7d8-3699-4558-a14c-885eaa954472",
+      "name": "Podium store",
+      "code": "STORE-2",
+      "status": "active"
+    }
+  ],
+  "cost-codes": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "0fd07f8b-fe81-4daf-a9ad-dc98df421c98",
+      "name": "Structural works",
+      "code": "CC-STRUCT",
+      "status": "active"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "fdaa0e03-3fb7-40ec-a569-dd867663af7f",
+      "name": "Finishing works",
+      "code": "CC-FINISH",
+      "status": "active"
+    }
+  ],
+  "departments": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "5867b746-22c1-416e-af6d-ccf6c9bdb212",
+      "name": "Civil & Project Engineering",
+      "code": "DEPT-ENG",
+      "status": "active",
+      "headId": "73a248fd-d795-4b0e-ac1e-5748d91c9587",
+      "headName": "Kavitha Rao",
+      "costCenter": "CC-STRUCT",
+      "description": "Site execution, civil engineering, and structural construction works."
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "394062e2-c640-4e35-aed7-d714945ba692",
+      "name": "Procurement & Supply Chain",
+      "code": "DEPT-PROC",
+      "status": "active",
+      "headId": "85dbdb21-fe50-4c4d-aa1e-81bca0aa396d",
+      "headName": "Prakash Nair",
+      "costCenter": "CC-PROC",
+      "description": "Vendor management, material sourcing, purchase indents, and POs."
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "e4cada13-5d6a-4f69-afd1-4dab28eb46cf",
+      "name": "Warehouse & Inventory",
+      "code": "DEPT-WHS",
+      "status": "active",
+      "headId": "e18fdc9f-a7cc-4b5f-ae49-7d21a48ea3b7",
+      "headName": "Imran Shaikh",
+      "costCenter": "CC-STORE",
+      "description": "Central stores, site inventory custody, GRN inwards, and issues."
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "f497051f-04fe-4de0-a1f0-3f3c7911e92f",
+      "name": "Finance & Accounts",
+      "code": "DEPT-FIN",
+      "status": "active",
+      "headId": "48dd3444-9387-4130-aba1-08ffa4c8d145",
+      "headName": "Nandini Iyer",
+      "costCenter": "CC-FIN",
+      "description": "Vouchers, RA contractor bills, GST, TDS, and corporate accounts."
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "75495322-cb9a-45d7-abe2-0ec103492a41",
+      "name": "Quality & Safety (HSE)",
+      "code": "DEPT-QA",
+      "status": "active",
+      "headId": "7626d28b-710e-4f9e-a8d9-dfbe9bf0d123",
+      "headName": "Arjun Mehta",
+      "costCenter": "CC-QA",
+      "description": "Site safety, quality control testing, IS compliance, and inspections."
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "3e9fae80-e1f7-4507-a6cb-4bf373312f85",
+      "name": "Executive & Administration",
+      "code": "DEPT-MGMT",
+      "status": "active",
+      "headId": "72122ce9-6bfe-466e-a396-d2e25225d70a",
+      "headName": "Raghav Sharma",
+      "costCenter": "CC-MGMT",
+      "description": "Corporate executive oversight, project governance, and IT administration."
+    }
+  ],
+  "roles": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "e1765d0a-e4f1-4f94-af3c-d757a576d60e",
+      "name": "System Administrator",
+      "code": "ROLE-MGMT-ADM",
+      "status": "active",
+      "departmentId": "3e9fae80-e1f7-4507-a6cb-4bf373312f85",
+      "departmentName": "Executive & Administration",
+      "accessLevel": "Executive",
+      "description": "ERP system admin, user configuration, and security controls.",
+      "systemRole": "admin"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "4d040d0a-478a-4d95-a042-4c0c826e5623",
+      "name": "Managing Director / Owner",
+      "code": "ROLE-MGMT-OWN",
+      "status": "active",
+      "departmentId": "3e9fae80-e1f7-4507-a6cb-4bf373312f85",
+      "departmentName": "Executive & Administration",
+      "accessLevel": "Executive",
+      "description": "Strategic director and ultimate approval authority.",
+      "systemRole": "owner"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "b5b20db2-ccb5-479b-a555-d30cbbba688d",
+      "name": "Project Manager",
+      "code": "ROLE-ENG-MGR",
+      "status": "active",
+      "departmentId": "5867b746-22c1-416e-af6d-ccf6c9bdb212",
+      "departmentName": "Civil & Project Engineering",
+      "accessLevel": "Manager",
+      "description": "Overall project execution, budget and schedule control.",
+      "systemRole": "manager"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "d6e82874-d417-432a-a769-6f662d469de5",
+      "name": "Site Supervisor",
+      "code": "ROLE-ENG-SUP",
+      "status": "active",
+      "departmentId": "5867b746-22c1-416e-af6d-ccf6c9bdb212",
+      "departmentName": "Civil & Project Engineering",
+      "accessLevel": "Supervisor",
+      "description": "On-site execution, DPR recording, daily labor control.",
+      "systemRole": "supervisor"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "309e978c-ee16-4023-a248-88754f18f440",
+      "name": "Site Engineer",
+      "code": "ROLE-ENG-ENG",
+      "status": "active",
+      "departmentId": "5867b746-22c1-416e-af6d-ccf6c9bdb212",
+      "departmentName": "Civil & Project Engineering",
+      "accessLevel": "Field",
+      "description": "Technical site supervision and measurement verification.",
+      "systemRole": "supervisor"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "37165304-8669-49ae-a599-4c6493adabb9",
+      "name": "Quantity Surveyor",
+      "code": "ROLE-ENG-QS",
+      "status": "active",
+      "departmentId": "5867b746-22c1-416e-af6d-ccf6c9bdb212",
+      "departmentName": "Civil & Project Engineering",
+      "accessLevel": "Staff",
+      "description": "BOQ calculation and measurement verification.",
+      "systemRole": "supervisor"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "8ceb002d-92d9-4324-a7de-d096b357964f",
+      "name": "Purchase Manager",
+      "code": "ROLE-PROC-MGR",
+      "status": "active",
+      "departmentId": "394062e2-c640-4e35-aed7-d714945ba692",
+      "departmentName": "Procurement & Supply Chain",
+      "accessLevel": "Manager",
+      "description": "Vendor quotation analysis, PO approvals, and negotiation.",
+      "systemRole": "purchase"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "30b61719-ea48-41aa-a9f3-1196a8d88550",
+      "name": "Procurement Officer",
+      "code": "ROLE-PROC-OFF",
+      "status": "active",
+      "departmentId": "394062e2-c640-4e35-aed7-d714945ba692",
+      "departmentName": "Procurement & Supply Chain",
+      "accessLevel": "Staff",
+      "description": "Indent processing and RFQ generation.",
+      "systemRole": "purchase"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "8e6e3443-286b-41ae-a909-ab5943b710b1",
+      "name": "Store Keeper",
+      "code": "ROLE-WHS-SK",
+      "status": "active",
+      "departmentId": "e4cada13-5d6a-4f69-afd1-4dab28eb46cf",
+      "departmentName": "Warehouse & Inventory",
+      "accessLevel": "Field",
+      "description": "GRN inward verification, material issues, and custody.",
+      "systemRole": "store"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "5fb2c096-149e-411d-ab9f-c490ca3bf96e",
+      "name": "Inventory Controller",
+      "code": "ROLE-WHS-IC",
+      "status": "active",
+      "departmentId": "e4cada13-5d6a-4f69-afd1-4dab28eb46cf",
+      "departmentName": "Warehouse & Inventory",
+      "accessLevel": "Supervisor",
+      "description": "Stock audits, reorder level monitoring, and reconciliation.",
+      "systemRole": "store"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "a7da97e4-319a-4da5-a252-af6ba944e641",
+      "name": "Chief Accountant",
+      "code": "ROLE-FIN-CA",
+      "status": "active",
+      "departmentId": "f497051f-04fe-4de0-a1f0-3f3c7911e92f",
+      "departmentName": "Finance & Accounts",
+      "accessLevel": "Manager",
+      "description": "General ledger, tax filings, and bank reconciliation.",
+      "systemRole": "accounts"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "1a1eb014-ac65-4831-a436-6f5e1ff106dd",
+      "name": "Billing Accounts Officer",
+      "code": "ROLE-FIN-BILL",
+      "status": "active",
+      "departmentId": "f497051f-04fe-4de0-a1f0-3f3c7911e92f",
+      "departmentName": "Finance & Accounts",
+      "accessLevel": "Staff",
+      "description": "Contractor bill audit, retention, and TDS deduction.",
+      "systemRole": "accounts"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "093ec6de-e611-4c37-aedd-ef0b56dc4d0a",
+      "name": "Quality Assurance Lead",
+      "code": "ROLE-QA-LEAD",
+      "status": "active",
+      "departmentId": "75495322-cb9a-45d7-abe2-0ec103492a41",
+      "departmentName": "Quality & Safety (HSE)",
+      "accessLevel": "Supervisor",
+      "description": "Material testing, cube tests, and safety compliance.",
+      "systemRole": "supervisor"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "37826276-5d9f-4297-a806-9eee8da37915",
+      "name": "HSE Safety Officer",
+      "code": "ROLE-QA-SAFE",
+      "status": "active",
+      "departmentId": "75495322-cb9a-45d7-abe2-0ec103492a41",
+      "departmentName": "Quality & Safety (HSE)",
+      "accessLevel": "Field",
+      "description": "Site safety inspections and incident reports.",
+      "systemRole": "supervisor"
+    }
+  ],
+  "users": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "21232f29-7a57-45a7-a389-4a0e4a801fc3",
+      "name": "System Administrator",
+      "code": "ADMIN",
+      "status": "active",
+      "email": "admin@civil.example",
+      "role": "admin",
+      "roleId": "e1765d0a-e4f1-4f94-af3c-d757a576d60e",
+      "departmentId": "3e9fae80-e1f7-4507-a6cb-4bf373312f85",
+      "employeeCode": "EMP-001",
+      "phone": "+91 98450 00001",
+      "designation": "System Administrator",
+      "siteIds": [
+        "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+        "9495a89f-2579-45fc-adcc-4ae33f316293"
+      ]
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "72122ce9-6bfe-466e-a396-d2e25225d70a",
+      "name": "Raghav Sharma",
+      "code": "OWNER",
+      "status": "active",
+      "email": "owner@civil.example",
+      "role": "owner",
+      "roleId": "4d040d0a-478a-4d95-a042-4c0c826e5623",
+      "departmentId": "3e9fae80-e1f7-4507-a6cb-4bf373312f85",
+      "employeeCode": "EMP-002",
+      "phone": "+91 98450 00002",
+      "designation": "Managing Director",
+      "siteIds": [
+        "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+        "9495a89f-2579-45fc-adcc-4ae33f316293"
+      ]
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "7626d28b-710e-4f9e-a8d9-dfbe9bf0d123",
+      "name": "Arjun Mehta",
+      "code": "ARJUN",
+      "status": "active",
+      "email": "supervisor@civil.example",
+      "role": "supervisor",
+      "roleId": "d6e82874-d417-432a-a769-6f662d469de5",
+      "departmentId": "5867b746-22c1-416e-af6d-ccf6c9bdb212",
+      "employeeCode": "EMP-014",
+      "phone": "+91 98450 00014",
+      "designation": "Senior Site Supervisor",
+      "siteIds": [
+        "98defd6e-e70d-4b1d-aa41-6cecdf391f58"
+      ]
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "73a248fd-d795-4b0e-ac1e-5748d91c9587",
+      "name": "Kavitha Rao",
+      "code": "KAVITHA",
+      "status": "active",
+      "email": "manager@civil.example",
+      "role": "manager",
+      "roleId": "b5b20db2-ccb5-479b-a555-d30cbbba688d",
+      "departmentId": "5867b746-22c1-416e-af6d-ccf6c9bdb212",
+      "employeeCode": "EMP-008",
+      "phone": "+91 98450 00008",
+      "designation": "Project Manager",
+      "siteIds": [
+        "98defd6e-e70d-4b1d-aa41-6cecdf391f58"
+      ]
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "e18fdc9f-a7cc-4b5f-ae49-7d21a48ea3b7",
+      "name": "Imran Shaikh",
+      "code": "IMRAN",
+      "status": "active",
+      "email": "store@civil.example",
+      "role": "store",
+      "roleId": "8e6e3443-286b-41ae-a909-ab5943b710b1",
+      "departmentId": "e4cada13-5d6a-4f69-afd1-4dab28eb46cf",
+      "employeeCode": "EMP-022",
+      "phone": "+91 98450 00022",
+      "designation": "Lead Store Keeper",
+      "siteIds": [
+        "98defd6e-e70d-4b1d-aa41-6cecdf391f58"
+      ]
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "48dd3444-9387-4130-aba1-08ffa4c8d145",
+      "name": "Nandini Iyer",
+      "code": "NANDINI",
+      "status": "active",
+      "email": "accounts@civil.example",
+      "role": "accounts",
+      "roleId": "a7da97e4-319a-4da5-a252-af6ba944e641",
+      "departmentId": "f497051f-04fe-4de0-a1f0-3f3c7911e92f",
+      "employeeCode": "EMP-005",
+      "phone": "+91 98450 00005",
+      "designation": "Chief Financial Officer",
+      "siteIds": [
+        "98defd6e-e70d-4b1d-aa41-6cecdf391f58"
+      ]
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "85dbdb21-fe50-4c4d-aa1e-81bca0aa396d",
+      "name": "Prakash Nair",
+      "code": "PURCHASE",
+      "status": "active",
+      "email": "purchase@civil.example",
+      "role": "purchase",
+      "roleId": "8ceb002d-92d9-4324-a7de-d096b357964f",
+      "departmentId": "394062e2-c640-4e35-aed7-d714945ba692",
+      "employeeCode": "EMP-011",
+      "phone": "+91 98450 00011",
+      "designation": "Purchase Manager",
+      "siteIds": [
+        "98defd6e-e70d-4b1d-aa41-6cecdf391f58"
+      ]
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "26744aa9-d6c0-4c24-a957-fb97d987546c",
+      "name": "Suresh Reddy",
+      "code": "CONTRACTOR",
+      "status": "active",
+      "email": "contractor@civil.example",
+      "role": "contractor",
+      "roleId": "309e978c-ee16-4023-a248-88754f18f440",
+      "departmentId": "5867b746-22c1-416e-af6d-ccf6c9bdb212",
+      "employeeCode": "EXT-CON-01",
+      "phone": "+91 98450 98765",
+      "designation": "RCC Contractor",
+      "siteIds": [
+        "98defd6e-e70d-4b1d-aa41-6cecdf391f58"
+      ],
+      "partyId": "0729253e-0dae-4402-ad50-4c0aa7773124"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "62608e08-adc2-4a8d-adbc-9754e659f125",
+      "name": "Ananya Rao",
+      "code": "CLIENT",
+      "status": "active",
+      "email": "client@civil.example",
+      "role": "client",
+      "roleId": "b5b20db2-ccb5-479b-a555-d30cbbba688d",
+      "departmentId": "3e9fae80-e1f7-4507-a6cb-4bf373312f85",
+      "employeeCode": "EXT-CLI-01",
+      "phone": "+91 98450 11234",
+      "designation": "Client Representative",
+      "siteIds": [
+        "98defd6e-e70d-4b1d-aa41-6cecdf391f58"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "c6d3456c-5209-42cd-a69f-a1f1415b6ee5",
+      "name": "OPC 43 Grade Cement",
+      "code": "CEMENT",
+      "status": "active",
+      "category": "cement",
+      "uom": "BAG",
+      "hsn": "2523",
+      "reorderLevel": 200,
+      "specifications": "50 kg bag · IS 8112"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "3eb38fa8-079f-4873-a4e8-ee1d92b3da12",
+      "name": "TMT Bar 12 mm Fe500D",
+      "code": "STEEL",
+      "status": "active",
+      "category": "steel",
+      "uom": "MT",
+      "hsn": "7214",
+      "reorderLevel": 8
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "88336b5b-b2a1-4c21-aac7-cf33fd451270",
+      "name": "Manufactured sand",
+      "code": "SAND",
+      "status": "active",
+      "category": "aggregate",
+      "uom": "CUM",
+      "hsn": "2505",
+      "reorderLevel": 40
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "39adbeb6-bc21-4313-ae5f-dcf1ec05d1a0",
+      "name": "20 mm aggregate",
+      "code": "AGGREGATE",
+      "status": "active",
+      "category": "aggregate",
+      "uom": "CUM",
+      "reorderLevel": 30
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "e7349649-53f8-40e5-a64e-32827950ff92",
+      "name": "AAC blocks 600 × 200 × 150",
+      "code": "BLOCKS",
+      "status": "active",
+      "category": "masonry",
+      "uom": "NOS",
+      "reorderLevel": 500
+    }
+  ],
+  "stock-balances": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "89ae6fe2-dd9b-4c89-a6d6-00429f1ef8be",
+      "name": "cement",
+      "code": "STOCK-CEMENT",
+      "status": "active",
+      "itemId": "c6d3456c-5209-42cd-a69f-a1f1415b6ee5",
+      "storeId": "8cd892b7-b97e-4948-aae4-479d3f4ef0fc",
+      "onHand": 840,
+      "reserved": 0
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "dbb959c9-da98-416a-a072-11148b01830e",
+      "name": "steel",
+      "code": "STOCK-STEEL",
+      "status": "active",
+      "itemId": "3eb38fa8-079f-4873-a4e8-ee1d92b3da12",
+      "storeId": "8cd892b7-b97e-4948-aae4-479d3f4ef0fc",
+      "onHand": 5.4,
+      "reserved": 0
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "386de00c-1b64-4f34-a3c4-cd9aa02efa5e",
+      "name": "sand",
+      "code": "STOCK-SAND",
+      "status": "active",
+      "itemId": "88336b5b-b2a1-4c21-aac7-cf33fd451270",
+      "storeId": "8cd892b7-b97e-4948-aae4-479d3f4ef0fc",
+      "onHand": 24,
+      "reserved": 0
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "d6ca1121-6d88-445b-a0a7-b5ff8d85068c",
+      "name": "aggregate",
+      "code": "STOCK-AGGREGATE",
+      "status": "active",
+      "itemId": "39adbeb6-bc21-4313-ae5f-dcf1ec05d1a0",
+      "storeId": "8cd892b7-b97e-4948-aae4-479d3f4ef0fc",
+      "onHand": 76,
+      "reserved": 0
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "a28e1c3b-f280-469c-ac0c-44d7b6da432f",
+      "name": "blocks",
+      "code": "STOCK-BLOCKS",
+      "status": "active",
+      "itemId": "e7349649-53f8-40e5-a64e-32827950ff92",
+      "storeId": "8cd892b7-b97e-4948-aae4-479d3f4ef0fc",
+      "onHand": 1240,
+      "reserved": 0
+    }
+  ],
+  "stock-ledger": [],
+  "material-requests": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "d22ff9b9-413e-4aae-a9d5-7913578d99a0",
+      "number": "MR-26-0118",
+      "status": "submitted",
+      "date": "2026-10-16",
+      "requiredOn": "2026-10-19",
+      "priority": "urgent",
+      "requestedBy": "7626d28b-710e-4f9e-a8d9-dfbe9bf0d123",
+      "purpose": "Podium slab pour · Grid A–D",
+      "lines": [
+        {
+          "id": "bb7ad51c-bf10-4849-a0c5-71228e6cdadc",
+          "itemId": "c6d3456c-5209-42cd-a69f-a1f1415b6ee5",
+          "qtyRequested": {
+            "value": 420,
+            "uom": "BAG"
+          },
+          "qtyApproved": null,
+          "qtyIssued": null,
+          "qty": 420,
+          "rate": 390
+        },
+        {
+          "id": "6f577dba-cef4-4015-a7de-164f0e74b3fc",
+          "itemId": "3eb38fa8-079f-4873-a4e8-ee1d92b3da12",
+          "qtyRequested": {
+            "value": 2.5,
+            "uom": "MT"
+          },
+          "qtyApproved": null,
+          "qtyIssued": null,
+          "qty": 2.5,
+          "rate": 62000
+        }
+      ],
+      "evidenceIds": []
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "cc0a6e19-3ab8-4ab8-aae1-8a31c364f1f8",
+      "number": "MR-26-0117",
+      "status": "approved",
+      "date": "2026-10-16",
+      "requiredOn": "2026-10-19",
+      "priority": "normal",
+      "requestedBy": "7626d28b-710e-4f9e-a8d9-dfbe9bf0d123",
+      "purpose": "Tower A · Level 4 columns",
+      "lines": [
+        {
+          "id": "e3ffd414-642d-40e9-ad5b-69ed38183041",
+          "itemId": "c6d3456c-5209-42cd-a69f-a1f1415b6ee5",
+          "qtyRequested": {
+            "value": 100,
+            "uom": "BAG"
+          },
+          "qtyApproved": {
+            "value": 100,
+            "uom": "BAG"
+          },
+          "qtyIssued": null,
+          "qty": 100,
+          "rate": 390
+        }
+      ],
+      "evidenceIds": []
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "518a3614-18db-492d-a475-5ae56114b2d9",
+      "number": "MR-26-0116",
+      "status": "draft",
+      "date": "2026-10-16",
+      "requiredOn": "2026-10-19",
+      "priority": "normal",
+      "requestedBy": "7626d28b-710e-4f9e-a8d9-dfbe9bf0d123",
+      "purpose": "Blockwork · East wing",
+      "lines": [
+        {
+          "id": "467eed49-b87a-4ffb-a009-c55de50b3482",
+          "itemId": "c6d3456c-5209-42cd-a69f-a1f1415b6ee5",
+          "qtyRequested": {
+            "value": 120,
+            "uom": "BAG"
+          },
+          "qtyApproved": null,
+          "qtyIssued": null,
+          "qty": 120,
+          "rate": 390
+        }
+      ],
+      "evidenceIds": []
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "391a7e92-4134-4b1c-a021-3da1f9f9186e",
+      "number": "MR-26-0115",
+      "status": "fulfilled",
+      "date": "2026-10-16",
+      "requiredOn": "2026-10-19",
+      "priority": "normal",
+      "requestedBy": "7626d28b-710e-4f9e-a8d9-dfbe9bf0d123",
+      "purpose": "Foundation works · South block",
+      "lines": [
+        {
+          "id": "ce7b91c9-c3f0-48f2-a950-ecdd0d668963",
+          "itemId": "88336b5b-b2a1-4c21-aac7-cf33fd451270",
+          "qtyRequested": {
+            "value": 18,
+            "uom": "CUM"
+          },
+          "qtyApproved": {
+            "value": 18,
+            "uom": "CUM"
+          },
+          "qtyIssued": {
+            "value": 18,
+            "uom": "CUM"
+          },
+          "qty": 18,
+          "rate": 1450
+        }
+      ],
+      "evidenceIds": []
+    }
+  ],
+  "vendors": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "17aacd28-f781-48e7-a8f8-a2b7296d8b9f",
+      "name": "Sri Malhar Steels",
+      "code": "VENDOR-A",
+      "status": "active",
+      "contact": "Mahesh Patil",
+      "email": "sales@malhar.example",
+      "phone": "9845012345"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "c6497906-5640-4987-ae35-e0a7130e3ebd",
+      "name": "Deccan Cement Agency",
+      "code": "VENDOR-B",
+      "status": "active",
+      "contact": "Ramesh Kumar",
+      "email": "orders@deccan.example"
+    }
+  ],
+  "purchase-requisitions": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "701bfbfd-aea1-4fae-a288-9a680f8fe38b",
+      "number": "PR-26-0042",
+      "status": "approved",
+      "date": "2026-10-16",
+      "requiredOn": "2026-10-19",
+      "priority": "normal",
+      "requestedBy": "7626d28b-710e-4f9e-a8d9-dfbe9bf0d123",
+      "purpose": "Replenish reinforcement stock",
+      "lines": [
+        {
+          "id": "20020f6e-ad24-4199-a2ff-721cbf54e336",
+          "itemId": "3eb38fa8-079f-4873-a4e8-ee1d92b3da12",
+          "qtyRequested": {
+            "value": 12,
+            "uom": "MT"
+          },
+          "qtyApproved": null,
+          "qtyIssued": null,
+          "qty": 12,
+          "rate": 62000
+        }
+      ],
+      "evidenceIds": []
+    }
+  ],
+  "purchase-orders": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "c81aae25-9426-4b4a-ab27-d7b87a274809",
+      "number": "PO-26-0084",
+      "status": "approved",
+      "date": "2026-10-16",
+      "requiredOn": "2026-10-19",
+      "priority": "normal",
+      "requestedBy": "7626d28b-710e-4f9e-a8d9-dfbe9bf0d123",
+      "purpose": "Reinforcement steel · Tower A",
+      "lines": [
+        {
+          "id": "20020f6e-ad24-4199-a2ff-721cbf54e336",
+          "itemId": "3eb38fa8-079f-4873-a4e8-ee1d92b3da12",
+          "qtyRequested": {
+            "value": 12,
+            "uom": "MT"
+          },
+          "qtyApproved": null,
+          "qtyIssued": null,
+          "qty": 12,
+          "rate": 62000
+        }
+      ],
+      "evidenceIds": [],
+      "vendorId": "17aacd28-f781-48e7-a8f8-a2b7296d8b9f"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "aa6fd782-6231-4d2c-a67a-d4803e73bd1b",
+      "number": "PO-26-0083",
+      "status": "submitted",
+      "date": "2026-10-16",
+      "requiredOn": "2026-10-19",
+      "priority": "normal",
+      "requestedBy": "7626d28b-710e-4f9e-a8d9-dfbe9bf0d123",
+      "purpose": "Cement replenishment",
+      "lines": [
+        {
+          "id": "62f81c6b-1da5-4252-a718-02e1aaa9b302",
+          "itemId": "c6d3456c-5209-42cd-a69f-a1f1415b6ee5",
+          "qtyRequested": {
+            "value": 600,
+            "uom": "BAG"
+          },
+          "qtyApproved": null,
+          "qtyIssued": null,
+          "qty": 600,
+          "rate": 390
+        }
+      ],
+      "evidenceIds": [],
+      "vendorId": "c6497906-5640-4987-ae35-e0a7130e3ebd"
+    }
+  ],
+  "grn": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "1535f5f2-c946-427f-a611-db2f065ac8bb",
+      "number": "GRN-26-0061",
+      "status": "posted",
+      "date": "2026-10-16",
+      "requiredOn": "2026-10-19",
+      "priority": "normal",
+      "requestedBy": "7626d28b-710e-4f9e-a8d9-dfbe9bf0d123",
+      "purpose": "Podium slab · Grid A–D",
+      "lines": [
+        {
+          "id": "5995d269-d27e-4cd0-ac8d-00aee92aefb8",
+          "itemId": "c6d3456c-5209-42cd-a69f-a1f1415b6ee5",
+          "qtyRequested": {
+            "value": 840,
+            "uom": "BAG"
+          },
+          "qtyApproved": null,
+          "qtyIssued": null,
+          "qty": 840,
+          "rate": 390
+        }
+      ],
+      "evidenceIds": [],
+      "vendorId": "c6497906-5640-4987-ae35-e0a7130e3ebd",
+      "storeId": "8cd892b7-b97e-4948-aae4-479d3f4ef0fc"
+    }
+  ],
+  "material-issues": [],
+  "stock-transfers": [],
+  "purchase-bills": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "73762d51-1dd6-4a9a-aa34-d2e84acc4087",
+      "number": "PB-26-0034",
+      "status": "submitted",
+      "date": "2026-10-15",
+      "requiredOn": "2026-11-14",
+      "priority": "normal",
+      "requestedBy": "7626d28b-710e-4f9e-a8d9-dfbe9bf0d123",
+      "purpose": "Ultratech 53-Grade OPC Cement delivery against PO-26-0045",
+      "lines": [
+        {
+          "id": "467eed49-b87a-4ffb-a009-c55de50b3482",
+          "itemId": "c6d3456c-5209-42cd-a69f-a1f1415b6ee5",
+          "qtyRequested": {
+            "value": 120,
+            "uom": "BAG"
+          },
+          "qtyApproved": null,
+          "qtyIssued": null,
+          "qty": 120,
+          "rate": 390
+        }
+      ],
+      "evidenceIds": [],
+      "vendorId": "c6497906-5640-4987-ae35-e0a7130e3ebd",
+      "grnId": "1535f5f2-c946-427f-a611-db2f065ac8bb",
+      "billNumber": "INV-ULT-9021",
+      "amount": 327600,
+      "taxAmount": 58968,
+      "tdsDeducted": 328
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "f11c1434-8704-480d-a842-da24290955ce",
+      "number": "PB-26-0035",
+      "status": "paid",
+      "date": "2026-10-10",
+      "requiredOn": "2026-10-25",
+      "priority": "normal",
+      "requestedBy": "7626d28b-710e-4f9e-a8d9-dfbe9bf0d123",
+      "purpose": "Fe 550D TMT Reinforcement Steel bars for podium columns",
+      "lines": [
+        {
+          "id": "467eed49-b87a-4ffb-a009-c55de50b3482",
+          "itemId": "c6d3456c-5209-42cd-a69f-a1f1415b6ee5",
+          "qtyRequested": {
+            "value": 120,
+            "uom": "BAG"
+          },
+          "qtyApproved": null,
+          "qtyIssued": null,
+          "qty": 120,
+          "rate": 390
+        }
+      ],
+      "evidenceIds": [],
+      "vendorId": "17aacd28-f781-48e7-a8f8-a2b7296d8b9f",
+      "billNumber": "INV-TATA-4412",
+      "amount": 540000,
+      "taxAmount": 97200,
+      "tdsDeducted": 540
+    }
+  ],
+  "contractors": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "0729253e-0dae-4402-ad50-4c0aa7773124",
+      "name": "Reddy Civil Works",
+      "code": "CONTRACTOR-A",
+      "status": "active",
+      "contact": "Suresh Reddy",
+      "phone": "9845098765",
+      "email": "suresh@reddycivil.example"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "a9293ab6-a86a-404e-ae4c-7f43f2bffb0f",
+      "name": "Precision Formwork",
+      "code": "CONTRACTOR-B",
+      "status": "active",
+      "contact": "Vijay Desai"
+    }
+  ],
+  "work-orders": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "c0d129fa-05cb-418b-a738-3c8696bb6153",
+      "number": "WO-26-0012",
+      "status": "approved",
+      "date": "2026-10-16",
+      "requiredOn": "2026-10-19",
+      "priority": "normal",
+      "requestedBy": "7626d28b-710e-4f9e-a8d9-dfbe9bf0d123",
+      "purpose": "RCC works · Tower A superstructure",
+      "lines": [
+        {
+          "id": "c4d9cfe9-d15e-4bce-af24-fcabe2f732bd",
+          "description": "RCC concrete placement",
+          "uom": "CUM",
+          "qty": 600,
+          "previous": 0,
+          "rate": 1800
+        }
+      ],
+      "evidenceIds": [],
+      "contractorId": "0729253e-0dae-4402-ad50-4c0aa7773124"
+    }
+  ],
+  "contractor-bills": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "584ae3a5-3728-4d2c-a2aa-a88232f44d07",
+      "number": "RA-26-0028",
+      "status": "submitted",
+      "date": "2026-10-16",
+      "requiredOn": "2026-10-19",
+      "priority": "normal",
+      "requestedBy": "7626d28b-710e-4f9e-a8d9-dfbe9bf0d123",
+      "purpose": "Running bill · October, first fortnight",
+      "lines": [
+        {
+          "id": "97222e7c-6b5e-4a73-a104-b2e02671ae30",
+          "description": "RCC concrete placement",
+          "uom": "CUM",
+          "qty": 180,
+          "previous": 120,
+          "rate": 1800
+        }
+      ],
+      "evidenceIds": [],
+      "contractorId": "0729253e-0dae-4402-ad50-4c0aa7773124",
+      "workOrderId": "c0d129fa-05cb-418b-a738-3c8696bb6153",
+      "advance": 20000,
+      "retention": 16200,
+      "tds": 3240,
+      "materialRecovery": 0,
+      "penalty": 0
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "0c2292e8-7a9e-4c7b-a828-d95248edf6c2",
+      "number": "RA-26-0024",
+      "status": "paid",
+      "date": "2026-10-16",
+      "requiredOn": "2026-10-19",
+      "priority": "normal",
+      "requestedBy": "7626d28b-710e-4f9e-a8d9-dfbe9bf0d123",
+      "purpose": "September formwork",
+      "lines": [
+        {
+          "id": "428e8d51-2e1b-472b-a39a-e140c5b8412a",
+          "description": "Slab formwork",
+          "uom": "SQM",
+          "qty": 900,
+          "previous": 0,
+          "rate": 340
+        }
+      ],
+      "evidenceIds": [],
+      "contractorId": "a9293ab6-a86a-404e-ae4c-7f43f2bffb0f",
+      "retention": 15300,
+      "tds": 6120,
+      "advance": 0,
+      "materialRecovery": 0,
+      "penalty": 0
+    }
+  ],
+  "ledgers": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "93585797-569d-408d-a140-78d513c8c55a",
+      "name": "Cash in hand",
+      "code": "CASH-001",
+      "status": "active",
+      "group": "Asset"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "bd5af1f6-10a1-4434-a912-8e4a399cef8a",
+      "name": "HDFC current account",
+      "code": "BANK-HDFC",
+      "status": "active",
+      "group": "Asset"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "314f9c01-d4ba-4d9a-ae29-3f7a09b64060",
+      "name": "SBI Escrow Account (RERA)",
+      "code": "BANK-SBI-ESC",
+      "status": "active",
+      "group": "Asset"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "0fb95809-4975-4038-a358-67f9c80e3c15",
+      "name": "Trade Debtors / Client Receivables",
+      "code": "REC-DEBTORS",
+      "status": "active",
+      "group": "Asset"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "90888020-9a64-4a53-aae8-dc5fdb7e0a91",
+      "name": "Construction Material Inventory",
+      "code": "STK-INV",
+      "status": "active",
+      "group": "Asset"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "cc68ce7f-5eb2-4a8b-a00b-185a9a451807",
+      "name": "Plant & Machinery Fleet",
+      "code": "AST-PLANT",
+      "status": "active",
+      "group": "Asset"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "27f08504-c8e2-4c89-a83a-a5ad890892e9",
+      "name": "Capital account",
+      "code": "EQUITY-CAP",
+      "status": "active",
+      "group": "Equity"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "8992ed90-31aa-4841-ac40-154b4611542e",
+      "name": "Retained Earnings & Reserves",
+      "code": "EQUITY-RES",
+      "status": "active",
+      "group": "Equity"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "1279c1b1-d6ed-434f-a527-40c360d78274",
+      "name": "Contractor payable",
+      "code": "LIAB-CON",
+      "status": "active",
+      "group": "Liability"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "ed70bd12-d67b-4dc8-a5eb-91921ed5408d",
+      "name": "Vendor / Supplier Payable",
+      "code": "LIAB-VEN",
+      "status": "active",
+      "group": "Liability"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "8a3de89a-89d9-4b9d-ae2e-09c319101f9c",
+      "name": "Statutory Dues - TDS Payable",
+      "code": "TAX-TDS",
+      "status": "active",
+      "group": "Liability"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "59800e3c-6684-492d-a250-0d494e22befa",
+      "name": "Statutory Dues - GST Payable",
+      "code": "TAX-GST",
+      "status": "active",
+      "group": "Liability"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "b065c1df-8edf-419d-a8a8-bd56f894137f",
+      "name": "Client Retention Withheld",
+      "code": "LIAB-RET",
+      "status": "active",
+      "group": "Liability"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "67362dfb-d0df-49f7-aa23-2b5460a99a7d",
+      "name": "Project Contract Revenue (RA Bills)",
+      "code": "REV-PROJECT",
+      "status": "active",
+      "group": "Income"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "7177d4f6-9b83-4525-aa9d-69511009b9d6",
+      "name": "Construction materials consumed",
+      "code": "EXP-MAT",
+      "status": "active",
+      "group": "Expense"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "490596f4-56cd-4c26-a481-54afa79dece5",
+      "name": "Subcontractor RCC & Civil Charges",
+      "code": "EXP-SUBCON",
+      "status": "active",
+      "group": "Expense"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "652af631-0c89-4510-ac43-269fb6ed6553",
+      "name": "Plant & Machinery Rental & Fuel",
+      "code": "EXP-HIRE",
+      "status": "active",
+      "group": "Expense"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "3284e413-8e09-47e3-aa05-9b1a4308ef98",
+      "name": "Site Direct Labor & Supervisory Wages",
+      "code": "EXP-LABOR",
+      "status": "active",
+      "group": "Expense"
+    }
+  ],
+  "vouchers": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "1ba7d469-8fc2-482e-a74b-35775110d873",
+      "number": "VCH-26-0142",
+      "status": "posted",
+      "date": "2026-10-16",
+      "requiredOn": "2026-10-19",
+      "priority": "normal",
+      "requestedBy": "7626d28b-710e-4f9e-a8d9-dfbe9bf0d123",
+      "purpose": "Capital introduced for site operations",
+      "lines": [
+        {
+          "id": "853e9231-d9ad-4dec-a2b7-872cf3740c6b",
+          "accountId": "bd5af1f6-10a1-4434-a912-8e4a399cef8a",
+          "debit": 2500000,
+          "credit": 0
+        },
+        {
+          "id": "9062584b-21d8-4e40-a02d-2417ad0e9cf2",
+          "accountId": "27f08504-c8e2-4c89-a83a-a5ad890892e9",
+          "debit": 0,
+          "credit": 2500000
+        }
+      ],
+      "evidenceIds": [],
+      "type": "receipt"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "ef6a5f1b-7370-4aac-a3ba-885bbf2f9bd5",
+      "number": "VCH-26-0143",
+      "status": "posted",
+      "date": "2026-10-16",
+      "requiredOn": "2026-10-19",
+      "priority": "normal",
+      "requestedBy": "7626d28b-710e-4f9e-a8d9-dfbe9bf0d123",
+      "purpose": "Site petty cash funding",
+      "lines": [
+        {
+          "id": "5849d929-08ec-459d-ab39-cde1783a5368",
+          "accountId": "93585797-569d-408d-a140-78d513c8c55a",
+          "debit": 150000,
+          "credit": 0
+        },
+        {
+          "id": "13c7a902-afa6-40d3-ae32-a8f990aa9e62",
+          "accountId": "bd5af1f6-10a1-4434-a912-8e4a399cef8a",
+          "debit": 0,
+          "credit": 150000
+        }
+      ],
+      "evidenceIds": [],
+      "type": "contra"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "0fb3f84e-5cd5-40f4-a421-596f928f1d49",
+      "number": "VCH-26-0144",
+      "status": "posted",
+      "date": "2026-10-16",
+      "requiredOn": "2026-10-19",
+      "priority": "normal",
+      "requestedBy": "7626d28b-710e-4f9e-a8d9-dfbe9bf0d123",
+      "purpose": "Client progressive RA bill collection from Apex Urban",
+      "lines": [
+        {
+          "id": "6beac7d7-dc00-4303-a16e-763bebd347fd",
+          "accountId": "bd5af1f6-10a1-4434-a912-8e4a399cef8a",
+          "debit": 1450000,
+          "credit": 0
+        },
+        {
+          "id": "be441024-c13e-418c-a328-3ba5ec2d842c",
+          "accountId": "67362dfb-d0df-49f7-aa23-2b5460a99a7d",
+          "debit": 0,
+          "credit": 1450000
+        }
+      ],
+      "evidenceIds": [],
+      "type": "receipt"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "ecd2108f-21f8-4c9f-a121-b42458571eda",
+      "number": "VCH-26-0145",
+      "status": "posted",
+      "date": "2026-10-16",
+      "requiredOn": "2026-10-19",
+      "priority": "normal",
+      "requestedBy": "7626d28b-710e-4f9e-a8d9-dfbe9bf0d123",
+      "purpose": "Ultratech Cement invoice payment against PB-26-0034",
+      "lines": [
+        {
+          "id": "0282c805-f9a3-4f94-a65c-52bc73036fee",
+          "accountId": "7177d4f6-9b83-4525-aa9d-69511009b9d6",
+          "debit": 327600,
+          "credit": 0
+        },
+        {
+          "id": "6258fdc6-f849-459f-a56a-26289380b882",
+          "accountId": "bd5af1f6-10a1-4434-a912-8e4a399cef8a",
+          "debit": 0,
+          "credit": 327600
+        }
+      ],
+      "evidenceIds": [],
+      "type": "payment"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "b7313733-656d-4f04-a5bc-79762db61bc7",
+      "number": "VCH-26-0146",
+      "status": "posted",
+      "date": "2026-10-16",
+      "requiredOn": "2026-10-19",
+      "priority": "normal",
+      "requestedBy": "7626d28b-710e-4f9e-a8d9-dfbe9bf0d123",
+      "purpose": "Precision Formwork RA bill settlement with TDS deduction",
+      "lines": [
+        {
+          "id": "bfbedb5d-6f51-440d-ad39-849facd24e8c",
+          "accountId": "490596f4-56cd-4c26-a481-54afa79dece5",
+          "debit": 180000,
+          "credit": 0
+        },
+        {
+          "id": "88d390aa-8936-41d9-a39a-1ff928c8f95c",
+          "accountId": "8a3de89a-89d9-4b9d-ae2e-09c319101f9c",
+          "debit": 0,
+          "credit": 3600
+        },
+        {
+          "id": "897741bf-0541-4945-a89c-c37739371fd8",
+          "accountId": "bd5af1f6-10a1-4434-a912-8e4a399cef8a",
+          "debit": 0,
+          "credit": 176400
+        }
+      ],
+      "evidenceIds": [],
+      "type": "payment"
+    }
+  ],
+  "bank-accounts": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "670bd317-0a82-4a3e-a225-29ebc866afd9",
+      "name": "Vardhan Infra - Current Operating",
+      "code": "BA-1",
+      "status": "active",
+      "bankName": "HDFC Bank",
+      "accountNumber": "•••• •••• 9012",
+      "accountType": "current",
+      "ifsc": "HDFC0001824",
+      "branch": "Richmond Road, Bengaluru",
+      "balance": 4620000
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "ef1e40ed-9bf2-4fcd-a8a8-f5d0857ba34b",
+      "name": "Vardhan Infra - Project Escrow (RERA)",
+      "code": "BA-2",
+      "status": "active",
+      "bankName": "State Bank of India",
+      "accountNumber": "•••• •••• 4421",
+      "accountType": "escrow",
+      "ifsc": "SBIN0004521",
+      "branch": "Whitefield Main, Bengaluru",
+      "balance": 3810000
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "78cdf669-dd51-4f5a-ab87-5bf208b808ee",
+      "name": "Vardhan Infra - Equipment Working Capital CC",
+      "code": "BA-3",
+      "status": "active",
+      "bankName": "ICICI Bank",
+      "accountNumber": "•••• •••• 7734",
+      "accountType": "overdraft",
+      "ifsc": "ICIC0000892",
+      "branch": "MG Road, Bengaluru",
+      "balance": 1540000
+    }
+  ],
+  "clients": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "8a7bc398-137e-45c0-a6ab-bd8dc7238f55",
+      "name": "Apex Urban Developers Ltd",
+      "code": "CLI-001",
+      "status": "active",
+      "contact": "Vikram Mehra",
+      "email": "vikram@apexurban.example",
+      "phone": "+91 98201 44552",
+      "gstin": "09AAACA1234A1Z5",
+      "address": "MG Road, Bengaluru",
+      "contractValueInr": 186500000,
+      "activeSites": "Whitefield · Tower A"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "5c83e845-5cc9-4656-a9ba-32dee18b73bf",
+      "name": "Skyline Commercial Properties",
+      "code": "CLI-002",
+      "status": "active",
+      "contact": "Sunil Narang",
+      "email": "sunil@skylinerealty.example",
+      "phone": "+91 99100 88219",
+      "gstin": "07BBBCB5678B1Z2",
+      "address": "Indiranagar, Bengaluru",
+      "contractValueInr": 94000000,
+      "activeSites": "Electronic City · Block B"
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "38240093-7bd2-47dd-a590-e4a1cf06f302",
+      "name": "IndoLogistics Parks Corp",
+      "code": "CLI-003",
+      "status": "active",
+      "contact": "Ananya Sen",
+      "email": "ananya@indologistics.example",
+      "phone": "+91 98450 11234",
+      "gstin": "09CCCC1234C1Z9",
+      "address": "Electronic City Phase II, Bengaluru",
+      "contractValueInr": 125000000,
+      "activeSites": "Electronic City · Block B"
+    }
+  ],
+  "equipment": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "a104e4a9-bbcd-4ee9-aa23-9ada01dad965",
+      "name": "JCB 3DX Super Backhoe Loader",
+      "code": "EQP-EXC-01",
+      "status": "operational",
+      "category": "Heavy Earthmoving",
+      "makeModel": "JCB 3DX Super (2024)",
+      "regNumber": "KA-04-ME-4412",
+      "serialNumber": "JCB3DX2024-99812",
+      "operator": "Ramesh Yadav",
+      "operatorPhone": "+91 98451 22331",
+      "meterReading": 1420,
+      "meterUnit": "Hours",
+      "dailyRate": 14000,
+      "nextService": "2026-11-15",
+      "notes": "Active on basement excavation and foundation backfilling."
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "c927d0b6-b9d8-41d4-a015-b1a68413e13e",
+      "name": "Tower Crane TC-5013 (5 Ton)",
+      "code": "EQP-CRN-02",
+      "status": "operational",
+      "category": "Lifting & Cranes",
+      "makeModel": "Potain MCi 85 A",
+      "regNumber": "KA-01-TC-8821",
+      "serialNumber": "POT-85A-2022",
+      "operator": "Someshwar Rao",
+      "operatorPhone": "+91 98452 44556",
+      "meterReading": 3180,
+      "meterUnit": "Hours",
+      "dailyRate": 25000,
+      "nextService": "2026-11-01",
+      "notes": "Podium & superstructure material handling."
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "1d71c62d-8459-403a-a365-f4ca8d5238f1",
+      "name": "Schwing Stetter Transit Mixer 6 CUM",
+      "code": "EQP-CON-03",
+      "status": "maintenance",
+      "category": "Concreting",
+      "makeModel": "AM 6 FHC Ashok Leyland 2820",
+      "regNumber": "KA-51-TR-9043",
+      "serialNumber": "AL-TM6-2023",
+      "operator": "Devendra Kumar",
+      "operatorPhone": "+91 98453 66778",
+      "meterReading": 8940,
+      "meterUnit": "KM",
+      "dailyRate": 18000,
+      "nextService": "2026-10-22",
+      "notes": "Hydraulic pump seal replacement scheduled."
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "9495a89f-2579-45fc-adcc-4ae33f316293",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "3bd1871e-e889-4c48-ae0c-9a831cb9db6d",
+      "name": "Kirloskar 125 kVA Silent DG Set",
+      "code": "EQP-PWR-04",
+      "status": "operational",
+      "category": "Power & Generation",
+      "makeModel": "Kirloskar Green KG125WS",
+      "regNumber": "GEN-BLR-04",
+      "serialNumber": "KG125-2023-88",
+      "operator": "Mahesh Gowda",
+      "operatorPhone": "+91 98454 88990",
+      "meterReading": 2150,
+      "meterUnit": "Hours",
+      "dailyRate": 7500,
+      "nextService": "2026-12-05",
+      "notes": "Primary backup power for batching plant and tower hoist."
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "e6555a4c-aefa-4a12-ac99-ff661b447696",
+      "name": "Concrete Batching Plant CP30",
+      "code": "EQP-CON-05",
+      "status": "operational",
+      "category": "Concreting",
+      "makeModel": "Schwing Stetter CP 30 Compact",
+      "regNumber": "BP-WHT-01",
+      "serialNumber": "SS-CP30-2021",
+      "operator": "Gopal Verma",
+      "operatorPhone": "+91 98455 11223",
+      "meterReading": 4520,
+      "meterUnit": "Hours",
+      "dailyRate": 35000,
+      "nextService": "2026-11-20",
+      "notes": "Automated 30 m3/hr design mix output."
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "9495a89f-2579-45fc-adcc-4ae33f316293",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "645ef245-190e-44bd-a925-97a69883b691",
+      "name": "Soil Compactor 11 Ton",
+      "code": "EQP-CMP-06",
+      "status": "standby",
+      "category": "Compaction & Paving",
+      "makeModel": "Hamm 311 Compactor",
+      "regNumber": "KA-03-HM-1122",
+      "serialNumber": "HAMM-311-2024",
+      "operator": "Balram Singh",
+      "operatorPhone": "+91 98456 33445",
+      "meterReading": 1100,
+      "meterUnit": "Hours",
+      "dailyRate": 12000,
+      "nextService": "2026-12-01",
+      "notes": "Ready for subgrade rolling on peripheral roads."
+    }
+  ],
+  "permissions": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "4a4b5ce5-45cd-4394-a725-40424a6bc58b",
+      "name": "Administrator Permissions",
+      "code": "PERM-ROLE-ADMIN",
+      "status": "active",
+      "roleId": "e1765d0a-e4f1-4f94-af3c-d757a576d60e",
+      "roleCode": "ROLE-MGMT-ADM",
+      "roleName": "System Administrator",
+      "isPreset": true,
+      "permissions": {
+        "all": true
+      }
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "0e19f322-6c3e-4a8b-a125-6f46ea34483a",
+      "name": "Owner Permissions",
+      "code": "PERM-ROLE-OWNER",
+      "status": "active",
+      "roleId": "4d040d0a-478a-4d95-a042-4c0c826e5623",
+      "roleCode": "ROLE-MGMT-OWN",
+      "roleName": "Managing Director / Owner",
+      "isPreset": true,
+      "permissions": {
+        "all": true
+      }
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "7e4b5568-f117-422d-a78c-7af12df624a1",
+      "name": "Project Manager Permissions",
+      "code": "PERM-ROLE-PROJ-MGR",
+      "status": "active",
+      "roleId": "b5b20db2-ccb5-479b-a555-d30cbbba688d",
+      "roleCode": "ROLE-ENG-MGR",
+      "roleName": "Project Manager",
+      "permissions": {
+        "projects": {
+          "view": true,
+          "create": true,
+          "edit": true,
+          "delete": false,
+          "approve": true,
+          "export": true
+        },
+        "tasks": {
+          "view": true,
+          "create": true,
+          "edit": true,
+          "delete": true,
+          "approve": true,
+          "export": true
+        },
+        "site-diary": {
+          "view": true,
+          "create": true,
+          "edit": true,
+          "delete": false,
+          "approve": true,
+          "export": true
+        },
+        "budget": {
+          "view": true,
+          "create": true,
+          "edit": true,
+          "delete": false,
+          "approve": true,
+          "export": true
+        },
+        "material-requests": {
+          "view": true,
+          "create": true,
+          "edit": true,
+          "delete": false,
+          "approve": true,
+          "export": true
+        },
+        "purchase-requisitions": {
+          "view": true,
+          "create": true,
+          "edit": true,
+          "delete": false,
+          "approve": true,
+          "export": true
+        },
+        "work-orders": {
+          "view": true,
+          "create": true,
+          "edit": true,
+          "delete": false,
+          "approve": true,
+          "export": true
+        },
+        "contractor-bills": {
+          "view": true,
+          "create": false,
+          "edit": false,
+          "delete": false,
+          "approve": true,
+          "export": true
+        },
+        "equipment": {
+          "view": true,
+          "create": true,
+          "edit": true,
+          "delete": false,
+          "approve": true,
+          "export": true
+        }
+      }
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "60787607-9515-4ecf-a26f-4de9593b0893",
+      "name": "Site Supervisor Permissions",
+      "code": "PERM-ROLE-SITE-SUP",
+      "status": "active",
+      "roleId": "d6e82874-d417-432a-a769-6f662d469de5",
+      "roleCode": "ROLE-ENG-SUP",
+      "roleName": "Site Supervisor",
+      "permissions": {
+        "tasks": {
+          "view": true,
+          "create": true,
+          "edit": true,
+          "delete": false,
+          "approve": false,
+          "export": true
+        },
+        "site-diary": {
+          "view": true,
+          "create": true,
+          "edit": true,
+          "delete": false,
+          "approve": false,
+          "export": true
+        },
+        "material-requests": {
+          "view": true,
+          "create": true,
+          "edit": true,
+          "delete": false,
+          "approve": false,
+          "export": true
+        },
+        "stock-balances": {
+          "view": true,
+          "create": false,
+          "edit": false,
+          "delete": false,
+          "approve": false,
+          "export": true
+        },
+        "equipment": {
+          "view": true,
+          "create": false,
+          "edit": true,
+          "delete": false,
+          "approve": false,
+          "export": true
+        }
+      }
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "b06b7799-d9cf-48c2-ad3a-e2fb95b95a2e",
+      "name": "Store Keeper Permissions",
+      "code": "PERM-ROLE-STORE-KP",
+      "status": "active",
+      "roleId": "8e6e3443-286b-41ae-a909-ab5943b710b1",
+      "roleCode": "ROLE-WHS-SK",
+      "roleName": "Store Keeper",
+      "permissions": {
+        "grn": {
+          "view": true,
+          "create": true,
+          "edit": true,
+          "delete": false,
+          "approve": false,
+          "export": true
+        },
+        "material-issues": {
+          "view": true,
+          "create": true,
+          "edit": true,
+          "delete": false,
+          "approve": false,
+          "export": true
+        },
+        "stock-transfers": {
+          "view": true,
+          "create": true,
+          "edit": true,
+          "delete": false,
+          "approve": false,
+          "export": true
+        },
+        "stock-balances": {
+          "view": true,
+          "create": true,
+          "edit": true,
+          "delete": false,
+          "approve": false,
+          "export": true
+        },
+        "items": {
+          "view": true,
+          "create": true,
+          "edit": true,
+          "delete": false,
+          "approve": false,
+          "export": true
+        },
+        "equipment": {
+          "view": true,
+          "create": false,
+          "edit": true,
+          "delete": false,
+          "approve": false,
+          "export": true
+        }
+      }
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "a99096ea-be8f-415d-a39e-48bdf319dfda",
+      "name": "Chief Accountant Permissions",
+      "code": "PERM-ROLE-CHIEF-ACC",
+      "status": "active",
+      "roleId": "a7da97e4-319a-4da5-a252-af6ba944e641",
+      "roleCode": "ROLE-FIN-CA",
+      "roleName": "Chief Accountant",
+      "permissions": {
+        "vouchers": {
+          "view": true,
+          "create": true,
+          "edit": true,
+          "delete": true,
+          "approve": true,
+          "export": true
+        },
+        "ledgers": {
+          "view": true,
+          "create": true,
+          "edit": true,
+          "delete": false,
+          "approve": true,
+          "export": true
+        },
+        "cash-bank": {
+          "view": true,
+          "create": true,
+          "edit": true,
+          "delete": false,
+          "approve": true,
+          "export": true
+        },
+        "contractor-bills": {
+          "view": true,
+          "create": true,
+          "edit": true,
+          "delete": false,
+          "approve": true,
+          "export": true
+        },
+        "tds-gst": {
+          "view": true,
+          "create": true,
+          "edit": true,
+          "delete": false,
+          "approve": true,
+          "export": true
+        },
+        "statements": {
+          "view": true,
+          "create": true,
+          "edit": true,
+          "delete": false,
+          "approve": true,
+          "export": true
+        }
+      }
+    }
+  ],
+  "evidence": [],
+  "notifications": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "3279b892-0d20-40fd-aaec-d006bec13d56",
+      "name": "Material request needs your approval",
+      "code": "NOTICE-1",
+      "status": "active",
+      "message": "MR-26-0118 · Podium slab pour",
+      "href": "/requests/d22ff9b9-413e-4aae-a9d5-7913578d99a0",
+      "read": false
+    },
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "bb862e5a-007f-4870-a3d1-1da30016e7eb",
+      "name": "Steel stock is below reorder level",
+      "code": "NOTICE-2",
+      "status": "active",
+      "message": "5.400 MT available · Main site store",
+      "href": "/inventory/stock",
+      "read": false
+    }
+  ],
+  "audit": [
+    {
+      "firmId": "748369c9-31c8-46a2-aedd-c032d3ff3d0c",
+      "projectId": "46f86faa-6bbf-4ac9-aa7e-459509a20ed0",
+      "siteId": "98defd6e-e70d-4b1d-aa41-6cecdf391f58",
+      "createdAt": "2026-10-16T06:30:00.000Z",
+      "updatedAt": "2026-10-16T06:30:00.000Z",
+      "id": "43990725-d536-4f53-afbf-127830d9f54e",
+      "name": "Request submitted",
+      "code": "AUDIT-1",
+      "status": "active",
+      "actor": "Arjun Mehta",
+      "action": "submitted",
+      "resource": "material-requests",
+      "recordId": "d22ff9b9-413e-4aae-a9d5-7913578d99a0",
+      "message": "Requested materials for the podium slab pour"
+    }
+  ],
+  "reset-requests": [],
+  "operations": []
+}
