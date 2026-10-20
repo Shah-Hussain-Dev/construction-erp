@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently -k -n data,web \"pnpm dev:data\" \"pnpm dev:web\"",
+    "dev": "next dev --hostname 0.0.0.0",
     "dev:web": "next dev --hostname 0.0.0.0",
     "dev:data": "node --watch mocks/server.cjs",
     "build": "next build --webpack",
-    "start": "concurrently -k \"pnpm dev:data\" \"next start --hostname 0.0.0.0\"",
+    "start": "next start --hostname 0.0.0.0",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",

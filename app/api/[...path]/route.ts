@@ -2,14 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createHmac, timingSafeEqual } from 'node:crypto';
 import { can, visible } from '@/lib/domain.cjs';
 import { loginSchema, type RecordData, type User } from '@/schemas';
-const base = process.env.JSON_SERVER_URL || 'http://127.0.0.1:3001';
+import { getUsers, getResource, executeCommand } from '@/lib/db';
+
 const secret = process.env.SESSION_SECRET || 'local-civil-erp-development-only';
 const sign = (v: string) => createHmac('sha256', secret).update(v).digest('hex');
-async function get(resource: string) {
-  const res = await fetch(`${base}/${resource}`, { cache: 'no-store' });
-  if (!res.ok) throw Error('The local data server is unavailable. Run pnpm dev.');
-  return res.json();
-}
+
 async function handler(req: NextRequest, context: { params: Promise<{ path: string[] }> }) {
   const { path } = await context.params;
   try {
@@ -38,7 +35,7 @@ async function handler(req: NextRequest, context: { params: Promise<{ path: stri
       for (const cookie of upstream.headers.getSetCookie()) headers.append('Set-Cookie', cookie);
       return new NextResponse(await upstream.text(), { status: upstream.status, headers });
     }
-    const users: User[] = await get('users');
+    const users: User[] = getUsers();
     if (path.join('/') === 'auth/login' && req.method === 'POST') {
       const input = loginSchema.parse(await req.json());
       const user = users.find((u) => u.email.toLowerCase() === input.email.toLowerCase());
@@ -84,12 +81,9 @@ async function handler(req: NextRequest, context: { params: Promise<{ path: stri
       );
     if (path.join('/') === 'auth/me') return NextResponse.json(user);
     if (path[0] === 'command' && req.method === 'POST') {
-      const response = await fetch(`${base}/command`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-demo-user': user.id },
-        body: await req.text(),
-      });
-      return NextResponse.json(await response.json(), { status: response.status });
+      const body = await req.json();
+      const result = executeCommand(user, body);
+      return NextResponse.json(result.data, { status: result.status });
     }
     const resource = path[0];
     if (
@@ -101,7 +95,7 @@ async function handler(req: NextRequest, context: { params: Promise<{ path: stri
         { message: 'You do not have access to this resource.' },
         { status: 403 },
       );
-    let rows: RecordData[] = await get(resource);
+    let rows: RecordData[] | undefined = getResource(resource);
     if (!Array.isArray(rows)) return NextResponse.json({ message: 'Not found.' }, { status: 404 });
     rows = rows.filter((row) => visible(user, row));
     if (user.role === 'contractor' && resource === 'contractors')
@@ -117,9 +111,7 @@ async function handler(req: NextRequest, context: { params: Promise<{ path: stri
         can(user, String(row.resource || row.recordType), 'view'),
       );
       const resources = [...new Set(allowed.map((row) => String(row.resource || row.recordType)))];
-      const lookup = Object.fromEntries(
-        await Promise.all(resources.map(async (r) => [r, await get(r)])),
-      );
+      const lookup = Object.fromEntries(resources.map((r) => [r, getResource(r) || []]));
       rows = allowed.filter((row) =>
         lookup[String(row.resource || row.recordType)]?.some(
           (r: RecordData) => r.id === row.recordId && visible(user, r),

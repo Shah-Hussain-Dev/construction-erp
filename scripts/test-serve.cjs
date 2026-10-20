@@ -23,7 +23,7 @@ const web = spawn(
     stdio: 'inherit',
     env: {
       ...process.env,
-      JSON_SERVER_URL: 'http://127.0.0.1:3101',
+      MOCK_DB_FILE: file,
       NEXT_DIST_DIR: process.env.E2E_PRODUCTION ? '.next' : '.next-e2e',
     },
   },

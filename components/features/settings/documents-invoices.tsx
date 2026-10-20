@@ -170,6 +170,14 @@ export function DocumentsInvoicesSection({
                 <h3 className="settings-card-title">Layout & Header Display</h3>
                 <p className="settings-card-desc">Visual structure and dynamic sections</p>
               </div>
+              <button
+                type="button"
+                className="btn btn-outline btn-sm no-print ml-auto"
+                onClick={() => setPreviewModalOpen(true)}
+              >
+                <Eye size={14} />
+                <span>Preview PDF</span>
+              </button>
             </div>
 
             <div className="settings-form-body">
@@ -295,6 +303,14 @@ export function DocumentsInvoicesSection({
                 <Plus size={14} weight="bold" />
                 <span>Add Bank</span>
               </Button>
+              <button
+                type="button"
+                className="btn btn-outline btn-sm no-print ml-auto"
+                onClick={() => setPreviewModalOpen(true)}
+              >
+                <Eye size={14} />
+                <span>Preview PDF</span>
+              </button>
             </div>
 
             <div className="settings-form-body">
@@ -369,6 +385,14 @@ export function DocumentsInvoicesSection({
                 <h3 className="settings-card-title">Terms & Conditions Presets</h3>
                 <p className="settings-card-desc">Contractual clauses printed on document footer</p>
               </div>
+              <button
+                type="button"
+                className="btn btn-outline btn-sm no-print ml-auto"
+                onClick={() => setPreviewModalOpen(true)}
+              >
+                <Eye size={14} />
+                <span>Preview PDF</span>
+              </button>
             </div>
 
             <div className="settings-form-body">
@@ -513,18 +537,18 @@ function SalesInvoiceSheet({
             className="invoice-brand-logo"
           />
           <div>
-            <h1 className="company-big-title">{siteConfig.companyName || 'PRINCE CONSTRUCTIONS'}</h1>
+            <h1 className="company-big-title">{DUMMY_SITE.companyName}</h1>
             <p className="company-tagline">Building Dreams • Creating Spaces</p>
           </div>
         </div>
         <p className="company-sub-line">
-          Add- : {siteConfig.registeredAddress || 'SALLAHPUR, BHATANI, DEORIA'}
+          Add- : {DUMMY_SITE.address}
         </p>
         <p className="company-sub-line">
-          Email ID:- {siteConfig.email || 'princeconstructionmust@gmail.com'}
+          Email ID:- {DUMMY_SITE.email}
         </p>
         <p className="company-sub-line font-bold">
-          GSTIN No. {siteConfig.gstin || '09BKZPR3924E2ZH'}
+          GSTIN No. {DUMMY_SITE.gstin}
         </p>
       </div>
 
@@ -638,7 +662,7 @@ function SalesInvoiceSheet({
               <td className="bank-col-lbl">Branch :</td>
               <td className="bank-col-val">{bank.branch}</td>
               <td colSpan={2} className="text-right font-bold pr-4">
-                {siteConfig.companyName || 'PRINCE CONSTRUCTION'}
+                {DUMMY_SITE.companyName}
               </td>
             </tr>
             <tr>
@@ -664,7 +688,7 @@ function SalesInvoiceSheet({
           <div className="sign-box">
             <span className="sign-label">Authorised Signature</span>
             <div className="sign-line" />
-            <strong className="sign-comp">{siteConfig.companyName || 'PRINCE CONSTRUCTION'}</strong>
+            <strong className="sign-comp">{DUMMY_SITE.companyName}</strong>
           </div>
         </div>
       </div>
@@ -677,10 +701,8 @@ function SalesInvoiceSheet({
 // ----------------------------------------------------------------------
 function PurchaseInvoiceSheet({
   settings,
-  siteConfig,
 }: {
   settings: DocumentSettings;
-  siteConfig: SiteConfig;
 }) {
   return (
     <div className="invoice-sheet purchase-sheet-template print-sheet">
@@ -863,7 +885,7 @@ function PurchaseInvoiceSheet({
       <div className="purchase-footer-split">
         <div className="purchase-terms-col">
           <strong>Terms &amp; Conditions</strong>
-          <pre className="terms-pre-text">{settings.purchaseTerms}</pre>
+          <pre className="terms-pre-text">{DUMMY_PURCHASE_TERMS}</pre>
         </div>
         <div className="purchase-sign-col">
           <div className="verified-condition-box">
@@ -876,7 +898,7 @@ function PurchaseInvoiceSheet({
             <div className="digital-sign-stamp">
               <CheckCircle size={16} weight="fill" className="text-emerald-600" />
               <span>Digitally Signed by:</span>
-              <strong>{settings.signatoryName || 'SHYAM BEHARI MAHESHWARI'}</strong>
+              <strong>{DUMMY_SIGNATORY}</strong>
               <small>{new Date().toLocaleDateString('en-IN')} 04:01:35 IST</small>
             </div>
             <strong className="auth-lbl">(Authorised Signatory)</strong>
