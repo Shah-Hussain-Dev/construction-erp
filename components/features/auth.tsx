@@ -26,6 +26,7 @@ import { loginSchema } from '@/schemas';
 import { auth } from '@/lib/api';
 import { BRAND_CONFIG } from '@/lib/config';
 import { useSession } from '../providers';
+import { FullPageLoader } from '../ui/full-page-loader';
 
 interface DemoRole {
   role: string;
@@ -114,6 +115,7 @@ export function AuthScreen({ reset = false }: { reset?: boolean }) {
   const [error, setError] = useState('');
   const [pending, setPending] = useState(false);
   const [message, setMessage] = useState('');
+  const [showLoginSplash, setShowLoginSplash] = useState(false);
 
   // If already authenticated, redirect straight to the dashboard
   useEffect(() => {
@@ -153,8 +155,13 @@ export function AuthScreen({ reset = false }: { reset?: boolean }) {
         await query.cancelQueries();
         query.removeQueries({ predicate: (q) => q.queryKey[0] !== 'session' });
         query.setQueryData(['session'], user);
-        // Always redirect directly to the dashboard
-        router.push('/');
+        try {
+          sessionStorage.setItem('civil_just_logged_in', 'true');
+        } catch {}
+        setShowLoginSplash(true);
+        setTimeout(() => {
+          router.push('/');
+        }, 1200);
       }
     } catch (e) {
       setError((e as Error).message);
@@ -168,6 +175,17 @@ export function AuthScreen({ reset = false }: { reset?: boolean }) {
     setValue('email', r.email, { shouldValidate: true });
     setValue('password', 'demo', { shouldValidate: true });
   };
+
+  if (showLoginSplash) {
+    return (
+      <FullPageLoader
+        title={BRAND_CONFIG.title}
+        subtitle={BRAND_CONFIG.subtitle}
+        statusMessage={`Authenticating & initializing ${BRAND_CONFIG.name}...`}
+        timeoutSeconds={4}
+      />
+    );
+  }
 
   return (
     <main className="auth-layout">
@@ -204,7 +222,8 @@ export function AuthScreen({ reset = false }: { reset?: boolean }) {
           </h1>
 
           <p className="auth-subtext">
-            From daily site diaries and GPS photo tracking to contractor running bills and GST accounting—designed specifically for {BRAND_CONFIG.name} civil & engineering teams.
+            From daily site diaries and GPS photo tracking to contractor running bills and GST
+            accounting—designed specifically for {BRAND_CONFIG.name} civil & engineering teams.
           </p>
 
           {/* Interactive Live Site Telemetry Card */}
@@ -245,9 +264,10 @@ export function AuthScreen({ reset = false }: { reset?: boolean }) {
               <span>Offline Field Sync</span>
             </span>
             <span className="trust-sep">•</span>
-
           </div>
-          <small className="auth-copyright">{BRAND_CONFIG.legalName} • {BRAND_CONFIG.tagline}</small>
+          <small className="auth-copyright">
+            {BRAND_CONFIG.legalName} • {BRAND_CONFIG.tagline}
+          </small>
         </div>
       </section>
 
@@ -337,7 +357,9 @@ export function AuthScreen({ reset = false }: { reset?: boolean }) {
                     {showPassword ? <EyeSlash size={18} /> : <Eye size={18} />}
                   </button>
                 </div>
-                {errors.password && <span className="auth-error-msg">{errors.password.message}</span>}
+                {errors.password && (
+                  <span className="auth-error-msg">{errors.password.message}</span>
+                )}
               </div>
             )}
 
@@ -368,12 +390,10 @@ export function AuthScreen({ reset = false }: { reset?: boolean }) {
               </div>
             )}
 
-            <button
-              disabled={pending || !ready}
-              type="submit"
-              className="auth-primary-submit-btn"
-            >
-              <span>{pending ? 'Signing in…' : reset ? 'Send Reset Link' : 'Sign In to Workspace'}</span>
+            <button disabled={pending || !ready} type="submit" className="auth-primary-submit-btn">
+              <span>
+                {pending ? 'Signing in…' : reset ? 'Send Reset Link' : 'Sign In to Workspace'}
+              </span>
               <ArrowRight size={18} weight="bold" />
             </button>
           </form>
@@ -427,8 +447,10 @@ export function AuthScreen({ reset = false }: { reset?: boolean }) {
                 <div className="demo-role-active-info">
                   <span className="active-role-tag">Selected:</span>
                   <span className="active-role-desc">
-                    <span className="font-semibold">{DEMO_ROLES.find((r) => r.role === selectedRole)?.email}</span> —{' '}
-                    {DEMO_ROLES.find((r) => r.role === selectedRole)?.subtitle}
+                    <span className="font-semibold">
+                      {DEMO_ROLES.find((r) => r.role === selectedRole)?.email}
+                    </span>{' '}
+                    — {DEMO_ROLES.find((r) => r.role === selectedRole)?.subtitle}
                   </span>
                 </div>
               )}

@@ -30,7 +30,7 @@ describe('FullPageLoader and Skeleton UI UX enhancements', () => {
         statusMessage="Compiling BOQ Measurement Books..."
         showTips={false}
         showProgress={false}
-      />
+      />,
     );
     expect(html).toContain('Compiling BOQ Measurement Books...');
     expect(html).toContain('Highway Project Alpha');
@@ -50,5 +50,12 @@ describe('FullPageLoader and Skeleton UI UX enhancements', () => {
     expect(html).toContain('skeleton-page-header');
     expect(html).toContain('skeleton-page-metrics');
     expect(html).toContain('skeleton-page-table');
+  });
+
+  it('renders lightweight page skeleton in app/loading for route transitions', async () => {
+    const LoadingComponent = (await import('../app/loading')).default;
+    const html = renderToString(<LoadingComponent />);
+    expect(html).toContain('skeleton-page-layout');
+    expect(html).not.toContain('civil-full-page-loader');
   });
 });

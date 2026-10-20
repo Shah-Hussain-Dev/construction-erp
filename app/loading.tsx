@@ -1,12 +1,9 @@
-import { FullPageLoader } from '@/components/ui/full-page-loader';
-import { BRAND_CONFIG } from '@/lib/config';
+import { Skeleton } from '@/components/ui/primitives';
 
 export default function Loading() {
   return (
-    <FullPageLoader
-      title={BRAND_CONFIG.title}
-      subtitle={BRAND_CONFIG.subtitle}
-      statusMessage={`Loading ${BRAND_CONFIG.name}...`}
-    />
+    <div className="p-6 max-w-7xl mx-auto" aria-busy="true" aria-label="Loading page content">
+      <Skeleton variant="page" />
+    </div>
   );
 }

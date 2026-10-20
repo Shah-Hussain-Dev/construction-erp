@@ -97,7 +97,6 @@ export const initialsOf = (name?: string) =>
     .join('')
     .toUpperCase() || '?';
 
-
 const navSections: NavSection[] = [
   {
     id: 'organization',
@@ -256,10 +255,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
   };
 
   // Filter navigation sections based on authenticated user's role
-  const permittedSections = useMemo(
-    () => getPermittedNavSections(user, navSections),
-    [user]
-  );
+  const permittedSections = useMemo(() => getPermittedNavSections(user, navSections), [user]);
 
   const handleParentClick = (e: React.MouseEvent<HTMLButtonElement>, sectionId: string) => {
     if (sidebarCollapsed) {
@@ -322,9 +318,27 @@ export function Shell({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  // Mark the app as hydrated once the session has resolved at least once.
-  // The full-page loader only shows during this initial load — never again on
-  // subsequent page navigations within the session.
+  // Only show the full-page loader if the user has just logged in from the login screen.
+  // On all subsequent page navigations, reloads, or session restorations, we never show the full-page loader.
+  const [showFirstTimeLoader, setShowFirstTimeLoader] = useState(false);
+
+  useEffect(() => {
+    try {
+      const isFirstLogin = sessionStorage.getItem('civil_just_logged_in') === 'true';
+      if (isFirstLogin) {
+        setShowFirstTimeLoader(true);
+        const timer = setTimeout(() => {
+          sessionStorage.removeItem('civil_just_logged_in');
+          sessionStorage.setItem('civil_login_loaded', 'true');
+          setShowFirstTimeLoader(false);
+        }, 1200);
+        return () => clearTimeout(timer);
+      }
+    } catch {
+      setShowFirstTimeLoader(false);
+    }
+  }, []);
+
   useEffect(() => {
     if (!loading && user) setHydrated(true);
   }, [loading, user]);
@@ -349,7 +363,8 @@ export function Shell({ children }: { children: React.ReactNode }) {
   }, [user?.firmId]);
 
   const isAuth = path === '/login' || path === '/reset-password' || path === '/loader-demo';
-  const isChat = path === '/communication/discussions' || path === '/chat' || path === '/communication/chat';
+  const isChat =
+    path === '/communication/discussions' || path === '/chat' || path === '/communication/chat';
 
   useEffect(() => {
     if (window.innerWidth < 1024) {
@@ -393,8 +408,17 @@ export function Shell({ children }: { children: React.ReactNode }) {
   }, []);
 
   if (isAuth) return <>{children}</>;
-  if (!hydrated || !user) {
+
+  if (showFirstTimeLoader) {
     return <FullPageLoader statusMessage={`Initializing ${BRAND_CONFIG.name}...`} />;
+  }
+
+  if (!hydrated || !user) {
+    return (
+      <div className="p-6 max-w-7xl mx-auto" aria-busy="true" aria-label="Loading workspace">
+        <Skeleton variant="page" />
+      </div>
+    );
   }
 
   const portal = ['contractor', 'client'].includes(user.role);
@@ -414,9 +438,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
 
   const focused = path.endsWith('/new') || path.endsWith('/edit');
   const active = (href: string) =>
-    href === '/'
-      ? path === '/'
-      : path === href || path.startsWith(href + '/');
+    href === '/' ? path === '/' : path === href || path.startsWith(href + '/');
 
   const bottom = portal
     ? portalNav.slice(0, 4)
@@ -431,13 +453,19 @@ export function Shell({ children }: { children: React.ReactNode }) {
     await auth.logout();
     query.removeQueries({ predicate: (q) => q.queryKey[0] !== 'session' });
     query.setQueryData(['session'], null);
+    try {
+      sessionStorage.removeItem('civil_just_logged_in');
+      sessionStorage.removeItem('civil_login_loaded');
+    } catch {}
     for (const k of Object.keys(localStorage))
       if (k.startsWith('civil.')) localStorage.removeItem(k);
     router.replace('/login');
   }
 
   return (
-    <div className={`app-shell ${focused ? 'focused-task' : ''} ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
+    <div
+      className={`app-shell ${focused ? 'focused-task' : ''} ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}
+    >
       <a className="skip-link" href="#main">
         Skip to main content
       </a>
@@ -451,11 +479,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
             />
           </div>
           <span className="brand-mark brand-mark-collapsed">
-            <img
-              src={BRAND_CONFIG.logoUrl}
-              alt={BRAND_CONFIG.name}
-              className="brand-logo-img"
-            />
+            <img src={BRAND_CONFIG.logoUrl} alt={BRAND_CONFIG.name} className="brand-logo-img" />
           </span>
         </Link>
 
@@ -511,7 +535,10 @@ export function Shell({ children }: { children: React.ReactNode }) {
                         aria-expanded={isOpen}
                         title={sidebarCollapsed ? undefined : section.title}
                       >
-                        <SectionIcon size={20} weight={hasActiveChild || isFlyoutOpen ? 'fill' : 'regular'} />
+                        <SectionIcon
+                          size={20}
+                          weight={hasActiveChild || isFlyoutOpen ? 'fill' : 'regular'}
+                        />
                         <span className="nav-parent-text">{section.title}</span>
                         <CaretDown
                           size={13}
@@ -521,7 +548,9 @@ export function Shell({ children }: { children: React.ReactNode }) {
                       </button>
 
                       {/* Smooth animated accordion collapse */}
-                      <div className={`nav-accordion-collapse ${isOpen && !sidebarCollapsed ? 'is-open' : 'is-closed'}`}>
+                      <div
+                        className={`nav-accordion-collapse ${isOpen && !sidebarCollapsed ? 'is-open' : 'is-closed'}`}
+                      >
                         <div className="nav-accordion-collapse-inner">
                           <div className="nav-accordion-items">
                             {section.items.map((item) => {
@@ -555,7 +584,9 @@ export function Shell({ children }: { children: React.ReactNode }) {
                   <Link
                     href="/communication/discussions"
                     className={`nav-link ${path.startsWith('/communication/discussions') ? 'active' : ''}`}
-                    aria-current={path.startsWith('/communication/discussions') ? 'page' : undefined}
+                    aria-current={
+                      path.startsWith('/communication/discussions') ? 'page' : undefined
+                    }
                     onMouseEnter={(e) => showTooltip(e, 'Chats')}
                     onMouseLeave={hideTooltip}
                     title={sidebarCollapsed ? undefined : 'Chats'}
@@ -563,7 +594,11 @@ export function Shell({ children }: { children: React.ReactNode }) {
                     <ChatDots
                       size={20}
                       weight={path.startsWith('/communication/discussions') ? 'fill' : 'regular'}
-                      className={path.startsWith('/communication/discussions') ? 'text-blue-400' : 'text-slate-400'}
+                      className={
+                        path.startsWith('/communication/discussions')
+                          ? 'text-blue-400'
+                          : 'text-slate-400'
+                      }
                     />
                     <span className="nav-text flex items-center justify-between flex-1">
                       <span>Chats</span>
@@ -848,14 +883,20 @@ export function Shell({ children }: { children: React.ReactNode }) {
           {Array.from(
             new Map(
               [
-                ...modules.filter((m) => canAccessPath(user, m.path)).map((m) => ({ title: m.title, path: m.path, group: m.group })),
+                ...modules
+                  .filter((m) => canAccessPath(user, m.path))
+                  .map((m) => ({ title: m.title, path: m.path, group: m.group })),
                 ...permittedSections.flatMap((s) =>
                   s.items.map((i) => ({ title: i.name, path: i.href, group: s.title })),
                 ),
               ].map((item) => [item.path, item]),
             ).values(),
           )
-            .filter((m) => m.title.toLowerCase().includes(q.toLowerCase()) || m.group.toLowerCase().includes(q.toLowerCase()))
+            .filter(
+              (m) =>
+                m.title.toLowerCase().includes(q.toLowerCase()) ||
+                m.group.toLowerCase().includes(q.toLowerCase()),
+            )
             .map((m) => (
               <Link href={m.path} key={m.path} onClick={() => setSearch(false)}>
                 <Command size={18} />
@@ -869,58 +910,57 @@ export function Shell({ children }: { children: React.ReactNode }) {
 
       {/* Floating Tooltip in Collapsed Mode */}
       {sidebarCollapsed && hoveredTooltip && !flyoutMenu && (
-        <div
-          className="sidebar-floating-tooltip"
-          style={{ top: hoveredTooltip.top }}
-        >
+        <div className="sidebar-floating-tooltip" style={{ top: hoveredTooltip.top }}>
           {hoveredTooltip.text}
         </div>
       )}
 
       {/* Floating Context Menu Flyout in Collapsed Mode */}
-      {sidebarCollapsed && flyoutMenu && (() => {
-        const activeSection = permittedSections.find((s) => s.id === flyoutMenu.sectionId);
-        if (!activeSection) return null;
-        const ActiveSectionIcon = activeSection.icon;
+      {sidebarCollapsed &&
+        flyoutMenu &&
+        (() => {
+          const activeSection = permittedSections.find((s) => s.id === flyoutMenu.sectionId);
+          if (!activeSection) return null;
+          const ActiveSectionIcon = activeSection.icon;
 
-        return (
-          <div
-            className="sidebar-context-flyout"
-            style={{ top: flyoutMenu.top }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Flyout Header */}
-            <div className="flyout-header">
-              <ActiveSectionIcon size={18} weight="fill" className="flyout-header-icon" />
-              <span className="flyout-header-title">{activeSection.title}</span>
-              <span className="flyout-badge">{activeSection.items.length} items</span>
+          return (
+            <div
+              className="sidebar-context-flyout"
+              style={{ top: flyoutMenu.top }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Flyout Header */}
+              <div className="flyout-header">
+                <ActiveSectionIcon size={18} weight="fill" className="flyout-header-icon" />
+                <span className="flyout-header-title">{activeSection.title}</span>
+                <span className="flyout-badge">{activeSection.items.length} items</span>
+              </div>
+
+              <div className="flyout-divider" />
+
+              {/* Child Menu Links */}
+              <div className="flyout-list">
+                {activeSection.items.map((item) => {
+                  const ItemIcon = item.icon;
+                  const isItemActive = active(item.href);
+
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`flyout-item ${isItemActive ? 'active' : ''}`}
+                      aria-current={isItemActive ? 'page' : undefined}
+                      onClick={() => setFlyoutMenu(null)}
+                    >
+                      <ItemIcon size={18} weight={isItemActive ? 'fill' : 'regular'} />
+                      <span className="flyout-item-name">{item.name}</span>
+                    </Link>
+                  );
+                })}
+              </div>
             </div>
-
-            <div className="flyout-divider" />
-
-            {/* Child Menu Links */}
-            <div className="flyout-list">
-              {activeSection.items.map((item) => {
-                const ItemIcon = item.icon;
-                const isItemActive = active(item.href);
-
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`flyout-item ${isItemActive ? 'active' : ''}`}
-                    aria-current={isItemActive ? 'page' : undefined}
-                    onClick={() => setFlyoutMenu(null)}
-                  >
-                    <ItemIcon size={18} weight={isItemActive ? 'fill' : 'regular'} />
-                    <span className="flyout-item-name">{item.name}</span>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        );
-      })()}
+          );
+        })()}
     </div>
   );
 }
