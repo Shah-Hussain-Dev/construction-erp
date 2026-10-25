@@ -1,5 +1,12 @@
 const CACHE='civil-shell-v1';
-const STATIC=['/offline.html','/icons/icon-192.png','/icons/icon-512.png'];
+const STATIC = [
+  '/offline.html',
+  '/icons/logo.jpeg',
+  '/icons/logo-h.png',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png',
+  '/icons/apple-touch-icon.png',
+];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(STATIC))));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('civil-shell-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
 self.addEventListener('message',event=>{if(event.data?.type==='SKIP_WAITING')self.skipWaiting()});
